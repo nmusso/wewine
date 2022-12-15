@@ -1,0 +1,5 @@
+Host: sql7.freesqldatabase.com
+Database name: sql7584954
+Database user: sql7584954
+Database password: NC9dpNir5Y
+Port number: 3306
