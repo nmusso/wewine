@@ -1,0 +1,7 @@
+@media (max-width: 576px) {
+    #nav {
+        display: block;
+        position: fixed;
+        bottom: 0px;
+    }
+}
