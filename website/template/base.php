@@ -23,8 +23,8 @@
 			</div>
 		</div>
 		<div class="row flex-grow-1">
-			<div id="myRow" class="col-sm-2 bg-dark">
-				<div id="nav" class="row">
+			<div id="nav" class="col-sm-2 bg-dark">
+				<div class="row">
 					<div class="col-12">
 						<ul class="nav nav-pills bg-dark">
 							<li class="nav-item col col-sm-12">
