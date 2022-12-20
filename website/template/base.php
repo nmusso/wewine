@@ -16,36 +16,45 @@
 <body class="bg-light">
 	<div id="container" class="container-fluid p-0 overflow-hidden min-vh-100 d-flex flex-column">
 		<div id="header" class="row">
-			<div id="title" class="col-12">
-				<header class="bg-dark text-white py-1">
-					<h1 class="font-weight-light text-center">iSocial</h1>
-				</header>
-			</div>
 		</div>
 		<div class="row flex-grow-1">
 			<div id="nav" class="col-sm-2 px-0 bg-dark">
 				<div id="fluidRow" class="row m-auto">
+					<div id="title" class="col-12">
+						<header class="bg-dark text-white py-1">
+							<h1 class="font-weight-light text-center">iSocial</h1>
+						</header>
+					</div>
 					<div class="col-12">
 						<ul class="nav nav-pills bg-dark">
-							<li id="li-search" class="nav-item text-left col col-sm-12">
+							<li id="li-search" class="nav-item text-center col col-sm-12">
 								<a class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-magnifying-glass line"></i><p class="desc line">Search</p></a>
+										class="fa-solid fa-magnifying-glass line"></i>
+									<p class="desc line">Search</p>
+								</a>
 							</li>
-							<li id="li-add" class="nav-item text-left col col-sm-12 text-left">
+							<li id="li-add" class="nav-item text-center col col-sm-12">
 								<a class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-circle-plus line"></i><p class="desc line">Add</p></a>
+										class="fa-solid fa-circle-plus line"></i>
+									<p class="desc line">Add</p>
+								</a>
 							</li>
-							<li id="li-home" class="nav-item text-left col col-sm-12">
+							<li id="li-home" class="nav-item text-center col col-sm-12">
 								<a class="nav-link text-white  my-3 mx-0" href="#"><i
-										class="fa-solid fa-house line"></i><p class="desc line">Home</p></a>
+										class="fa-solid fa-house line"></i>
+									<p class="desc line">Home</p>
+								</a>
 							</li>
-							<li id="li-notify" class="nav-item text-left col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-bell line"></i><p class="desc line">Notifications</p></a>
+							<li id="li-notify" class="nav-item text-center col col-sm-12">
+								<a class="nav-link text-white my-3 mx-0" href="#"><i class="fa-solid fa-bell line"></i>
+									<p class="desc line">Notifications</p>
+								</a>
 							</li>
-							<li id="li-profile" class="nav-item text-left col col-sm-12">
+							<li id="li-profile" class="nav-item text-center col col-sm-12">
 								<a class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-circle-user line"></i><p class="desc line">Profile</p></a>
+										class="fa-solid fa-circle-user line"></i>
+									<p class="desc line">Profile</p>
+								</a>
 							</li>
 						</ul>
 					</div>
