@@ -1,6 +1,7 @@
+/* sotto i 576px */
 @media (max-width: 576px) {
-    #nav {
-        display: block;
+    .nav {
+        display: inline-block;
         position: fixed;
         bottom: 0px;
     }

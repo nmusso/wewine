@@ -14,46 +14,49 @@
 </head>
 
 <body class="bg-light">
-	<div class="container-fluid p-0 overflow-hidden">
+	<div class="container-fluid p-0 overflow-hidden min-vh-100 d-flex flex-column">
 		<div class="row">
-			<div class="col-12">
+			<div class="col">
 				<header class="bg-dark text-white py-1">
 					<h1 class="font-weight-light text-center">iSocial</h1>
 				</header>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-4">
+		<div class="row flex-grow-1">
+			<div class="col-sm-2 bg-dark">
 				<div id="nav" class="row">
-					<div class="col-md-1"></div>
-					<div class="col-12 col-md-10 bg-dark">
-						<ul class="nav nav-pills">
-							<li class="nav-item col col-md-2">
-								<a class="nav-link bg-dark text-white text-center mt-2 mx-2" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+					<div class="col-12">
+						<ul class="nav nav-pills bg-dark">
+							<li class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+										class="fa-solid fa-magnifying-glass"></i></a>
 							</li>
-							<li class="nav-item col col-md-2">
-								<a class="nav-link bg-dark text-white text-center mt-2 mx-2" href="#"><i class="fa-solid fa-circle-plus"></i></a>
+							<li class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+										class="fa-solid fa-circle-plus"></i></a>
 							</li>
-							<li class="nav-item col col-md-2">
-								<a class="nav-link bg-dark text-white text-center mt-2 mx-2" href="#"><i class="fa-solid fa-house"></i></a>
+							<li class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+										class="fa-solid fa-house"></i></a>
 							</li>
-							<li class="nav-item col col-md-2">
-								<a class="nav-link bg-dark text-white text-center mt-2 mx-2" href="#"><i class="fa-solid fa-bell"></i></a>
+							<li class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+										class="fa-solid fa-bell"></i></a>
 							</li>
-							<li class="nav-item col col-md-2">
-								<a class="nav-link bg-dark text-white text-center mt-2 mx-2" href="#"><i class="fa-solid fa-circle-user"></i></a>
+							<li class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+										class="fa-solid fa-circle-user"></i></a>
 							</li>
 						</ul>
 					</div>
-					<div class="col-md-1"></div>
 				</div>
 			</div>
-			<div class="col-8">
+			<div class="col-sm-10">
 				<main>
 				</main>
 			</div>
 		</div>
-		
+
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
