@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<div class="row flex-grow-1">
-			<div class="col-sm-2 bg-dark">
+			<div id="myRow" class="col-sm-2 bg-dark">
 				<div id="nav" class="row">
 					<div class="col-12">
 						<ul class="nav nav-pills bg-dark">
@@ -62,6 +62,7 @@
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/7dda2fa6a2.js" crossorigin="anonymous"></script>
+	<script src="../js/bootstrap.js"></script>
 
 </body>
 
