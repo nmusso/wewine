@@ -29,30 +29,31 @@
 						<ul class="nav nav-pills bg-dark">
 							<li id="li-search" class="nav-item text-center col col-sm-12">
 								<a class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-magnifying-glass line"></i>
+										class="fa-solid fa-magnifying-glass line" aria-hidden="true"></i>
 									<p class="desc line">Search</p>
 								</a>
 							</li>
 							<li id="li-add" class="nav-item text-center col col-sm-12">
 								<a class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-circle-plus line"></i>
+										class="fa-solid fa-circle-plus line" aria-hidden="true"></i>
 									<p class="desc line">Add</p>
 								</a>
 							</li>
 							<li id="li-home" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white  my-3 mx-0" href="#"><i
-										class="fa-solid fa-house line"></i>
+								<a class="nav-link text-white  my-3 mx-0" href="#"><i class="fa-solid fa-house line"
+										aria-hidden="true"></i>
 									<p class="desc line">Home</p>
 								</a>
 							</li>
 							<li id="li-notify" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="#"><i class="fa-solid fa-bell line"></i>
+								<a class="nav-link text-white my-3 mx-0" href="#"><i class="fa-solid fa-bell line"
+										aria-hidden="true"></i>
 									<p class="desc line">Notifications</p>
 								</a>
 							</li>
 							<li id="li-profile" class="nav-item text-center col col-sm-12">
 								<a class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-circle-user line"></i>
+										class="fa-solid fa-circle-user line" aria-hidden="true"></i>
 									<p class="desc line">Profile</p>
 								</a>
 							</li>
