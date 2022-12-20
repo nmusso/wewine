@@ -14,37 +14,37 @@
 </head>
 
 <body class="bg-light">
-	<div class="container-fluid p-0 overflow-hidden min-vh-100 d-flex flex-column">
-		<div class="row">
-			<div class="col">
+	<div id="container" class="container-fluid p-0 overflow-hidden min-vh-100 d-flex flex-column">
+		<div id="header" class="row">
+			<div id="title" class="col-12">
 				<header class="bg-dark text-white py-1">
 					<h1 class="font-weight-light text-center">iSocial</h1>
 				</header>
 			</div>
 		</div>
 		<div class="row flex-grow-1">
-			<div id="nav" class="col-sm-2 bg-dark">
-				<div class="row">
+			<div id="nav" class="col-sm-2 px-0 bg-dark">
+				<div id="fluidRow" class="row m-auto">
 					<div class="col-12">
 						<ul class="nav nav-pills bg-dark">
-							<li class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+							<li id="li-search" class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
 										class="fa-solid fa-magnifying-glass"></i></a>
 							</li>
-							<li class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+							<li id="li-add" class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
 										class="fa-solid fa-circle-plus"></i></a>
 							</li>
-							<li class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+							<li id="li-home" class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
 										class="fa-solid fa-house"></i></a>
 							</li>
-							<li class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+							<li id="li-notify" class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
 										class="fa-solid fa-bell"></i></a>
 							</li>
-							<li class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center mt-2 mx-0" href="#"><i
+							<li id="li-profile" class="nav-item col col-sm-12">
+								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
 										class="fa-solid fa-circle-user"></i></a>
 							</li>
 						</ul>
