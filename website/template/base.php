@@ -27,25 +27,25 @@
 				<div id="fluidRow" class="row m-auto">
 					<div class="col-12">
 						<ul class="nav nav-pills bg-dark">
-							<li id="li-search" class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
-										class="fa-solid fa-magnifying-glass"></i></a>
+							<li id="li-search" class="nav-item text-left col col-sm-12">
+								<a class="nav-link text-white my-3 mx-0" href="#"><i
+										class="fa-solid fa-magnifying-glass line"></i><p class="desc line">Search</p></a>
 							</li>
-							<li id="li-add" class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
-										class="fa-solid fa-circle-plus"></i></a>
+							<li id="li-add" class="nav-item text-left col col-sm-12 text-left">
+								<a class="nav-link text-white my-3 mx-0" href="#"><i
+										class="fa-solid fa-circle-plus line"></i><p class="desc line">Add</p></a>
 							</li>
-							<li id="li-home" class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
-										class="fa-solid fa-house"></i></a>
+							<li id="li-home" class="nav-item text-left col col-sm-12">
+								<a class="nav-link text-white  my-3 mx-0" href="#"><i
+										class="fa-solid fa-house line"></i><p class="desc line">Home</p></a>
 							</li>
-							<li id="li-notify" class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
-										class="fa-solid fa-bell"></i></a>
+							<li id="li-notify" class="nav-item text-left col col-sm-12">
+								<a class="nav-link text-white my-3 mx-0" href="#"><i
+										class="fa-solid fa-bell line"></i><p class="desc line">Notifications</p></a>
 							</li>
-							<li id="li-profile" class="nav-item col col-sm-12">
-								<a class="nav-link text-white text-center my-3 mx-0" href="#"><i
-										class="fa-solid fa-circle-user"></i></a>
+							<li id="li-profile" class="nav-item text-left col col-sm-12">
+								<a class="nav-link text-white my-3 mx-0" href="#"><i
+										class="fa-solid fa-circle-user line"></i><p class="desc line">Profile</p></a>
 							</li>
 						</ul>
 					</div>

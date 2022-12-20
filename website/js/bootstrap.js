@@ -1,10 +1,10 @@
-let nav = document.getElementById("nav");
-let row = document.getElementById("myRow");
-let title = document.getElementById("title");
-let inRow = document.getElementById("fluidRow");
-let container = document.getElementById("container");
+const nav = document.getElementById("nav");
+const row = document.getElementById("myRow");
+const title = document.getElementById("title");
+const inRow = document.getElementById("fluidRow");
+const container = document.getElementById("container");
 const h1 = document.querySelector("h1");
-const p = '<p class="text-center fs-3">iSocial</p>';
+const p = '<p class="text-center fs-3 my-0">iSocial</p>';
 const ul = document.querySelector("ul");
 const home = document.getElementById("li-home");
 const search = document.getElementById("li-search");
@@ -54,3 +54,28 @@ function mediaTrigger() {
 mediaTrigger();
 dim.addEventListener("change", mediaTrigger);
 
+let iconDesc = window.matchMedia("(max-width: 1200px)");
+function manageDesc() {
+    if (window.innerWidth < 1200) {
+        document.querySelectorAll(".desc").forEach(item => {
+            item.style.display = "none";
+        })
+
+        document.querySelectorAll("li").forEach(item => {
+            item.classList.remove("text-left");
+            item.classList.add("text-center");
+        })
+    } else {
+        document.querySelectorAll(".desc").forEach(item => {
+            item.style.display = "inline-block";
+        })
+
+        document.querySelectorAll("li").forEach(item => {
+            item.classList.remove("text-center");
+            item.classList.add("text-left");
+        })
+    }
+}
+
+manageDesc();
+iconDesc.addEventListener("change", manageDesc);
