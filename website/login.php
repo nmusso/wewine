@@ -7,5 +7,5 @@ $templateParams["js"] = array(  "https://unpkg.com/axios/dist/axios.min.js",
                                 "js/login.js",
                                 "js/bootstrap.js");
 
-require 'template/login-form.php';
+require 'template/minimal-base.php';
 ?>

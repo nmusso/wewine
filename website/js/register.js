@@ -11,6 +11,10 @@ function generaLoginForm(loginerror = null) {
                     <input type="text" class="form-control" id="username" required>
                 </div>
                 <div class="mb-3">
+                    <label for="email" class="form-label">Mail</label>
+                    <input type="" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" required>
                 </div>
@@ -33,33 +37,3 @@ function generaLoginForm(loginerror = null) {
 
 const main = document.querySelector("main");
 main.innerHTML = generaLoginForm();
-
-document.getElementById("register").addEventListener("click", ()=>{
-    window.location.replace("./register.php")
-})
-
-document.getElementById("submit").addEventListener("click", function (event) {
-    event.preventDefault();
-    const username = document.querySelector("#username").value;
-    const password = document.querySelector("#password").value;
-    login(username, password);
-})
-
-
-// TODO aggiungere sicurezza
-// TODO gestire remember me
-function login(username, password) {
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
-    axios.post('api-login.php', formData).then(response => {
-        console.log(response);
-        if (response.data["logindone"]) {
-            window.location.replace("./index.php")
-        } else {
-            document.getElementById("error").innerText = response.data["errorelogin"];
-        }
-    });
-}
-
-
