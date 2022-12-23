@@ -5,7 +5,7 @@ function generaLoginForm(loginerror = null) {
         <div class="col-8 col-sm-4">
             <div id="error" class="text-danger mb-3">
             </div>
-            <form>
+            <form id="login_form">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" required>
@@ -34,19 +34,21 @@ function generaLoginForm(loginerror = null) {
 const main = document.querySelector("main");
 main.innerHTML = generaLoginForm();
 
-document.getElementById("register").addEventListener("click", ()=>{
+document.getElementById("register").addEventListener("click", () => {
     window.location.replace("./register.php")
 })
 
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
+    const form = document.getElementById("login_form");
+    const pw = document.getElementById("password").value;
+    formhash(form, pw);
+    
     const username = document.querySelector("#username").value;
-    const password = document.querySelector("#password").value;
+    const password = document.querySelector("#p_hex").value;
     login(username, password);
 })
 
-
-// TODO aggiungere sicurezza
 // TODO gestire remember me
 function login(username, password) {
     const formData = new FormData();
@@ -54,12 +56,29 @@ function login(username, password) {
     formData.append('password', password);
     axios.post('api-login.php', formData).then(response => {
         console.log(response);
+        console.log(response.data["logindone"]);
         if (response.data["logindone"]) {
             window.location.replace("./index.php")
         } else {
             document.getElementById("error").innerText = response.data["errorelogin"];
         }
     });
+}
+
+function formhash(form, password) {
+    // Crea un elemento di input che verrà usato come campo di output per la password criptata.
+    var p = document.createElement("input");
+    // Aggiungi un nuovo elemento al tuo form.
+    form.appendChild(p);
+    p.id = "p_hex";
+    p.name = "p";
+    p.type = "hidden"
+    p.value = hex_sha512(password);
+    //p.value = password; // TODO così è in chiaro
+    // Assicurati che la password non venga inviata in chiaro.
+    password.value = "";
+    // Come ultimo passaggio, esegui il 'submit' del form.
+    //form.submit();
 }
 
 

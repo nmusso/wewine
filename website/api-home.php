@@ -1,9 +1,10 @@
 <?php
 require_once 'bootstrap.php';
 
+sec_session_start();
 $result["islogged"] = false;
 
-if(isUserLoggedIn()){
+if($dbh->login_check()){
     $result["islogged"] = true;
     //prendi post e mettili in $result["posts"]
 }
