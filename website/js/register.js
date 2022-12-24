@@ -6,9 +6,6 @@ function generaLoginForm(loginerror = null) {
             <div class="card">
                 <div class="card-body p-5">
                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-                    <div class="text-center mb-4">
-                        <img src="upload/rit.jpg" class="rounded-circle" alt="Profile Picture" width="140" height="140">
-                    </div>
                     <form id="register_form"> 
                         <div class="form-outline mb-4">
                             <label class="form-label" for="imgProfile">Profile picture</label>
@@ -47,7 +44,7 @@ function generaLoginForm(loginerror = null) {
                         <div class="d-flex justify-content-center">
                             <button id="submit" type="button" class="btn btn-primary btn-block btn-lg text-white">Register</button>
                         </div>
-                        <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
+                        <p class="text-center text-muted mt-5 mb-0">Have already an account? <a id="loginhere" href="#!"
                             class="fw-bold text-body"><u>Login here</u></a></p>
                     </form>
                 </div>
@@ -61,12 +58,14 @@ function generaLoginForm(loginerror = null) {
 const main = document.querySelector("main");
 main.innerHTML = generaLoginForm();
 
+document.getElementById("loginhere").addEventListener("click", () => window.location.replace("./login.php"))
+
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
     const form = document.getElementById("register_form");
     const pw = document.getElementById("password").value;
     formhash(form, pw);
-    
+
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#p_hex").value;
     const email = document.querySelector("#email").value;
@@ -74,7 +73,7 @@ document.getElementById("submit").addEventListener("click", function (event) {
     const cognome = document.querySelector("#surname").value;
     const dataNascita = document.querySelector("#dateBirth").value;
     const bio = document.querySelector("#bio").value;
-    const imgProfilo = document.querySelector("#imgProfile").value;
+    const imgProfilo = document.querySelector("#imgProfile").files[0];
     register(username, password, email, nome, cognome, dataNascita, bio, imgProfilo);
 })
 
@@ -89,7 +88,11 @@ function register(username, password, email, nome, cognome, dataNascita, bio, im
     formData.append('bio', bio);
     formData.append('imgProfilo', imgProfilo);
 
-    axios.post('api-register.php', formData).then(response => {
+    axios.post('api-register.php', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }).then(response => {
         console.log(response);
         if (response.data["registerOK"]) {
             window.location.replace("./index.php")
