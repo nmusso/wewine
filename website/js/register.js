@@ -9,10 +9,10 @@ function generaLoginForm(loginerror = null) {
                     <div class="text-center mb-4">
                         <img src="upload/rit.jpg" class="rounded-circle" alt="Profile Picture" width="140" height="140">
                     </div>
-                    <form> 
+                    <form id="register_form"> 
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="customFile">Profile picture</label>
-                            <input type="file" class="form-control" id="customFile" /> 
+                            <label class="form-label" for="imgProfile">Profile picture</label>
+                            <input type="file" class="form-control" id="imgProfile" /> 
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="name">Name</label>
@@ -41,9 +41,11 @@ function generaLoginForm(loginerror = null) {
                         <div class="form-outline mb-4">
                             <label class="form-label" for="password">Password</label>
                             <input type="password" id="password" class="form-control form-control-lg" />
+                        </div>                       
+                        <div id="error" class="text-danger mb-3">
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary btn-block btn-lg text-white">Register</button>
+                            <button id="submit" type="button" class="btn btn-primary btn-block btn-lg text-white">Register</button>
                         </div>
                         <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
                             class="fw-bold text-body"><u>Login here</u></a></p>
@@ -58,3 +60,56 @@ function generaLoginForm(loginerror = null) {
 
 const main = document.querySelector("main");
 main.innerHTML = generaLoginForm();
+
+document.getElementById("submit").addEventListener("click", function (event) {
+    event.preventDefault();
+    const form = document.getElementById("register_form");
+    const pw = document.getElementById("password").value;
+    formhash(form, pw);
+    
+    const username = document.querySelector("#username").value;
+    const password = document.querySelector("#p_hex").value;
+    const email = document.querySelector("#email").value;
+    const nome = document.querySelector("#name").value;
+    const cognome = document.querySelector("#surname").value;
+    const dataNascita = document.querySelector("#dateBirth").value;
+    const bio = document.querySelector("#bio").value;
+    const imgProfilo = document.querySelector("#imgProfile").value;
+    register(username, password, email, nome, cognome, dataNascita, bio, imgProfilo);
+})
+
+function register(username, password, email, nome, cognome, dataNascita, bio, imgProfilo) {
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    formData.append('email', email);
+    formData.append('nome', nome);
+    formData.append('cognome', cognome);
+    formData.append('dataNascita', dataNascita);
+    formData.append('bio', bio);
+    formData.append('imgProfilo', imgProfilo);
+
+    axios.post('api-register.php', formData).then(response => {
+        console.log(response);
+        if (response.data["registerOK"]) {
+            window.location.replace("./index.php")
+        } else {
+            document.getElementById("error").innerText = response.data["erroreRegister"];
+        }
+    });
+}
+
+function formhash(form, password) {
+    // Crea un elemento di input che verrà usato come campo di output per la password criptata.
+    var p = document.createElement("input");
+    // Aggiungi un nuovo elemento al tuo form.
+    form.appendChild(p);
+    p.id = "p_hex";
+    p.name = "p";
+    p.type = "hidden"
+    p.value = hex_sha512(password);
+    // Assicurati che la password non venga inviata in chiaro.
+    password.value = "";
+}
+
+

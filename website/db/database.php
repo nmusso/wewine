@@ -10,6 +10,14 @@ class DatabaseHelper
             die("Connection failed: " . $this->db->connect_error);
         }
     }
+    public function insertUser($username, $email, $password, $salt, $nome, $cognome, $dataNascita, $bio, $imgProfilo){
+        $query = "INSERT INTO utente(username, email, password, salt, nome, cognome, dataNascita, bio, imgProfilo, ultimaLetturaNotifiche) VALUES(?,?,?,?,?,?,?,?,?, NOW())";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sssssssss', $username, $email, $password, $salt, $nome, $cognome, $dataNascita, $bio, $imgProfilo);
+        $stmt->execute();
+        
+        return $stmt->insert_id;
+    }
 
     public function checkLogin($username, $password)
     {
@@ -20,6 +28,19 @@ class DatabaseHelper
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function checkUniqueUser($username, $email) {
+        if ($stmt = $this->db->prepare("SELECT username, email FROM utente WHERE username = ? OR email = ?")) {
+            $stmt->bind_param('ss', $username, $email); // esegue il bind del parametro '$email'.
+            $stmt->execute(); // esegue la query appena creata.
+            $stmt->store_result();
+            $stmt->fetch();
+
+            return ($stmt->num_rows == 0);
+        }
+
+        return false;
     }
 
     function checkbrute($user_id)
@@ -51,7 +72,7 @@ class DatabaseHelper
             $stmt->store_result();
             $stmt->bind_result($user_id, $username, $db_password, $salt); // recupera il risultato della query e lo memorizza nelle relative variabili.
             $stmt->fetch();
-            $password = hash('sha512', $password . $salt); // codifica la password usando una chiave univoca.
+            $password = hash('sha512', $password.$salt); // codifica la password usando una chiave univoca.
             if ($stmt->num_rows == 1) { // se l'utente esiste
                 // verifichiamo che non sia disabilitato in seguito all'esecuzione di troppi tentativi di accesso errati.
                 if ($this->checkbrute($user_id) == true) {
@@ -121,6 +142,6 @@ class DatabaseHelper
             // Login non eseguito
             return false;
         }
-    }
+    } 
 }
 ?>

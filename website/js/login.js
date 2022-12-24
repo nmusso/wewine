@@ -55,8 +55,6 @@ function login(username, password) {
     formData.append('username', username);
     formData.append('password', password);
     axios.post('api-login.php', formData).then(response => {
-        console.log(response);
-        console.log(response.data["logindone"]);
         if (response.data["logindone"]) {
             window.location.replace("./index.php")
         } else {
@@ -74,11 +72,8 @@ function formhash(form, password) {
     p.name = "p";
     p.type = "hidden"
     p.value = hex_sha512(password);
-    //p.value = password; // TODO così è in chiaro
     // Assicurati che la password non venga inviata in chiaro.
     password.value = "";
-    // Come ultimo passaggio, esegui il 'submit' del form.
-    //form.submit();
 }
 
 
