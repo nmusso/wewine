@@ -8,38 +8,41 @@ function generaLoginForm(loginerror = null) {
                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
                     <form id="register_form"> 
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="imgProfile">Profile picture</label>
+                            <label class="form-label" for="imgProfile">Profile picture *</label>
                             <input type="file" class="form-control" id="imgProfile" /> 
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="name">Name</label>
+                            <label class="form-label" for="name">Name *</label>
                             <input type="text" id="name" class="form-control form-control-lg" />   
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="surname">Surname</label>
+                            <label class="form-label" for="surname">Surname *</label>
                             <input type="text" id="surname" class="form-control form-control-lg" />      
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="email">Email</label>
+                            <label class="form-label" for="email">Email *</label>
                             <input type="email" id="email" class="form-control form-control-lg" />  
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="dateBirth">Date of birth</label>
+                            <label class="form-label" for="dateBirth">Date of birth *</label>
                             <input type="date" id="dateBirth" class="form-control form-control-lg" />  
                         </div>
                         <div class="form-outline mb-4">
-                            <label for="bio">Bio</label> 
+                            <label for="bio">Bio *</label> 
                             <textarea class="form-control" id="bio" rows="5"></textarea>
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="username">Username</label>
+                            <label class="form-label" for="username">Username *</label>
                             <input type="text" id="username" class="form-control form-control-lg" />       
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="password">Password</label>
+                            <label class="form-label" for="password">Password *</label>
                             <input type="password" id="password" class="form-control form-control-lg" />
-                        </div>                       
-                        <div id="error" class="text-danger mb-3">
+                        </div>   
+                        <div class="mb-4">
+                            <label>* Field required</label>
+                        </div>                    
+                        <div id="error" class="text-danger mb-4">
                         </div>
                         <div class="d-flex justify-content-center">
                             <button id="submit" type="button" class="btn btn-primary btn-block btn-lg text-white">Register</button>
@@ -97,7 +100,7 @@ function register(username, password, email, nome, cognome, dataNascita, bio, im
         if (response.data["registerOK"]) {
             window.location.replace("./index.php")
         } else {
-            document.getElementById("error").innerText = response.data["erroreRegister"];
+            document.getElementById("error").innerText = response.data["errorRegister"];
         }
     });
 }

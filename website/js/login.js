@@ -58,7 +58,7 @@ function login(username, password) {
         if (response.data["logindone"]) {
             window.location.replace("./index.php")
         } else {
-            document.getElementById("error").innerText = response.data["errorelogin"];
+            document.getElementById("error").innerText = response.data["errorLogin"];
         }
     });
 }

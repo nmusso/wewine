@@ -10,11 +10,11 @@ if (isset($_POST['username'], $_POST['password'])) {
         $result["logindone"] = true;
     } else {
         //Login fallito
-        $result["errorelogin"] = "Username e/o password errati";
+        $result["errorLogin"] = "Incorrect username and/or password.";
     }
 } else {
     // Le variabili corrette non sono state inviate a questa pagina dal metodo POST.
-    $result["errorelogin"] = 'Invalid Request';
+    $result["errorLogin"] = 'Invalid Request';
 }
 
 header('Content-Type: application/json');
