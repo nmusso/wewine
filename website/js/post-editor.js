@@ -26,4 +26,9 @@ function generaForm() {
         <div class="col-sm-1 col-md-2 col-lg-2"></div>
     </div>
     `;
+
+    return form;
 }
+
+const main = document.querySelector("main");
+main.innerHTML = generaForm();

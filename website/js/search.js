@@ -13,7 +13,9 @@ function generaBarra() {
             </button>
         </div>
     </div>
-    `
+    `;
+
+    return bar;
 }
 
 function generaProfilo() {
@@ -34,8 +36,13 @@ function generaProfilo() {
             </div>
         </div>
     </div>
-    `
+    `;
+
+    return profile;
 }
+
+const main = document.querySelector("main");
+main.innerHTML = generaBarra();
 
 const canvas = document.getElementById('imgProfileId');
 const context = canvas.getContext('2d');
