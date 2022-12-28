@@ -40,14 +40,14 @@
 								</a>
 							</li>
 							<li id="li-home" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white  my-3 mx-0" href="index.php"><i class="fa-solid fa-house line"
-										aria-hidden="true"></i>
+								<a class="nav-link text-white  my-3 mx-0" href="index.php"><i
+										class="fa-solid fa-house line" aria-hidden="true"></i>
 									<p class="desc line">Home</p>
 								</a>
 							</li>
 							<li id="li-notify" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="notifications.php"><i class="fa-solid fa-bell line"
-										aria-hidden="true"></i>
+								<a class="nav-link text-white my-3 mx-0" href="notifications.php"><i
+										class="fa-solid fa-bell line" aria-hidden="true"></i>
 									<p class="desc line">Notifications</p>
 								</a>
 							</li>
@@ -63,20 +63,19 @@
 			</div>
 			<div class="col-sm-10">
 				<main>
+					<!-- TEST -->
+
+					<!-- TEST -->
 				</main>
 			</div>
 		</div>
 
 	</div>
-	<?php
-    if (isset($templateParams["js"])):
-	    foreach ($templateParams["js"] as $script):
-    ?>
-	<script src="<?php echo $script; ?>"></script>
-	<?php
-	    endforeach;
-    endif;
-    ?>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://kit.fontawesome.com/7dda2fa6a2.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/post-editor.js"></script>
+
 </body>
 
 </html>
