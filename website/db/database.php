@@ -184,5 +184,24 @@ class DatabaseHelper
             return 1;
         }    
     }
+
+    function getIdByUsername($username) {
+        $query = "SELECT id FROM utente WHERE username = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+
+        return $result["id"];
+    }
+
+    function addProfilePath($id, $path) {
+        $query = "UPDATE utente SET imgProfilo = ? WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si', $path, $id);
+        $stmt->execute();
+
+        return $stmt->insert_id;
+    }
 }
 ?>

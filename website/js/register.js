@@ -89,14 +89,15 @@ function register(username, password, email, nome, cognome, dataNascita, bio, im
     formData.append('cognome', cognome);
     formData.append('dataNascita', dataNascita);
     formData.append('bio', bio);
-    formData.append('imgProfilo', imgProfilo);
+    if (imgProfilo != undefined) {
+        formData.append('imgProfilo', imgProfilo);
+    }
 
     axios.post('api-register.php', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     }).then(response => {
-        console.log(response);
         if (response.data["registerOK"]) {
             window.location.replace("./index.php")
         } else {

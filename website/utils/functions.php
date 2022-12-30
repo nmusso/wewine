@@ -68,9 +68,14 @@ function getAction($action){
 }
 
 
-function uploadImage($dbh, $path, $image, $id){
-    $nextId = $dbh->nextPostId($id);
-    $fileName = $id."_".$nextId;
+function uploadImage($dbh, $path, $image, $id, $isPost){
+    $fileName = $id."_";
+    if ($isPost) {
+        $nextId = $dbh->nextPostId($id);
+        $fileName = $fileName . $nextId;
+    } else {
+        $fileName = $fileName . "propic";
+    }
     
     $maxKB = 4000;
     $acceptedExtensions = array("jpg", "jpeg", "png", "gif");
@@ -79,17 +84,17 @@ function uploadImage($dbh, $path, $image, $id){
     //Controllo se immagine è veramente un'immagine
     $imageSize = getimagesize($image["tmp_name"]);
     if($imageSize === false) {
-        $msg .= "File caricato non è un'immagine! ";
+        $msg .= "The uploaded file is not an image! ";
     }
     //Controllo dimensione dell'immagine < 4MB
     if ($image["size"] > $maxKB * 1024) {
-        $msg .= "File caricato pesa troppo! Dimensione massima è $maxKB KB. ";
+        $msg .= "The size of the uploaded file is over $maxKB KB. ";
     }
 
     //Controllo estensione del file
     $imageFileType = strtolower(pathinfo(basename($image["name"]),PATHINFO_EXTENSION));
     if(!in_array($imageFileType, $acceptedExtensions)){
-        $msg .= "Accettate solo le seguenti estensioni: ".implode(",", $acceptedExtensions);
+        $msg .= "Accepted only the following extensions: ".implode(",", $acceptedExtensions);
     } else {
         $fileName = $fileName . "." . $imageFileType;
     }
@@ -97,7 +102,7 @@ function uploadImage($dbh, $path, $image, $id){
     //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
     if(strlen($msg)==0){
         if(!move_uploaded_file($image["tmp_name"], $path.$fileName)){
-            $msg.= "Errore nel caricamento dell'immagine.";
+            $msg.= "Error while uploading the image.";
         }
         else{
             $result = 1;
