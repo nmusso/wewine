@@ -19,6 +19,16 @@ class DatabaseHelper
         return $stmt->insert_id;
     }
 
+    public function getUsersByName($value){
+        $query = "SELECT username, imgProfilo FROM utente WHERE username = ?";#LIKE '%?%' "; // TODO fixare
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s',$value);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function checkLogin($username, $password)
     {
         $query = "SELECT idUtente FROM Utente WHERE username = ? AND password = ?";
