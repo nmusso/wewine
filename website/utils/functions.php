@@ -8,6 +8,7 @@ function isActive($pagename){
 function getIdFromName($name){
     return preg_replace("/[^a-z]/", '', strtolower($name));
 }
+
 function sec_session_start() {
     $session_name = 'sec_session_id'; // Imposta un nome di sessione
     $secure = false; // Imposta il parametro a true se vuoi usare il protocollo 'https'.
@@ -67,9 +68,9 @@ function getAction($action){
 }
 
 
-function uploadImage($path, $image){
-    $imageName = basename($image["name"]);
-    $fullPath = $path.$imageName;
+function uploadImage($dbh, $path, $image, $id){
+    $nextId = $dbh->nextPostId($id);
+    $fileName = $id."_".$nextId;
     
     $maxKB = 4000;
     $acceptedExtensions = array("jpg", "jpeg", "png", "gif");
@@ -86,30 +87,21 @@ function uploadImage($path, $image){
     }
 
     //Controllo estensione del file
-    $imageFileType = strtolower(pathinfo($fullPath,PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo(basename($image["name"]),PATHINFO_EXTENSION));
     if(!in_array($imageFileType, $acceptedExtensions)){
         $msg .= "Accettate solo le seguenti estensioni: ".implode(",", $acceptedExtensions);
-    }
-
-    //Controllo se esiste file con stesso nome ed eventualmente lo rinomino
-    if (file_exists($fullPath)) {
-        $i = 1;
-        do{
-            $i++;
-            $imageName = pathinfo(basename($image["name"]), PATHINFO_FILENAME)."_$i.".$imageFileType;
-        }
-        while(file_exists($path.$imageName));
-        $fullPath = $path.$imageName;
+    } else {
+        $fileName = $fileName . "." . $imageFileType;
     }
 
     //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
     if(strlen($msg)==0){
-        if(!move_uploaded_file($image["tmp_name"], $fullPath)){
+        if(!move_uploaded_file($image["tmp_name"], $path.$fileName)){
             $msg.= "Errore nel caricamento dell'immagine.";
         }
         else{
             $result = 1;
-            $msg = $imageName;
+            $msg = $fileName;
         }
     }
     return array($result, $msg);

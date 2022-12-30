@@ -7,7 +7,7 @@ function generaForm() {
                 <form id="post_form">
                     <div class="form-outline mb-4">
                         <label for="text">Text</label>
-                        <textarea class="form-control " id="text" rows="5"
+                        <textarea class="form-control" id="text" rows="5"
                             placeholder="What's new?"></textarea>
                     </div>
                     <div class="form-outline mb-4">
@@ -32,3 +32,30 @@ function generaForm() {
 
 const main = document.querySelector("main");
 main.innerHTML = generaForm();
+
+document.getElementById("submit").addEventListener("click", () => {
+    const text = document.querySelector("#text").value;
+    const photo = document.querySelector("#photo").files[0];
+
+    const formData = new FormData();
+    formData.append("text", text);
+    if (photo != undefined) {
+        formData.append("photo", photo);
+    }
+
+    axios.post("api-post-editor.php", formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }).then(response => {
+        if (response.data["notLogged"]) {
+            window.location.replace("./login.php");
+        } 
+
+        if (response.data["postOK"]) {
+            window.location.replace("./index.php");
+        } else {
+            document.getElementById("error").innerText = response.data["errorPost"];
+        }
+    })
+})
