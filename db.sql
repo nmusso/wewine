@@ -24,6 +24,61 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `social` /*!40100 DEFAULT CHARACTER SET
 USE `social`;
 
 --
+-- Table structure for table `commento`
+--
+
+DROP TABLE IF EXISTS `commento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `commento` (
+  `idPost` int(11) NOT NULL,
+  `idUtente` int(11) NOT NULL,
+  `testo` varchar(280) NOT NULL,
+  `dataOra` datetime NOT NULL,
+  PRIMARY KEY (`idPost`,`idUtente`),
+  KEY `utente_2` (`idUtente`),
+  CONSTRAINT `post_1` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `utente_2` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `commento`
+--
+
+LOCK TABLES `commento` WRITE;
+/*!40000 ALTER TABLE `commento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `like`
+--
+
+DROP TABLE IF EXISTS `like`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `like` (
+  `idPost` int(11) NOT NULL,
+  `idUtente` int(11) NOT NULL,
+  `dataOra` datetime NOT NULL,
+  PRIMARY KEY (`idPost`,`idUtente`),
+  KEY `utente_1` (`idUtente`),
+  CONSTRAINT `post` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `utente_1` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `like`
+--
+
+LOCK TABLES `like` WRITE;
+/*!40000 ALTER TABLE `like` DISABLE KEYS */;
+/*!40000 ALTER TABLE `like` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `login_attempts`
 --
 
@@ -42,7 +97,64 @@ CREATE TABLE `login_attempts` (
 
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
+INSERT INTO `login_attempts` VALUES (3,'1671919467'),(3,'1671919471'),(4,'1671919512'),(5,'1671919684'),(4,'1671920258'),(7,'1671920265'),(9,'1672244503'),(9,'1672244506'),(9,'1672244507'),(9,'1672244507'),(9,'1672244507'),(9,'1672244515'),(10,'1672244918'),(2,'1672244951'),(2,'1672245175');
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `post`
+--
+
+DROP TABLE IF EXISTS `post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `post` (
+  `idPost` int(11) NOT NULL AUTO_INCREMENT,
+  `testo` varchar(280) NOT NULL,
+  `immagine` varchar(45) DEFAULT NULL,
+  `dataOra` datetime NOT NULL,
+  `idUtente` int(11) NOT NULL,
+  PRIMARY KEY (`idPost`),
+  KEY `utente` (`idUtente`),
+  CONSTRAINT `utente` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post`
+--
+
+LOCK TABLES `post` WRITE;
+/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+INSERT INTO `post` VALUES (1,'Ciao',NULL,'2022-12-24 00:00:00',2);
+/*!40000 ALTER TABLE `post` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `segue`
+--
+
+DROP TABLE IF EXISTS `segue`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `segue` (
+  `idFollowed` int(11) NOT NULL,
+  `idFollower` int(11) NOT NULL,
+  `dataOra` varchar(45) NOT NULL,
+  PRIMARY KEY (`idFollowed`,`idFollower`),
+  KEY `utente_4` (`idFollower`),
+  CONSTRAINT `utente_3` FOREIGN KEY (`idFollowed`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `utente_4` FOREIGN KEY (`idFollower`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `segue`
+--
+
+LOCK TABLES `segue` WRITE;
+/*!40000 ALTER TABLE `segue` DISABLE KEYS */;
+/*!40000 ALTER TABLE `segue` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -58,8 +170,14 @@ CREATE TABLE `utente` (
   `email` varchar(50) NOT NULL,
   `password` char(128) NOT NULL,
   `salt` char(128) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  `cognome` varchar(45) NOT NULL,
+  `dataNascita` date NOT NULL,
+  `bio` varchar(280) NOT NULL,
+  `imgProfilo` varchar(45) NOT NULL,
+  `ultimaLetturaNotifiche` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +186,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (1,'test_user','test@example.com','00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc','f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef');
+INSERT INTO `utente` VALUES (2,'test_user','test@example.com','00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc','f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef','Test','User','2000-12-24','Ciao sono test','def',NULL),(9,'aleciro','aleciro@gmail.com','499bacb2450b13d24cef2b926fc7ce51f81ffa00b342f87325a68856469724e29fe7eb564929153f9c7afb6815f9cb78433ad5c86e1b5897883d42611fa20a06','d47a84a9184db566c002aeadacf56da499c23c7d0bf0772065141ec12bf7573050b899da89c2c501b7a254fc82694f20bdab86625371a9e13ea7b377a1d61c88','Ale','Ciro','2000-12-12','Ciao','C:\\fakepath\\Screenshot (1).png','2022-12-24 23:19:19'),(10,'aleciroaaa','ss@gmail.com','adec806472fde20ffab5d47985448f0dee46bf6613da738f57006909204f3661d4f7aebca303d6bd76d40d7c8087cbf66b6f8fb74ce6579cc53570a3481861cc','d78b0ac03465ae04c24cfa4c2a0975635f24743cabd72eef0822f43289e09f8610ec41b55f89b603dbc8baf51d04bfea6ead2bde40bf89f1c74c57d96a74547c','aa','aa','0000-00-00','asd','C:\\fakepath\\Screenshot (2).png','2022-12-24 23:29:33'),(11,'aafmfmdsm','aa','ce5d211d169ef5363364839c438f894878ce329e080511a592568119d7a823318026a63c2199386d77db7b8c8dcaa4848a15eb8af1b9b96396aa432364df5f75','06f18aad1e8d19e4592c7c110ecd9b3567f72591b8be3cdf633b7f1d15ae207fa012922bb1de9cf4e09ec2fd4b2c138e4842ded263cbdc7053ad6f68d5e18535','oih','poi','2000-10-10','poif','Screenshot (2).png','2022-12-25 00:03:13');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -81,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-24 10:30:35
+-- Dump completed on 2022-12-30 21:21:14
