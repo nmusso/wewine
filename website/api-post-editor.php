@@ -2,8 +2,10 @@
 require_once("bootstrap.php");
 sec_session_start();
 $result["postOK"] = false;
+$result["islogged"] = false;
 
 if ($dbh->login_check()) {
+    $result["islogged"] = true;
     $text = $_POST["text"];
     $photo = $_FILES["photo"] ?? null;
     
@@ -30,8 +32,6 @@ if ($dbh->login_check()) {
     } else {
         $result["errorPost"] = "The fields are empty, please insert text or a photo";
     }
-} else {
-    $result["notLogged"] = true;
 }
 
 

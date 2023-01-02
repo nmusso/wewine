@@ -48,14 +48,16 @@ document.getElementById("submit").addEventListener("click", () => {
             'Content-Type': 'multipart/form-data'
         }
     }).then(response => {
-        if (response.data["notLogged"]) {
+        console.log(response.data);
+        if (!response.data["islogged"]) {
             window.location.replace("./login.php");
-        } 
-
-        if (response.data["postOK"]) {
-            window.location.replace("./index.php");
         } else {
-            document.getElementById("error").innerText = response.data["errorPost"];
+            if (response.data["postOK"]) {
+                window.location.replace("./index.php");
+            } else {
+                document.getElementById("error").innerText = response.data["errorPost"];
+            }
         }
+
     })
 })
