@@ -48,7 +48,6 @@ document.getElementById("submit").addEventListener("click", () => {
             'Content-Type': 'multipart/form-data'
         }
     }).then(response => {
-        console.log(response.data);
         if (!response.data["islogged"]) {
             window.location.replace("./login.php");
         } else {
