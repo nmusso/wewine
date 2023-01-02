@@ -8,7 +8,7 @@ if($dbh->login_check()){
     $result["islogged"] = true;
 
     $result["users"] = $dbh->getUsersByName($_POST["value"]);
-
+    // TODO aggiungere UPLOAD_DIR
 }
 
 header('Content-Type: application/json');

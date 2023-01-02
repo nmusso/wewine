@@ -61,6 +61,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-sm-2"></div>
 			<div class="col-sm-10">
 				<main>
 				</main>

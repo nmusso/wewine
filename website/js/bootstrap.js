@@ -1,3 +1,4 @@
+const header = document.querySelector("header");
 const nav = document.getElementById("nav");
 const row = document.getElementById("myRow");
 const title = document.getElementById("title");
@@ -13,9 +14,14 @@ const notify = document.getElementById("li-notify");
 const profile = document.getElementById("li-profile");
 
 let dim = window.matchMedia("(max-width: 576px)")
+
+// TODO mettere e rimuove mt e mb dalla prima e ultima card
 function mediaTrigger() {
     if (window.innerWidth < 576) {
         nav.classList.add("fixed-bottom");
+        nav.classList.remove("navCol");
+        nav.classList.remove("fixed-top");
+        header.classList.add("fixed-top");
         container.insertBefore(title, container.firstChild);
 
         if (inRow.firstChild == title){
@@ -33,6 +39,9 @@ function mediaTrigger() {
         ul.appendChild(profile);
     } else {
         nav.classList.remove("fixed-bottom");
+        nav.classList.add("navCol");
+        nav.classList.add("fixed-top");
+        header.classList.remove("fixed-top");
         inRow.insertBefore(title, inRow.firstChild);
 
         if (container.firstChild == title) {
@@ -54,6 +63,7 @@ function mediaTrigger() {
 mediaTrigger();
 dim.addEventListener("change", mediaTrigger);
 
+// Gestione delle scritte a fianco alle icone
 let iconDesc = window.matchMedia("(max-width: 1200px)");
 function manageDesc() {
     if (window.innerWidth < 1200) {

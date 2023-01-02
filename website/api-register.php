@@ -40,6 +40,7 @@ if (checkNoEmpty()) {
             $res = $dbh->addProfilePath($id, $msg);
             $result["registerOK"] = true;
          } else {
+            //TODO rimuovere utente da db
             $result["errorRegister"] = $msg;
          }
       } else if ($res != false) {
