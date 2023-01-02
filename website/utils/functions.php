@@ -8,6 +8,7 @@ function isActive($pagename){
 function getIdFromName($name){
     return preg_replace("/[^a-z]/", '', strtolower($name));
 }
+
 function sec_session_start() {
     $session_name = 'sec_session_id'; // Imposta un nome di sessione
     $secure = false; // Imposta il parametro a true se vuoi usare il protocollo 'https'.
@@ -67,9 +68,14 @@ function getAction($action){
 }
 
 
-function uploadImage($path, $image){
-    $imageName = basename($image["name"]);
-    $fullPath = $path.$imageName;
+function uploadImage($dbh, $path, $image, $id, $isPost){
+    $fileName = $id."_";
+    if ($isPost) {
+        $nextId = $dbh->nextPostId($id);
+        $fileName = $fileName . $nextId;
+    } else {
+        $fileName = $fileName . "propic";
+    }
     
     $maxKB = 4000;
     $acceptedExtensions = array("jpg", "jpeg", "png", "gif");
@@ -78,38 +84,29 @@ function uploadImage($path, $image){
     //Controllo se immagine è veramente un'immagine
     $imageSize = getimagesize($image["tmp_name"]);
     if($imageSize === false) {
-        $msg .= "File caricato non è un'immagine! ";
+        $msg .= "The uploaded file is not an image! ";
     }
     //Controllo dimensione dell'immagine < 4MB
     if ($image["size"] > $maxKB * 1024) {
-        $msg .= "File caricato pesa troppo! Dimensione massima è $maxKB KB. ";
+        $msg .= "The size of the uploaded file is over $maxKB KB. ";
     }
 
     //Controllo estensione del file
-    $imageFileType = strtolower(pathinfo($fullPath,PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo(basename($image["name"]),PATHINFO_EXTENSION));
     if(!in_array($imageFileType, $acceptedExtensions)){
-        $msg .= "Accettate solo le seguenti estensioni: ".implode(",", $acceptedExtensions);
-    }
-
-    //Controllo se esiste file con stesso nome ed eventualmente lo rinomino
-    if (file_exists($fullPath)) {
-        $i = 1;
-        do{
-            $i++;
-            $imageName = pathinfo(basename($image["name"]), PATHINFO_FILENAME)."_$i.".$imageFileType;
-        }
-        while(file_exists($path.$imageName));
-        $fullPath = $path.$imageName;
+        $msg .= "Accepted only the following extensions: ".implode(",", $acceptedExtensions);
+    } else {
+        $fileName = $fileName . "." . $imageFileType;
     }
 
     //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
     if(strlen($msg)==0){
-        if(!move_uploaded_file($image["tmp_name"], $fullPath)){
-            $msg.= "Errore nel caricamento dell'immagine.";
+        if(!move_uploaded_file($image["tmp_name"], $path.$fileName)){
+            $msg.= "Error while uploading the image.";
         }
         else{
             $result = 1;
-            $msg = $imageName;
+            $msg = $fileName;
         }
     }
     return array($result, $msg);

@@ -1,12 +1,13 @@
 <?php
-function checkNoEmpty() {
+function checkNoEmpty()
+{
    return ($_POST['username'] != "" &&
-            $_POST['password'] != "" &&
-            $_POST['nome'] != "" &&
-            $_POST['cognome'] != "" &&
-            $_POST['dataNascita'] != "" &&
-            $_POST['bio'] != "" &&
-            $_POST['email'] != "");
+      $_POST['password'] != "" &&
+      $_POST['nome'] != "" &&
+      $_POST['cognome'] != "" &&
+      $_POST['dataNascita'] != "" &&
+      $_POST['bio'] != "" &&
+      $_POST['email'] != "");
 }
 
 require_once("bootstrap.php");
@@ -21,6 +22,7 @@ if (checkNoEmpty()) {
    $dataNascita = $_POST['dataNascita'];
    $bio = $_POST['bio'];
    $email = $_POST['email'];
+   
    // Crea una chiave casuale
    $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
    // Crea una password usando la chiave appena creata.
@@ -28,24 +30,25 @@ if (checkNoEmpty()) {
    // Inserisci a questo punto il codice SQL per eseguire la INSERT nel tuo database
    // Assicurati di usare statement SQL 'prepared'.
    $checkFields = $dbh->checkUniqueUser($username, $email);
-   
-   // TODO gestire default image
-   list($checkImage, $msg) = uploadImage(UPLOAD_DIR, $_FILES["imgProfilo"]);
-   
-   if ($checkFields != false && $checkImage != false) {
-      $id = $dbh->insertUser($username, $email, $password, $random_salt, $nome, $cognome, $dataNascita, $bio, $msg);
-   
-      if ($id != false) {
+
+   if ($checkFields != false) {
+      $res = $dbh->insertUser($username, $email, $password, $random_salt, $nome, $cognome, $dataNascita, $bio, "empty.png");
+      if ($res != false && isset($_FILES["imgProfilo"])) {
+         $id = $dbh->getIdByUsername($username);
+         list($checkImage, $msg) = uploadImage($dbh, UPLOAD_DIR, $_FILES["imgProfilo"], $id, false);
+         if ($checkImage != false) {
+            $res = $dbh->addProfilePath($id, $msg);
+            $result["registerOK"] = true;
+         } else {
+            $result["errorRegister"] = $msg;
+         }
+      } else if ($res != false) {
          $result["registerOK"] = true;
       } else {
-         $result["errorRegister"] = "Registration gone wrong. Check all the fields and retry.";
+         $result["errorRegister"] = "Registration went wrong. Check all the fields and retry.";
       }
    } else {
-      if (!$checkFields) {
-         $result["errorRegister"] = "An account with this username or email already exists. Please login.";
-      } else {
-         $result["errorRegister"] = $msg;
-      }
+      $result["errorRegister"] = "An account with this username or email already exists. Please login.";
    }
 } else {
    $result["errorRegister"] = "All the fields are required. Please check again.";

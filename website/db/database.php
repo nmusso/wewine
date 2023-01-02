@@ -10,19 +10,21 @@ class DatabaseHelper
             die("Connection failed: " . $this->db->connect_error);
         }
     }
-    public function insertUser($username, $email, $password, $salt, $nome, $cognome, $dataNascita, $bio, $imgProfilo){
+    public function insertUser($username, $email, $password, $salt, $nome, $cognome, $dataNascita, $bio, $imgProfilo)
+    {
         $query = "INSERT INTO utente(username, email, password, salt, nome, cognome, dataNascita, bio, imgProfilo, ultimaLetturaNotifiche) VALUES(?,?,?,?,?,?,?,?,?, NOW())";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sssssssss', $username, $email, $password, $salt, $nome, $cognome, $dataNascita, $bio, $imgProfilo);
         $stmt->execute();
-        
+
         return $stmt->insert_id;
     }
 
-    public function getUsersByName($value){
-        $query = "SELECT username, imgProfilo FROM utente WHERE username = ?";#LIKE '%?%' "; // TODO fixare
+    public function getUsersByName($value)
+    {
+        $query = "SELECT username, imgProfilo FROM utente WHERE username = ?"; #LIKE '%?%' "; // TODO fixare
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s',$value);
+        $stmt->bind_param('s', $value);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -40,7 +42,8 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function checkUniqueUser($username, $email) {
+    public function checkUniqueUser($username, $email)
+    {
         if ($stmt = $this->db->prepare("SELECT username, email FROM utente WHERE username = ? OR email = ?")) {
             $stmt->bind_param('ss', $username, $email); // esegue il bind del parametro '$email'.
             $stmt->execute(); // esegue la query appena creata.
@@ -82,7 +85,7 @@ class DatabaseHelper
             $stmt->store_result();
             $stmt->bind_result($user_id, $username, $db_password, $salt); // recupera il risultato della query e lo memorizza nelle relative variabili.
             $stmt->fetch();
-            $password = hash('sha512', $password.$salt); // codifica la password usando una chiave univoca.
+            $password = hash('sha512', $password . $salt); // codifica la password usando una chiave univoca.
             if ($stmt->num_rows == 1) { // se l'utente esiste
                 // verifichiamo che non sia disabilitato in seguito all'esecuzione di troppi tentativi di accesso errati.
                 if ($this->checkbrute($user_id) == true) {
@@ -152,6 +155,53 @@ class DatabaseHelper
             // Login non eseguito
             return false;
         }
-    } 
+    }
+
+    function addPost($id, $text, $photo)
+    {
+        $query = "INSERT INTO post(testo, immagine, dataOra, idUtente) VALUES (?,?,NOW(),?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $text, $photo, $id);
+        $stmt->execute();
+
+        return $stmt->insert_id;
+    }
+
+    function nextPostId($id)
+    {
+        $query = "SELECT immagine FROM post WHERE immagine IS NOT NULL AND idUtente = ? ORDER BY dataOra DESC LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        if (count($result) > 0) {
+            $result = $result[0];
+            $imgName = $result["immagine"];
+            $id = str_replace($id . "_", "", $imgName);
+            return intval($id) + 1;
+        } else {
+            return 1;
+        }    
+    }
+
+    function getIdByUsername($username) {
+        $query = "SELECT id FROM utente WHERE username = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+
+        return $result["id"];
+    }
+
+    function addProfilePath($id, $path) {
+        $query = "UPDATE utente SET imgProfilo = ? WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si', $path, $id);
+        $stmt->execute();
+
+        return $stmt->insert_id;
+    }
 }
 ?>
