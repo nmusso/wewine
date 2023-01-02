@@ -20,11 +20,10 @@ class DatabaseHelper
         return $stmt->insert_id;
     }
 
-    public function getUsersByName($value)
-    {
-        $query = "SELECT username, imgProfilo FROM utente WHERE username = ?"; #LIKE '%?%' "; // TODO fixare
+    public function getUsersByName($value){
+        $query = "SELECT username, imgProfilo FROM utente WHERE username LIKE CONCAT ('%', ?, '%') ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $value);
+        $stmt->bind_param('s',$value);
         $stmt->execute();
         $result = $stmt->get_result();
 
