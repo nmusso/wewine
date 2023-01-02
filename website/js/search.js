@@ -20,7 +20,7 @@ function generaBarra() {
 
 function generaProfilo(user) {
     let profile = `
-    <div class="row mt-2">
+    <div class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-6">
             <div class="card mx-2">
                 <div class="row">
@@ -29,7 +29,7 @@ function generaProfilo(user) {
                     </div>
                     <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
                         <div class="card-body">
-                            <p class="card-text">`+ user["nome"] +`</p>
+                            <p class="card-text">`+ user["username"] +`</p>
                         </div>
                     </div>
                 </div>
@@ -41,24 +41,33 @@ function generaProfilo(user) {
     return profile;
 }
 
-function updateResults(value) {
-    console.log("hello"+value);
+const main = document.querySelector("main");
+main.innerHTML = generaBarra();
+const researchBar = document.getElementById('researchBar');
+
+function updateResults(e) {
+    console.log("cambiato")
+    // rimuovo risultati precedenti
+    //let userCards = main.querySelectorAll('.userCards');
+    //userCards.forEach((elem) => main.removeChild(elem));
+
+    const value = document.getElementById('researchBar').value;
     const formData = new FormData();
     formData.append('value', value);
     axios.post('api-search.php', formData).then(response => {
         if (!response.data["islogged"]) {
             window.location.replace("./index.php");
         } else {
-            users = response.data["users"];
-            
-            console.log("useres:"+users);
-            main.innerHTML += generaProfilo(users[0]);
+            let result = response.data["users"];
+            for(let i=0; i<result.length; i++){
+                main.innerHTML += generaProfilo(result[i]);
+            }         
         }
     });
+    console.log("finito")
 }
 
-const main = document.querySelector("main");
-main.innerHTML = generaBarra();
+
 
 /*
 const canvas = document.getElementById('imgProfileId');
@@ -71,6 +80,8 @@ image.onload = function () {
 }
 */
 
-let researchBar = document.getElementById('researchBar');
-
-researchBar.onchange = function(){updateResults(researchBar.value)}
+//researchBar.onchange = function(){updateResults}
+//researchBar.addEventListener("keydown", updateResults)
+source.addEventListener('input', updateResults);
+//source.addEventListener('propertychange', updateResults); 
+//researchBar.oninput = function(){updateResults}

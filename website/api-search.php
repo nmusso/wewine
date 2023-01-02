@@ -8,6 +8,7 @@ if($dbh->login_check()){
     $result["islogged"] = true;
 
     $result["users"] = $dbh->getUsersByName($_POST["value"]);
+
 }
 
 header('Content-Type: application/json');
