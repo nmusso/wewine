@@ -3,12 +3,12 @@ function generaBarra() {
     <div class="row mt-2">
         <div class="col-10 col-sm-6">
             <div class="d-flex form-inputs mx-2">
-                <input id="researchBar" class="form-control" type="text" placeholder="Search any profile...">
+                <input id="searchBar" class="form-control" type="text" placeholder="Search any profile...">
                 <i class="bx bx-search"></i>
             </div>
         </div>
         <div class="col-2 col-sm-6 p-0">
-            <button type="button" class="btn btn-dark">
+            <button id="but" type="button" class="btn btn-dark">
                 <i class="fas fa-search"></i>
             </button>
         </div>
@@ -43,31 +43,30 @@ function generaProfilo(user) {
 
 const main = document.querySelector("main");
 main.innerHTML = generaBarra();
-const researchBar = document.getElementById('researchBar');
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('input', updateResults);
 
-function updateResults(e) {
-    console.log("cambiato")
+function updateResults() {
     // rimuovo risultati precedenti
-    //let userCards = main.querySelectorAll('.userCards');
-    //userCards.forEach((elem) => main.removeChild(elem));
+    let userCards = main.querySelectorAll('.userCard');
+    userCards.forEach((elem) => main.removeChild(elem));
 
-    const value = document.getElementById('researchBar').value;
-    const formData = new FormData();
-    formData.append('value', value);
-    axios.post('api-search.php', formData).then(response => {
-        if (!response.data["islogged"]) {
-            window.location.replace("./index.php");
-        } else {
-            let result = response.data["users"];
-            for(let i=0; i<result.length; i++){
-                main.innerHTML += generaProfilo(result[i]);
-            }         
-        }
-    });
-    console.log("finito")
+    const value = document.getElementById("searchBar").value;
+    if (value != "") {
+        const formData = new FormData();
+        formData.append('value', value);
+        axios.post('api-search.php', formData).then(response => {
+            if (!response.data["islogged"]) {
+                window.location.replace("./index.php");
+            } else {
+                let result = response.data["users"];
+                for(let i=0; i<result.length; i++){
+                    main.insertAdjacentHTML("beforeend", generaProfilo(result[i]));
+                }
+            }
+        });
+    }
 }
-
-
 
 /*
 const canvas = document.getElementById('imgProfileId');
@@ -82,6 +81,5 @@ image.onload = function () {
 
 //researchBar.onchange = function(){updateResults}
 //researchBar.addEventListener("keydown", updateResults)
-source.addEventListener('input', updateResults);
 //source.addEventListener('propertychange', updateResults); 
 //researchBar.oninput = function(){updateResults}
