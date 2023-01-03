@@ -65,6 +65,82 @@
 			<div class="col-sm-10">
 				<main>
 					<!-- TEST -->
+					<div class="row mt-5">
+						<div class="card ">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
+										<img src="../upload/rit.jpg" class="img-fluid rounded-circle img-thumbnail p-1" />
+									</div>
+									<div class="col-3 col-sm-2 col-md-3 col-lg-3 col-xl-1">
+										<div class="row">
+											<div class="col-12 text-center fw-bold">
+												21
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 text-center">
+												Post
+											</div>
+										</div>
+									</div>
+									<div class="col-3 col-sm-2 col-md-3 col-lg-3 col-xl-1">
+										<div class="row">
+											<div class="col-12 text-center fw-bold">
+												103
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 text-center">
+												Followers
+											</div>
+										</div>
+									</div>
+									<div class="col-3 col-sm-2 col-md-3 col-lg-3 col-xl-1">
+										<div class="row">
+											<div class="col-12 text-center fw-bold">
+												51
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 text-center">
+												Followed
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-12">
+										<p class="mt-2 mb-0 fs-4 fw-bold">username</p>
+										<p class="m-0 fw-lighter">Nome Cognome</p>
+										<div class="mt-3">
+											Questa è la mia bio ciao mi piacciono i cani e il padel.
+											Ho pochi follower ma faccio tanti post.
+											Ciao voi come state io sto bene.
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="card-header">
+								<ul class="nav nav-tabs card-header-tabs">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="true" href="#">Active</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+								</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- POST UTENTE -->
 					<div class="row mt-3">
 						<div class="col-sm-1"></div>
 						<div class="col-12 col-sm-8 card">
@@ -124,7 +200,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://kit.fontawesome.com/7dda2fa6a2.js"></script>
 	<script src="../js/bootstrap.js"></script>
-	<script src="../js/index.js"></script>
 
 </body>
 
