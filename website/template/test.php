@@ -65,81 +65,75 @@
 			<div class="col-sm-10">
 				<main>
 					<!-- TEST -->
-					<div class="row mt-5">
-						<div class="card ">
-							<div class="card-body">
-								<div class="row">
-									<div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-										<img src="../upload/rit.jpg" class="img-fluid rounded-circle img-thumbnail p-1" />
+					<div class="row">
+						<div class="col-sm-1"></div>
+						<div class="col-12 col-sm-8">
+							<div class="card ">
+								<div class="card-body">
+									<div class="row mt-2 mb-1">
+										<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1">
+											<img src="../upload/rit.jpg" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+										</div>
+										<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+											<a href="" class="profileSwitch">
+												<div class="row">
+													<div class="col-12 text-center fw-bold num">
+														21
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-12 text-center">
+														Post
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+											<a href="" class="profileSwitch">
+												<div class="row">
+													<div class="col-12 text-center fw-bold">
+														103
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-12 text-center">
+														Followers
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+											<a href="" class="profileSwitch">
+												<div class="row">
+													<div class="col-12 text-center fw-bold">
+														51
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-12 text-center">
+														Followed
+													</div>
+												</div>
+											</a>
+										</div>
 									</div>
-									<div class="col-3 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-										<div class="row">
-											<div class="col-12 text-center fw-bold">
-												21
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-12 text-center">
-												Post
-											</div>
-										</div>
-									</div>
-									<div class="col-3 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-										<div class="row">
-											<div class="col-12 text-center fw-bold">
-												103
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-12 text-center">
-												Followers
-											</div>
-										</div>
-									</div>
-									<div class="col-3 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-										<div class="row">
-											<div class="col-12 text-center fw-bold">
-												51
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-12 text-center">
-												Followed
-											</div>
-										</div>
-									</div>
-								</div>
 
-								<div class="row">
-									<div class="col-12">
-										<p class="mt-2 mb-0 fs-4 fw-bold">username</p>
-										<p class="m-0 fw-lighter">Nome Cognome</p>
-										<div class="mt-3">
-											Questa è la mia bio ciao mi piacciono i cani e il padel.
-											Ho pochi follower ma faccio tanti post.
-											Ciao voi come state io sto bene.
+									<div class="row">
+										<div class="col-12">
+											<p class="mt-2 mb-0 fs-4 fw-bold">username</p>
+											<p class="m-0 fw-lighter">Nome Cognome</p>
+											<div class="mt-3">
+												Questa è la mia bio ciao mi piacciono i cani e il padel.
+												Ho pochi follower ma faccio tanti post.
+												Ciao voi come state io sto bene.
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							
-							<div class="card-header">
-								<ul class="nav nav-tabs card-header-tabs">
-								<li class="nav-item">
-									<a class="nav-link active" aria-current="true" href="#">Active</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Link</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-								</li>
-								</ul>
-							</div>
+							</div>	
 						</div>
+						<div class="col-sm-3"></div>
 					</div>
-
-
 					<!-- POST UTENTE -->
 					<div class="row mt-3">
 						<div class="col-sm-1"></div>
@@ -148,7 +142,7 @@
 								<a>
 									<div class="row">
 										<div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-											<img src="../upload/empty.png" class="img-fluid rounded-circle p-1" />
+											<img src="../upload/rit.jpg" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
 										</div>
 										<div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
 											<div class="card-body">
@@ -161,8 +155,9 @@
 									lead-in to
 									additional content. This content is a little bit longer.</p>
 								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								<img class="card-img-bottom" src="../upload/9_1.png" alt="Card image cap">
 							</div>
-							<img class="card-img-bottom" src="../upload/9_1.png" alt="Card image cap">
+							
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
@@ -174,7 +169,7 @@
 								<a>
 									<div class="row">
 										<div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-											<img src="../upload/empty.png" class="img-fluid rounded-circle p-1" />
+											<img src="../upload/io.jpg" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
 										</div>
 										<div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
 											<div class="card-body">
