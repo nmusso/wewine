@@ -8,7 +8,10 @@ if($dbh->login_check()){
     $result["islogged"] = true;
 
     $result["users"] = $dbh->getUsersByName($_POST["value"]);
-    // TODO aggiungere UPLOAD_DIR
+
+    for($i=0; $i<count($result["users"]); $i++){
+        $result["users"][$i]["imgProfilo"] = UPLOAD_DIR . $result["users"][$i]["imgProfilo"];
+    }
 }
 
 header('Content-Type: application/json');
