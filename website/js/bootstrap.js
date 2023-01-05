@@ -30,6 +30,7 @@ function mediaTrigger() {
         
         document.querySelector("header").innerHTML = "";
         document.querySelector("header").append(h1);
+        document.getElementById("mainSection").classList.add("my-5");
 
         ul.innerHTML = "";     
         ul.appendChild(search);
@@ -50,6 +51,7 @@ function mediaTrigger() {
 
         document.querySelector("header").removeChild(h1);
         document.querySelector("header").innerHTML = p;
+        document.getElementById("mainSection").classList.remove("my-5");
         
         ul.innerHTML = "";
         ul.appendChild(home);

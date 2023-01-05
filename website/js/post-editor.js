@@ -2,8 +2,8 @@ function generaForm() {
     let form = `
     <div class="row d-flex justify-content-center align-items-center h-100 mx-2">
         <div class="col col-sm-10 col-md-8 col-lg-8">
-            <div class="my-2 p-5">
-                <h2 class="text-uppercase text-center mb-5">Make a post</h2>
+            <div class="my-2 p-3">
+                <h2 class="text-center mb-3">Make a Post</h2>
                 <form id="post_form">
                     <div class="form-outline mb-4">
                         <label for="text">Text</label>

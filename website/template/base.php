@@ -17,7 +17,7 @@
 	<div id="container" class="container-fluid p-0 overflow-hidden min-vh-100 d-flex flex-column">
 		<div id="header" class="row">
 		</div>
-		<div class="row flex-grow-1">
+		<div class="row">
 			<div id="nav" class="col-sm-2 px-0 bg-dark">
 				<div id="fluidRow" class="row m-auto">
 					<div id="title" class="col-12">
@@ -62,12 +62,11 @@
 				</div>
 			</div>
 			<div class="col-sm-2"></div>
-			<div class="col-sm-10">
+			<div id="mainSection" class="col-12 col-sm-10">
 				<main>
 				</main>
 			</div>
 		</div>
-
 	</div>
 	<?php
     if (isset($templateParams["js"])):
