@@ -30,6 +30,22 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getFeed($id){
+        $query = "SELECT  u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo
+        FROM segue AS s
+        JOIN post AS p ON s.idFollowed = p.idUtente
+        JOIN utente AS u ON p.idUtente = u.id
+        WHERE s.idFollower = ?
+        ORDER BY p.dataOra DESC
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function checkLogin($username, $password)
     {
         $query = "SELECT idUtente FROM Utente WHERE username = ? AND password = ?";

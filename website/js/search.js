@@ -61,9 +61,6 @@ function updateResults() {
             } else {
                 let result = response.data["users"];
                 for(let i=0; i<result.length; i++){
-                    //console.log(result[i]["uploadDir"])
-                    //result[i]["imgProfilo"] = result[i]["uploadDir"] + result[i]["imgProfilo"]
-                    console.log(result[i]["imgProfilo"])
                     main.insertAdjacentHTML("beforeend", generaProfilo(result[i]));
                 }
             }

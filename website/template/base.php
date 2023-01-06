@@ -52,7 +52,7 @@
 								</a>
 							</li>
 							<li id="li-profile" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="profile.php"><i
+								<a id="a-profile" class="nav-link text-white my-3 mx-0" href="profile.php"><i
 										class="fa-solid fa-circle-user line" aria-hidden="true"></i>
 									<p class="desc line">Profile</p>
 								</a>

@@ -12,6 +12,7 @@ const search = document.getElementById("li-search");
 const add = document.getElementById("li-add");
 const notify = document.getElementById("li-notify");
 const profile = document.getElementById("li-profile");
+const a_profile = document.getElementById("a-profile");
 
 let dim = window.matchMedia("(max-width: 576px)")
 
@@ -91,3 +92,7 @@ function manageDesc() {
 
 manageDesc();
 iconDesc.addEventListener("change", manageDesc);
+
+a_profile.addEventListener("click", ()=>{
+    window.location.replace("./profile.php?profile=0");
+})
