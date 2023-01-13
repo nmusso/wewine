@@ -4,7 +4,7 @@ function generaPost(data) {
         <div class="col-sm-1"></div>
         <div class="col-12 col-sm-8 card">
             <div class="card-body">
-                <a>
+                <a href="profile.php?profile=`+data["id"]+`">
                     <div class="row">
                         <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
                             <img src="`+data["imgProfilo"]+`"
@@ -35,7 +35,7 @@ const main = document.querySelector("main");
 //main.insertAdjacentHTML("beforeend", generaPost("ciao"));
 
 const formData = new FormData();
-formData.append('value', value);
+//formData.append('value', value);
 axios.get('api-home.php').then(response => {
     console.log(response);
     if (response.data["islogged"]) {

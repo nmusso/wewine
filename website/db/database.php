@@ -31,7 +31,7 @@ class DatabaseHelper
     }
 
     public function getFeed($id){
-        $query = "SELECT  u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT u.id, u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo
         FROM segue AS s
         JOIN post AS p ON s.idFollowed = p.idUtente
         JOIN utente AS u ON p.idUtente = u.id
@@ -45,6 +45,97 @@ class DatabaseHelper
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getPostsById($id){
+        $query = "SELECT u.id, u.username, u.imgProfilo, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo
+        FROM post AS p
+        JOIN utente AS u ON p.idUtente = u.id
+        WHERE u.id = ?
+        ORDER BY p.dataOra DESC
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserInfo($id){
+        $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, COUNT(p.idPost) as nPosts
+        FROM post AS p
+        JOIN utente AS u ON p.idUtente = u.id
+        WHERE u.id = ?
+        ORDER BY p.dataOra DESC
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["userInfo"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT COUNT(s.idFollower) as Followed
+        FROM utente AS u 
+        JOIN segue AS s ON s.idFollower = u.id
+        WHERE u.id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["followed"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT COUNT(s.idFollowed) as Follower
+        FROM utente AS u 
+        JOIN segue AS s ON s.idFollowed = u.id
+        WHERE u.id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["follower"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT COUNT(s.idFollowed) as isFollowing
+        FROM segue AS s
+        WHERE s.idFollowed = ?
+        AND s.idFollower = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $id, $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["isFollowing"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $res;
+    }
+
+    public function getFollowInfo($id){
+        $query = "SELECT COUNT(s.idFollower) as Followed
+        FROM utente AS u 
+        JOIN segue AS s ON s.idFollower = u.id
+        WHERE u.id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $res[0] = $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT COUNT(s.idFollowed) as Follower
+        FROM utente AS u 
+        JOIN segue AS s ON s.idFollowed = u.id
+        WHERE u.id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $res[1] = $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 
     public function checkLogin($username, $password)
     {

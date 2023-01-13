@@ -1,4 +1,5 @@
 <?php
+
 function isActive($pagename){
     if(basename($_SERVER['PHP_SELF'])==$pagename){
         echo " class='active' ";
@@ -37,14 +38,14 @@ function sec_session_start() {
 }
 
 
-function isUserLoggedIn(){
-    return !empty($_SESSION['idUtente']);
+/*function isUserLoggedIn(){
+    return !empty($_SESSION['user_id']);
 }
 
 function registerLoggedUser($user){
-    $_SESSION["idUtente"] = $user["idUtente"];
+    $_SESSION["user_id"] = $user["user_id"];
     $_SESSION["username"] = $user["username"];
-}
+}*/
 
 function getEmptyArticle(){
     return array("idarticolo" => "", "titoloarticolo" => "", "imgarticolo" => "", "testoarticolo" => "", "anteprimaarticolo" => "", "categorie" => array());
