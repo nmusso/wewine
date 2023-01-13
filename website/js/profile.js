@@ -32,11 +32,11 @@ function generaPost(data) {
 function generaUtente(data, isMine) {
     let buttonContent = "";
     if (isMine) {
-        buttonContent = `<button id="edit" type="button" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2 col-xl-1">Edit</button>`;
+        buttonContent = `<button id="edit" type="button" onclick="edit()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2 col-xl-1">Edit</button>`;
     } else if (data["isFollowing"][0]["isFollowing"] == 0) {
-        buttonContent = `<button id="follow" type="button" class="btn btn-dark">Follow</button>`;
+        buttonContent = `<button id="follow" type="button" onclick="follow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2 col-xl-1">Follow</button>`;
     } else {
-        buttonContent = `<button id="unfollow" type="button" class="btn btn-dark">Unfollow</button>`;
+        buttonContent = `<button id="unfollow" type="button" onclick="unfollow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2 col-xl-1">Unfollow</button>`;
     }
 
     let profile = `
@@ -137,3 +137,15 @@ axios.get('api-profile.php').then(response => {
         window.location.replace("./login.php");
     }
 });
+
+function edit() {
+
+}
+
+function follow() {
+ 
+}
+
+function unfollow() {
+
+}
