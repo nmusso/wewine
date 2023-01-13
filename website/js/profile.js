@@ -32,11 +32,11 @@ function generaPost(data) {
 function generaUtente(data, isMine) {
     let buttonContent = "";
     if (isMine) {
-        buttonContent = `<button id="edit" type="button" onclick="edit()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2 col-xl-1">Edit</button>`;
+        buttonContent = `<button id="edit" type="button" onclick="edit()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Edit</button>`;
     } else if (data["isFollowing"][0]["isFollowing"] == 0) {
-        buttonContent = `<button id="follow" type="button" onclick="follow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2 col-xl-1">Follow</button>`;
+        buttonContent = `<button id="follow" type="button" onclick="follow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Follow</button>`;
     } else {
-        buttonContent = `<button id="unfollow" type="button" onclick="unfollow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2 col-xl-1">Unfollow</button>`;
+        buttonContent = `<button id="unfollow" type="button" onclick="unfollow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Unfollow</button>`;
     }
 
     let profile = `
@@ -110,7 +110,7 @@ function generaUtente(data, isMine) {
                 </div>
 
                 <div class="row mt-3">
-                    <div class="col-md-9 col-lg-10 col-xl-11"></div>
+                    <div class="col-md-9 col-lg-10"></div>
                     ` + buttonContent + `
                 </div>
             </div>
