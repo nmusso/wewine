@@ -6,28 +6,24 @@ $result["islogged"] = false;
 
 if($dbh->login_check()){
     $result["islogged"] = true;
-    //prendi post e mettili in $result["posts"]
-    //$result["posts"][$i]["diffTime"]=;
     // prendere post da mostrare in feed di utente corrente
     $result["posts"] = $dbh->getFeed($_SESSION["user_id"]);
 
-    //$result["posts"][$i]["diffTime"]
+    foreach($result["posts"] as &$post){
+        $post["immagine"] = UPLOAD_DIR . $post["immagine"];
+        $post["imgProfilo"] = UPLOAD_DIR . $post["imgProfilo"];
 
-    for($i=0; $i<count($result["posts"]); $i++){
-        $result["posts"][$i]["immagine"] = UPLOAD_DIR . $result["posts"][$i]["immagine"];
-        $result["posts"][$i]["imgProfilo"] = UPLOAD_DIR . $result["posts"][$i]["imgProfilo"];
-
-        if($result["posts"][$i]["DaysAgo"]==0){
-            if($result["posts"][$i]["MinutesAgo"]==1){
-                $result["posts"][$i]["diffTime"] = $result["posts"][$i]["MinutesAgo"]." minute ";
+        if($post["DaysAgo"]==0){
+            if($post["MinutesAgo"]==1){
+                $post["diffTime"] = $post["MinutesAgo"]." minute ";
             } 
             else{
-                $result["posts"][$i]["diffTime"] = $result["posts"][$i]["MinutesAgo"]." minutes ";
+                $post["diffTime"] = $post["MinutesAgo"]." minutes ";
             }
-        }elseif ($result["posts"][$i]["DaysAgo"]==1){
-            $result["posts"][$i]["diffTime"] = $result["posts"][$i]["DaysAgo"]." day ";
+        }elseif ($post["DaysAgo"]==1){
+            $post["diffTime"] = $post["DaysAgo"]." day ";
         }else{
-            $result["posts"][$i]["diffTime"] = $result["posts"][$i]["DaysAgo"]." days ";
+            $post["diffTime"] = $post["DaysAgo"]." days ";
         }
     }
 }

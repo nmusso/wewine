@@ -9,7 +9,7 @@ if ($dbh->login_check()){
 
     $result["notifications"]["new"] = $dbh->getNewNotifications($_SESSION["user_id"]);
     $result["notifications"]["old"] = $dbh->getOldNotifications($_SESSION["user_id"]);
-    // differenziare tra notifiche vecchie e nuove in base ad ultima lettura // create  notifica sia per segue che commento (obbligatorio)
+    
     // aggiornare lettura notifiche ad ora 
     // DISABLED FOR TEST $dbh->getNotifications($_SESSION["user_id"])
 
@@ -37,7 +37,6 @@ if ($dbh->login_check()){
     }
 }
 
-//https://getbootstrap.com/docs/4.0/components/card/#header-and-footer
 header('Content-Type: application/json');
 echo json_encode($result);
 
