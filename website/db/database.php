@@ -136,6 +136,32 @@ class DatabaseHelper
         $res[1] = $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getFollowers($id) {
+        $query = "SELECT u.id, u.username, u.imgProfilo 
+        FROM segue AS s
+        JOIN utente AS u ON s.idFollower = u.id
+        WHERE idFollowed = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getFollowed($id) {
+        $query = "SELECT u.id, u.username, u.imgProfilo 
+        FROM segue AS s
+        JOIN utente AS u ON s.idFollowed = u.id
+        WHERE idFollower = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function setUserFollow($idFollowed, $idFollower){
         $query = "INSERT INTO segue VALUES ( ? , ? , NOW() );";
         $stmt = $this->db->prepare($query);
