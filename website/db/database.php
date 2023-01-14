@@ -146,7 +146,7 @@ class DatabaseHelper
     }
 
     public function setUserUnfollow($idFollowed, $idFollower){
-        $query = "DELETE FROM segue WHERE idFollowed = ? AND idFollower = ? ";
+        $query = "DELETE FROM segue WHERE idFollowed = ? AND idFollower = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii',$idFollowed, $idFollower);
         $stmt->execute();

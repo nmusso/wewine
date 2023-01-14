@@ -147,7 +147,7 @@ function edit() {
 
 function follow() {
     const formData = new FormData();
-    formData.append("tofollow", true);
+    formData.append("type", "follow");
     axios.post('api-follow.php', formData).then(response => {
         if (!response.data["islogged"]) {
             window.location.replace("./index.php");
@@ -163,10 +163,11 @@ function follow() {
 
 function unfollow() {
     const formData = new FormData();
-    formData.append("tofollow", false);
+    formData.append("type", "unfollow");
     axios.post('api-follow.php', formData).then(response => {
+        console.log(response.data);
         if (!response.data["islogged"]) {
-            window.location.replace("./index.php");
+            window.location.replace("./login.php");
         } else {
             if(response.data["updateSuccess"]==1){
                 let buttonArea = document.getElementById("buttonArea");

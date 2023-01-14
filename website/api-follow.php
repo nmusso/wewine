@@ -6,17 +6,16 @@ $result["islogged"] = false;
 
 if($dbh->login_check()){
     $result["islogged"] = true;
-
-    //$result["updateSuccess"] = false;
-    /*if(isset($_POST["tofollow"])){
-        if($_POST["tofollow"]==true){
+    $result["updateSuccess"] = false;
+    
+    if(isset($_POST["type"])){
+        if($_POST["type"] == "follow"){
             $result["updateSuccess"] = $dbh->setUserFollow($_SESSION["watchedUser"], $_SESSION["user_id"]);
         }
-        if($_POST["tofollow"]==false){*/
+        if($_POST["type"] == "unfollow"){
             $result["updateSuccess"] = $dbh->setUserUnfollow($_SESSION["watchedUser"], $_SESSION["user_id"]);
-        /*} 
+        } 
     }
-    //$result["updateSuccess"] = true;*/
 }
 
 header('Content-Type: application/json');
