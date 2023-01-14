@@ -9,8 +9,8 @@ if($dbh->login_check()){
 
     $result["users"] = $dbh->getUsersByName($_POST["value"]);
 
-    for($i=0; $i<count($result["users"]); $i++){
-        $result["users"][$i]["imgProfilo"] = UPLOAD_DIR . $result["users"][$i]["imgProfilo"];
+    foreach($result["users"] as &$user){
+        $user["imgProfilo"] = UPLOAD_DIR . $user["imgProfilo"];
     }
 }
 
