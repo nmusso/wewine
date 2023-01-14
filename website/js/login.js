@@ -19,7 +19,7 @@ function generaLoginForm(loginerror = null) {
                     <label class="form-check-label" for="check">Remember me</label>
                 </div>
                 <div class="d-flex flex-row-reverse mb-3">
-                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="submit" type="submit" class="btn btn-primary">Login</button>
                 </div>
                 <div class="d-flex flex-row-reverse mb-3">
                     <a id="register" href="#">Register now</a>

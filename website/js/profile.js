@@ -1,22 +1,20 @@
 function generaPost(data) {
     let post = `
-    <div class="row mt-3">
+    <div class="mainElement row mt-3">
         <div class="col-sm-1"></div>
         <div class="col-12 col-sm-8 card">
             <div class="card-body">
-                <a href="profile.php?profile=`+data["id"]+`">
-                    <div class="row">
-                        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-                            <img src="`+data["imgProfilo"]+`"
-                                class="img-fluid rounded-circle img-thumbnail p-1 propic" />
-                        </div>
-                        <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
-                            <div class="card-body p-0">
-                                <p class="card-text">`+data["username"]+`</p>
-                            </div>
+                <div class="row">
+                    <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
+                        <img src="`+data["imgProfilo"]+`"
+                            class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                    </div>
+                    <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
+                        <div class="card-body p-0">
+                            <p class="card-text">`+data["username"]+`</p>
                         </div>
                     </div>
-                </a>
+                </div>
                 <p class="card-text my-3">`+data["testo"]+`</p>
                 <p class="card-text"><small class="text-muted">Posted `+data["diffTime"]+`ago</small></p>
                 <img class="card-img-bottom" src="`+data["immagine"]+`" alt="Card image cap">
@@ -27,6 +25,31 @@ function generaPost(data) {
     `;
 
     return post;
+}
+
+function generaRiga(user) {
+    let profile = `
+    <div class="row mt-2 userCard mainElement">
+        <div class="col-sm-1"></div>
+        <div class="col-12 col-sm-8 card">
+        <a href="profile.php?profile=` + user["id"] + `">
+            <div class="row">
+                <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
+                    <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                </div>
+                <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
+                    <div class="card-body">
+                        <p class="card-text">` + user["username"] + `</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    `;
+
+    return profile;
 }
 
 function generaUtente(data, isMine) {
@@ -50,7 +73,7 @@ function generaUtente(data, isMine) {
                             class="img-fluid rounded-circle img-thumbnail p-1 propic" />
                     </div>
                     <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <a href="" class="profileSwitch">
+                        <a href="#" onclick="getPosts()" class="profileSwitch">
                             <div class="info">
                                 <div class="row">
                                     <div class="col-12 text-center fw-bold num">
@@ -66,7 +89,7 @@ function generaUtente(data, isMine) {
                         </a>
                     </div>
                     <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <a href="" class="profileSwitch">
+                        <a href="#" onclick="getFollowers()" class="profileSwitch">
                             <div class="info">
                                 <div class="row">
                                     <div class="col-12 text-center fw-bold">
@@ -82,7 +105,7 @@ function generaUtente(data, isMine) {
                         </a>
                     </div>
                     <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <a href="" class="profileSwitch">
+                        <a href="#" onclick="getFollowed()" class="profileSwitch">
                             <div class="info">
                                 <div class="row">
                                     <div class="col-12 text-center fw-bold">
@@ -165,7 +188,6 @@ function unfollow() {
     const formData = new FormData();
     formData.append("type", "unfollow");
     axios.post('api-follow.php', formData).then(response => {
-        console.log(response.data);
         if (!response.data["islogged"]) {
             window.location.replace("./login.php");
         } else {
@@ -173,6 +195,61 @@ function unfollow() {
                 let buttonArea = document.getElementById("buttonArea");
                 buttonArea.removeChild(document.getElementById("btnunfollow"));
                 buttonArea.insertAdjacentHTML("beforeend", buttonFollow);
+            }
+        }
+    });
+}
+
+function getPosts() {
+    const mainElements = main.querySelectorAll(".mainElement");
+    mainElements.forEach(elem => main.removeChild(elem));
+
+    axios.get('api-profile.php').then(response => {
+        if (response.data["islogged"]) {
+            const posts = response.data["posts"];
+            for(let i=0; i<posts.length; i++){
+                main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
+            }
+        } else {
+            // login
+            window.location.replace("./login.php");
+        }
+    });
+}
+
+function getFollowers() {
+    const mainElements = main.querySelectorAll(".mainElement");
+    mainElements.forEach(elem => main.removeChild(elem));
+
+    const formData = new FormData();
+    formData.append("type", "followers")
+
+    axios.post("api-followList.php", formData).then(response => {
+        if (!response.data["islogged"]) {
+            window.location.replace("./login.php");
+        } else {
+            const users = response.data["users"];
+            for(let i=0; i<users.length; i++){
+                main.insertAdjacentHTML("beforeend", generaRiga(users[i]));
+            }
+        }
+    });
+}
+
+function getFollowed() {
+    const mainElements = main.querySelectorAll(".mainElement");
+    mainElements.forEach(elem => main.removeChild(elem));
+
+    const formData = new FormData();
+    formData.append("type", "followed")
+
+    axios.post("api-followList.php", formData).then(response => {
+        if (!response.data["islogged"]) {
+            window.location.replace("./login.php");
+        } else {
+            const users = response.data["users"];
+            for(let i=0; i<users.length; i++){
+                main.insertAdjacentHTML("beforeend", generaRiga(users[i]));
             }
         }
     });
