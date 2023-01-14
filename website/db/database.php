@@ -62,7 +62,7 @@ class DatabaseHelper
     }
 
     public function getUserInfo($id){
-        $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, COUNT(p.idPost) as nPosts
+        $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, u.dataNascita, u.email, COUNT(p.idPost) as nPosts
         FROM post AS p
         JOIN utente AS u ON p.idUtente = u.id
         WHERE u.id = ?
