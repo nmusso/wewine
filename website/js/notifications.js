@@ -1,24 +1,24 @@
-function generaNotifica() {
+function generaNotifica(data) {
     let notification = `
     <div class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
             <div class="card mx-2 px-2">
                 <div class="row">
                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">
-                        <img src="./upload/empty.png" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                        <img src=" `+data["imgProfilo"]+`" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-11">
                         <div class="row">
                             <div class="card-body col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                                <p class="card-text">Username</p>
+                                <p class="card-text">`+data["username"]+`</p>
                             </div>
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                11 min ago
+                                `+data["diffTime"]+` ago
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
-                                Liked your post
+                                Started following you
                             </div>
                         </div>
                     </div>
@@ -32,4 +32,16 @@ function generaNotifica() {
 }
 
 const main = document.querySelector("main");
-main.innerHTML = generaNotifica();
+//main.innerHTML = generaNotifica();
+
+axios.get('api-notifications.php').then(response => {
+    console.log(response);
+    if (!response.data["islogged"]) {
+        window.location.replace("./login.php");
+    } else {
+        const notifications = response.data["notifications"];
+        for(let i=0; i<notifications.length; i++){
+            main.insertAdjacentHTML("beforeend", generaNotifica(notifications[i]));
+        }
+    }
+});

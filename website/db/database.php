@@ -155,6 +155,35 @@ class DatabaseHelper
         return $result;
     }
 
+    public function getNotifications($id){
+        // per il Follow
+        $query = "SELECT u2.username, u2.imgProfilo, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
+        FROM segue AS s
+        JOIN utente AS u1 ON s.idFollowed = u1.id
+        JOIN utente AS u2 ON s.idFollower = u2.id
+        WHERE idFollowed = ?
+        AND u1.ultimaLetturaNotifiche < s.dataOra 
+        ORDER BY s.dataOra DESC  ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+        // TODO prendere altre notifiche (per commenti e like)
+    }
+
+    public function updateLastNotificationsRead($id){
+        $query = "UPDATE utente
+        SET ultimaLetturaNotifiche = NOW()
+        WHERE id = ? ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        
+        return $result;
+    }
 
     public function checkLogin($username, $password)
     {

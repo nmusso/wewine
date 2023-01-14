@@ -34,8 +34,6 @@ const main = document.querySelector("main");
 //main.insertAdjacentHTML("beforeend", generaPost("ciao"));
 //main.insertAdjacentHTML("beforeend", generaPost("ciao"));
 
-const formData = new FormData();
-//formData.append('value', value);
 axios.get('api-home.php').then(response => {
     console.log(response);
     if (response.data["islogged"]) {
