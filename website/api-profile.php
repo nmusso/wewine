@@ -18,21 +18,21 @@ if ($dbh->login_check()){
 
     $result["info"]["userInfo"][0]["imgProfilo"] = UPLOAD_DIR . $result["info"]["userInfo"][0]["imgProfilo"];
 
-    for($i=0; $i<count($result["posts"]); $i++){
-        $result["posts"][$i]["immagine"] = UPLOAD_DIR . $result["posts"][$i]["immagine"];
-        $result["posts"][$i]["imgProfilo"] = UPLOAD_DIR . $result["posts"][$i]["imgProfilo"];
+    foreach($result["posts"] as &$post){
+        $post["immagine"] = UPLOAD_DIR . $post["immagine"];
+        $post["imgProfilo"] = UPLOAD_DIR . $post["imgProfilo"];
 
-        if($result["posts"][$i]["DaysAgo"]==0){
-            if($result["posts"][$i]["MinutesAgo"]==1){
-                $result["posts"][$i]["diffTime"] = $result["posts"][$i]["MinutesAgo"]." minute ";
+        if($post["DaysAgo"]==0){
+            if($post["MinutesAgo"]==1){
+                $post["diffTime"] = $post["MinutesAgo"]." minute ";
             } 
             else{
-                $result["posts"][$i]["diffTime"] = $result["posts"][$i]["MinutesAgo"]." minutes ";
+                $post["diffTime"] = $post["MinutesAgo"]." minutes ";
             }
-        }elseif ($result["posts"][$i]["DaysAgo"]==1){
-            $result["posts"][$i]["diffTime"] = $result["posts"][$i]["DaysAgo"]." day ";
+        }elseif ($post["DaysAgo"]==1){
+            $post["diffTime"] = $post["DaysAgo"]." day ";
         }else{
-            $result["posts"][$i]["diffTime"] = $result["posts"][$i]["DaysAgo"]." days ";
+            $post["diffTime"] = $post["DaysAgo"]." days ";
         }
     }
 }
