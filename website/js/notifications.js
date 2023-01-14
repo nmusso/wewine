@@ -1,4 +1,4 @@
-function generaNotificaNew(data) {
+function generaNotificaNew(data, testo) {
     let notification = `
     <div id="notificationNew" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
@@ -18,7 +18,7 @@ function generaNotificaNew(data) {
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
-                                Started following you
+                            `+testo+` 
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@ function generaNotificaNew(data) {
     return notification;
 }
 
-function generaNotificaOld(data) {
+function generaNotificaOld(data, testo) {
     let notification = `
     <div id="notificationOld" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
@@ -51,7 +51,7 @@ function generaNotificaOld(data) {
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
-                                Started following you
+                            `+testo+` 
                             </div>
                         </div>
                     </div>
@@ -74,11 +74,12 @@ axios.get('api-notifications.php').then(response => {
     } else {
         const newNotifications = response.data["notifications"]["new"];
         const oldNotifications = response.data["notifications"]["old"];
-        for(let i=0; i<newNotifications.length; i++){
-            main.insertAdjacentHTML("beforeend", generaNotificaNew(newNotifications[i]));
-        }
-        for(let i=0; i<oldNotifications.length; i++){
-            main.insertAdjacentHTML("beforeend", generaNotificaOld(oldNotifications[i]));
-        }
+
+        newNotifications["newFollow"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaNew(n, "Started following you")));
+        newNotifications["newLike"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaNew(n, "Liked your post")));
+        newNotifications["newComment"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaNew(n, "Commented your post")));
+        oldNotifications["oldFollow"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaOld(n, "Started following you")));
+        oldNotifications["oldLike"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaOld(n, "Liked your post")));
+        oldNotifications["oldComment"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaOld(n, "Commented your post")));
     }
 });

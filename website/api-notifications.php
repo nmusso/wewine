@@ -13,41 +13,27 @@ if ($dbh->login_check()){
     // aggiornare lettura notifiche ad ora 
     // DISABLED FOR TEST $dbh->getNotifications($_SESSION["user_id"])
 
-    for($i=0; $i<count($result["notifications"]["new"]); $i++){
-        $result["notifications"]["new"][$i]["imgProfilo"] = UPLOAD_DIR . $result["notifications"]["new"][$i]["imgProfilo"];
+    foreach($result["notifications"] as  &$age){ // new/old
+        foreach($age as &$type){ // newFollow/newComment/newLike 
+            foreach($type as &$n){ //elementi
+                    $n["imgProfilo"] = UPLOAD_DIR . $n["imgProfilo"];
 
-        $diffTime="";
-        if($result["notifications"]["new"][$i]["DaysAgo"]==0){
-            if($result["notifications"]["new"][$i]["MinutesAgo"]==1){
-                $diffTime = $result["notifications"]["new"][$i]["MinutesAgo"]." minute ";
-            } 
-            else{
-                $diffTime = $result["notifications"]["new"][$i]["MinutesAgo"]." minutes ";
+                    $diffTime="";
+                    if($n["DaysAgo"]==0){
+                        if($n["MinutesAgo"]==1){
+                            $diffTime = $n["MinutesAgo"]." minute ";
+                        } 
+                        else{
+                            $diffTime = $n["MinutesAgo"]." minutes ";
+                        }
+                    }elseif ($n["DaysAgo"]==1){
+                        $diffTime = $n["DaysAgo"]." day ";
+                    }else{
+                        $diffTime = $n["DaysAgo"]." days ";
+                    }
+                    $n["diffTime"] = $diffTime;
             }
-        }elseif ($result["notifications"]["new"][$i]["DaysAgo"]==1){
-            $diffTime = $result["notifications"]["new"][$i]["DaysAgo"]." day ";
-        }else{
-            $diffTime = $result["notifications"]["new"][$i]["DaysAgo"]." days ";
         }
-        $result["notifications"]["new"][$i]["diffTime"] = $diffTime;
-    }
-    for($i=0; $i<count($result["notifications"]["old"]); $i++){
-        $result["notifications"]["old"][$i]["imgProfilo"] = UPLOAD_DIR . $result["notifications"]["old"][$i]["imgProfilo"];
-
-        $diffTime="";
-        if($result["notifications"]["old"][$i]["DaysAgo"]==0){
-            if($result["notifications"]["old"][$i]["MinutesAgo"]==1){
-                $diffTime = $result["notifications"]["old"][$i]["MinutesAgo"]." minute ";
-            } 
-            else{
-                $diffTime = $result["notifications"]["old"][$i]["MinutesAgo"]." minutes ";
-            }
-        }elseif ($result["notifications"]["old"][$i]["DaysAgo"]==1){
-            $diffTime = $result["notifications"]["old"][$i]["DaysAgo"]." day ";
-        }else{
-            $diffTime = $result["notifications"]["old"][$i]["DaysAgo"]." days ";
-        }
-        $result["notifications"]["old"][$i]["diffTime"] = $diffTime;
     }
 }
 

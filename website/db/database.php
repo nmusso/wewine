@@ -182,7 +182,7 @@ class DatabaseHelper
     }
 
     public function getNewNotifications($id){
-        // per il Follow Nuove
+        // new followers
         $query = "SELECT u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
         FROM segue AS s
         JOIN utente AS u1 ON s.idFollowed = u1.id
@@ -194,8 +194,39 @@ class DatabaseHelper
         $stmt->bind_param('i',$id);
         $stmt->execute();
         $result = $stmt->get_result();
+        $res["newFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        // new comments
+        $query = "SELECT u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        FROM post AS p
+        JOIN commento AS c ON p.idPost = c.idPost
+        JOIN utente AS u1 ON c.idUtente = u1.id
+        JOIN utente AS u2 ON p.idUtente = u2.id
+        WHERE p.idUtente = ?
+        AND u2.ultimaLetturaNotifiche <= c.dataOra 
+        ORDER BY c.dataOra DESC ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["newComment"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        // new likes
+        $query = "SELECT u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        FROM post AS p
+        JOIN `like` AS l ON p.idPost = l.idPost
+        JOIN utente AS u1 ON l.idUtente = u1.id
+        JOIN utente AS u2 ON p.idUtente = u2.id
+        WHERE p.idUtente = ?
+        AND u2.ultimaLetturaNotifiche <= l.dataOra 
+        ORDER BY l.dataOra DESC  ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["newLike"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $res;
     }
 
     public function getOldNotifications($id){
@@ -211,8 +242,40 @@ class DatabaseHelper
         $stmt->bind_param('i',$id);
         $stmt->execute();
         $result = $stmt->get_result();
+        $res["oldFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        // new comments
+        $query = "SELECT u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        FROM post AS p
+        JOIN commento AS c ON p.idPost = c.idPost
+        JOIN utente AS u1 ON c.idUtente = u1.id
+        JOIN utente AS u2 ON p.idUtente = u2.id
+        WHERE p.idUtente = ?
+        AND u2.ultimaLetturaNotifiche > c.dataOra 
+        ORDER BY c.dataOra DESC ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["oldComment"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        // new likes
+        $query = "SELECT u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        FROM post AS p
+        JOIN `like` AS l ON p.idPost = l.idPost
+        JOIN utente AS u1 ON l.idUtente = u1.id
+        JOIN utente AS u2 ON p.idUtente = u2.id
+        WHERE p.idUtente = ?
+        AND u2.ultimaLetturaNotifiche > l.dataOra 
+        ORDER BY l.dataOra DESC  ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["oldLike"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $res;
+
     }
 
     public function updateLastNotificationsRead($id){
