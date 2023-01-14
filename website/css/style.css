@@ -26,9 +26,10 @@
     transition: background-size .5s, color .5s;
 }
 
-.info:hover {
-    
+.info:hover { 
     background-size: 100% 100%;
     color: #fff;
 }
+
+
 

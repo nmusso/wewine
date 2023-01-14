@@ -181,14 +181,14 @@ class DatabaseHelper
         return $result;
     }
 
-    public function getNotifications($id){
-        // per il Follow
-        $query = "SELECT u2.username, u2.imgProfilo, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
+    public function getNewNotifications($id){
+        // per il Follow Nuove
+        $query = "SELECT u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
         FROM segue AS s
         JOIN utente AS u1 ON s.idFollowed = u1.id
         JOIN utente AS u2 ON s.idFollower = u2.id
         WHERE idFollowed = ?
-        AND u1.ultimaLetturaNotifiche < s.dataOra 
+        AND u1.ultimaLetturaNotifiche <= s.dataOra 
         ORDER BY s.dataOra DESC  ";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i',$id);
@@ -196,7 +196,23 @@ class DatabaseHelper
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
-        // TODO prendere altre notifiche (per commenti e like)
+    }
+
+    public function getOldNotifications($id){
+        // per il Follow Nuove
+        $query = "SELECT u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
+        FROM segue AS s
+        JOIN utente AS u1 ON s.idFollowed = u1.id
+        JOIN utente AS u2 ON s.idFollower = u2.id
+        WHERE idFollowed = ?
+        AND u1.ultimaLetturaNotifiche > s.dataOra 
+        ORDER BY s.dataOra DESC  ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function updateLastNotificationsRead($id){
