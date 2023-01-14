@@ -165,7 +165,7 @@ axios.get('api-profile.php').then(response => {
 });
 
 function edit() {
-    // locate a profile-editor
+    window.location.replace("./profile-editor.php");
 }
 
 function follow() {
