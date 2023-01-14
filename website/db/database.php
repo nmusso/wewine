@@ -136,6 +136,25 @@ class DatabaseHelper
         $res[1] = $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function setUserFollow($idFollowed, $idFollower){
+        $query = "INSERT INTO segue VALUES ( ? , ? , NOW() );";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii',$idFollowed, $idFollower);
+        $result = $stmt->execute();
+
+        return $result;
+    }
+
+    public function setUserUnfollow($idFollowed, $idFollower){
+        $query = "DELETE FROM segue WHERE idFollowed = ? AND idFollower = ? ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii',$idFollowed, $idFollower);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        
+        return $result;
+    }
+
 
     public function checkLogin($username, $password)
     {

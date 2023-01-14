@@ -32,11 +32,11 @@ function generaPost(data) {
 function generaUtente(data, isMine) {
     let buttonContent = "";
     if (isMine) {
-        buttonContent = `<button id="edit" type="button" onclick="edit()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Edit</button>`;
+        buttonContent = buttonEdit;
     } else if (data["isFollowing"][0]["isFollowing"] == 0) {
-        buttonContent = `<button id="follow" type="button" onclick="follow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Follow</button>`;
+        buttonContent = buttonFollow;
     } else {
-        buttonContent = `<button id="unfollow" type="button" onclick="unfollow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Unfollow</button>`;
+        buttonContent = buttonUnfollow;
     }
 
     let profile = `
@@ -109,7 +109,7 @@ function generaUtente(data, isMine) {
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div id="buttonArea" class="row mt-3">
                     <div class="col-md-9 col-lg-10"></div>
                     ` + buttonContent + `
                 </div>
@@ -122,6 +122,9 @@ function generaUtente(data, isMine) {
     return profile;
 }
 
+const buttonEdit = `<button id="btnedit" type="button" onclick="edit()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Edit</button>`;
+const buttonFollow = `<button id="btnfollow" type="button" onclick="follow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Follow</button>`;
+const buttonUnfollow = `<button id="btnunfollow" type="button" onclick="unfollow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Unfollow</button>`;
 const main = document.querySelector("main");
 
 axios.get('api-profile.php').then(response => {
@@ -139,13 +142,37 @@ axios.get('api-profile.php').then(response => {
 });
 
 function edit() {
-
+    // locate a profile-editor
 }
 
 function follow() {
- 
+    const formData = new FormData();
+    formData.append("tofollow", true);
+    axios.post('api-follow.php', formData).then(response => {
+        if (!response.data["islogged"]) {
+            window.location.replace("./index.php");
+        } else {
+            if(response.data["updateSuccess"]){
+                let buttonArea = document.getElementById("buttonArea");
+                buttonArea.removeChild(document.getElementById("btnfollow"));
+                buttonArea.insertAdjacentHTML("beforeend", buttonUnfollow);
+            }
+        }
+    });
 }
 
 function unfollow() {
-
+    const formData = new FormData();
+    formData.append("tofollow", false);
+    axios.post('api-follow.php', formData).then(response => {
+        if (!response.data["islogged"]) {
+            window.location.replace("./index.php");
+        } else {
+            if(response.data["updateSuccess"]==1){
+                let buttonArea = document.getElementById("buttonArea");
+                buttonArea.removeChild(document.getElementById("btnunfollow"));
+                buttonArea.insertAdjacentHTML("beforeend", buttonFollow);
+            }
+        }
+    });
 }
