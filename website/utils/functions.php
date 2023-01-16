@@ -105,7 +105,7 @@ function uploadImage($dbh, $path, $image, $id, $isPost){
         if(!move_uploaded_file($image["tmp_name"], $path.$fileName)){
             $msg.= "Error while uploading the image.";
         }
-        else{
+        else {
             $result = 1;
             $msg = $fileName;
         }

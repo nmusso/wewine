@@ -278,6 +278,58 @@ class DatabaseHelper
 
     }
 
+    
+
+    public function updateInfo($username, $email, $nome, $cognome, $dataNascita, $bio) {
+        $query = "UPDATE utente
+        SET username = ?,
+        email = ?,
+        nome = ?,
+        cognome = ?,
+        dataNascita = ?,
+        bio = ?
+        WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssssssi', $username, $email, $nome, $cognome, $dataNascita, $bio, $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        
+        return $result;
+    }    
+    
+    public function updatePassword($password, $random_salt) {
+        $user_browser = $_SERVER['HTTP_USER_AGENT'];
+        $newPass = hash('sha512', $password . $random_salt);
+        $_SESSION['login_string'] = hash('sha512', $newPass . $user_browser);
+
+        $query = "UPDATE utente
+        SET password = ?,
+        salt = ?
+        WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssi', $newPass, $random_salt, $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        
+        return $result;
+    }
+
+    public function checkOldPassword($password) {
+        $query = "SELECT password, salt
+        FROM utente
+        WHERE id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $res = $result->fetch_all(MYSQLI_ASSOC)[0];
+        $oldPass = hash('sha512', $password . $res["salt"]);
+
+        return $oldPass == $res["password"];
+    }
+
     public function updateLastNotificationsRead($id){
         $query = "UPDATE utente
         SET ultimaLetturaNotifiche = NOW()
