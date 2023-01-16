@@ -68,18 +68,19 @@ const main = document.querySelector("main");
 //main.innerHTML = generaNotifica();
 
 axios.get('api-notifications.php').then(response => {
-    console.log(response);
+    console.log(response.data["allnotifications"]);
     if (!response.data["islogged"]) {
         window.location.replace("./login.php");
     } else {
-        const newNotifications = response.data["notifications"]["new"];
-        const oldNotifications = response.data["notifications"]["old"];
+        //const notifications = response.data["notifications"];
+        const notifications = response.data["allnotifications"];
 
-        newNotifications["newFollow"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaNew(n, "Started following you")));
-        newNotifications["newLike"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaNew(n, "Liked your post")));
-        newNotifications["newComment"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaNew(n, "Commented your post")));
-        oldNotifications["oldFollow"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaOld(n, "Started following you")));
-        oldNotifications["oldLike"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaOld(n, "Liked your post")));
-        oldNotifications["oldComment"].forEach(n => main.insertAdjacentHTML("beforeend", generaNotificaOld(n, "Commented your post")));
+        notifications.forEach(n => {
+            if(n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike"){
+                main.insertAdjacentHTML("beforeend", generaNotificaNew(n, n["type"]));
+            }else{
+                main.insertAdjacentHTML("beforeend", generaNotificaOld(n, n["type"]))
+            }
+        });
     }
 });
