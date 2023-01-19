@@ -105,7 +105,7 @@
 														<i class="bx bx-search"></i>
 													</div>
 												</div>
-												<div class="col-1 col-sm-1 p-0">
+												<div class="col-1 col-sm-1 p-0 d-flex justify-content-end">
 													<button id="but" type="button" class="btn btn-dark">
 														<i class="fas fa-search"></i>
 													</button>
@@ -115,9 +115,9 @@
 									</div>
 								</div>
 
-								<div class="row  mt-1">
+								<div class="row mt-1 mx-0">
 									<div class="col-12 col-sm-12 p-0">
-										<div class="card mx-2 px-2">
+										<div class="card px-2">
 											<div class="row">
 												<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">
 													<img src="../upload/9_propic.jpg" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
@@ -140,9 +140,9 @@
 									</div>
 								</div>
 
-								<div class="row  mt-1">
+								<div class="row mt-1 mx-0">
 									<div class="col-12 col-sm-12 p-0">
-										<div class="card mx-2 px-2">
+										<div class="card px-2">
 											<div class="row">
 												<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">
 													<img src="../upload/9_propic.jpg" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
