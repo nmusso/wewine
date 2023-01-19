@@ -31,15 +31,16 @@ class DatabaseHelper
     }
 
     public function getFeed($id){
-        $query = "SELECT u.id, u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT u.id, u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked
         FROM segue AS s
         JOIN post AS p ON s.idFollowed = p.idUtente
         JOIN utente AS u ON p.idUtente = u.id
+        LEFT JOIN `like` AS l ON p.idPost = l.idPost AND l.idUtente = ?
         WHERE s.idFollower = ?
         ORDER BY p.dataOra DESC
         ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i',$id);
+        $stmt->bind_param('ii', $id, $id);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -178,6 +179,36 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->affected_rows;
         
+        return $result;
+    }
+
+    public function getLikeState($idPost){
+        $query = "SELECT COUNT(idPost) AS liked 
+        FROM `like` 
+        WHERE idUtente= ? AND idPost= ? ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii',$_SESSION["user_id"], $idPost);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertLike($idPost){
+        $query = "INSERT INTO `like` VALUES ( ? , ? , NOW() );";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii',$idPost, $_SESSION["user_id"]);
+        $result = $stmt->execute();
+
+        return $result;
+    }
+
+    public function removeLike($idPost){
+        $query = "DELETE FROM `like` WHERE idPost= ? AND idUtente= ? ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii',$idPost, $_SESSION["user_id"]);
+        $result = $stmt->execute();
+
         return $result;
     }
 

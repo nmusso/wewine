@@ -101,13 +101,13 @@
 											<div class="row m-0">
 												<div class="col-11 col-sm-11 p-0">
 													<div class="d-flex form-inputs">
-														<input id="searchBar" class="form-control" type="text" placeholder="Search any profile...">
+														<input id="searchBar" class="form-control" type="text" placeholder="Comment here...">
 														<i class="bx bx-search"></i>
 													</div>
 												</div>
 												<div class="col-1 col-sm-1 p-0 d-flex justify-content-end">
 													<button id="but" type="button" class="btn btn-dark">
-														<i class="fas fa-search"></i>
+														<i class="fa-regular fa-paper-plane"></i>
 													</button>
 												</div>
 											</div>

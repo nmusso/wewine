@@ -20,6 +20,19 @@ function generaPost(data) {
                 <p class="card-text my-3">`+data["testo"]+`</p>
                 <p class="card-text"><small class="text-muted">Posted `+data["diffTime"]+`ago</small></p>
                 <img class="card-img-bottom" src="`+data["immagine"]+`" alt="Card image cap">
+                <div class="row pt-3 pr-1 mb-1">
+                    <div class="col-10 col-sm-10"></div>      
+                    <div class="col-1 col-sm-1">
+                        <a href="#!" onclick="likeChange(`+data["idPost"]+`)">
+                            <i class="`+data["liked"]+` fa-heart" id="idLike-`+data["idPost"]+`"></i>
+                        </a>
+                    </div>
+                    <div class="col-1 col-sm-1">
+                        <a href="#!" onclick="commentManager(`+data["idPost"]+`)">
+                            <i class="fa-regular fa-comment"></i>
+                        </a>
+                    </div>  
+                </div>
             </div>
         </div>
         <div class="col-sm-3"></div>
@@ -35,12 +48,13 @@ const main = document.querySelector("main");
 //main.insertAdjacentHTML("beforeend", generaPost("ciao"));
 
 axios.get('api-home.php').then(response => {
-    console.log(response);
+    console.log(response.data["posts"]);
     if (response.data["islogged"]) {
         // Visualizza post
         //main.innerHTML = "<h1>Feed</h1>";
         const posts = response.data["posts"];
         for(let i=0; i<posts.length; i++){
+            posts[i]["liked"] = (posts[i]["liked"]==null) ? "fa-regular" : "fa-solid";
             main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
         }
         
@@ -49,3 +63,39 @@ axios.get('api-home.php').then(response => {
         window.location.replace("./login.php");
     }
 });
+
+function likeChange(id){
+    let likeIcon = document.getElementById("idLike-"+id);
+    const formData = new FormData();
+    formData.append('type', "like");
+    formData.append('id', id);
+    axios.post('api-interaction.php', formData).then(response => {
+        if (response.data["islogged"]) {
+            if(response.data["changeOk"]){
+                if(likeIcon.classList.contains("fa-regular")){
+                    likeIcon.classList.replace("fa-regular","fa-solid")
+                }else{
+                    likeIcon.classList.replace("fa-solid","fa-regular")
+                }   
+            }   
+        } else {
+            // login
+            window.location.replace("./login.php");
+        }
+    }); 
+}
+
+function commentManager(id){
+    const formData = new FormData();
+    formData.append('type', "comment");
+    formData.append('id', id);
+    axios.post('api-interaction.php', formData).then(response => {
+        if (response.data["islogged"]) {
+            // Visualizza post
+            
+        } else {
+            // login
+            window.location.replace("./login.php");
+        }
+    }); 
+}
