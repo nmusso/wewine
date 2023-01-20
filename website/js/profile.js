@@ -3,7 +3,7 @@ function generaPost(data) {
     <div class="mainElement row mt-3">
         <div class="col-sm-1"></div>
         <div class="col-12 col-sm-8 card">
-            <div class="card-body">
+            <div id="` + data["idPost"] + `" class="card-body">
                 <div class="row">
                     <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
                         <img src="`+data["imgProfilo"]+`"

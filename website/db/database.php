@@ -212,6 +212,28 @@ class DatabaseHelper
         return $result;
     }
 
+    public function getComments($id) {
+        $query = "SELECT c.testo, u.imgProfilo, u.id, u.username
+        FROM commento AS c
+        JOIN utente AS u ON u.id = c.idUtente 
+        WHERE idPost = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertComment($idPost, $text){
+        $query = "INSERT INTO commento (idPost, idUtente, testo, dataOra) VALUES (?, ?, ?, NOW()) ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('iis', $idPost, $_SESSION["user_id"], $text);
+        $result = $stmt->execute();
+
+        return $result;
+    }
+
     public function getNewNotifications($id){
         // new followers
         $query = "SELECT u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
@@ -306,10 +328,7 @@ class DatabaseHelper
         $res["oldLike"] = $result->fetch_all(MYSQLI_ASSOC);
 
         return $res;
-
     }
-
-    
 
     public function updateInfo($username, $email, $nome, $cognome, $dataNascita, $bio) {
         $query = "UPDATE utente
