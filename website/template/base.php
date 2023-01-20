@@ -67,6 +67,7 @@
 				<main>
 				</main>
 			</div>
+			<div id="bottomPlaceholder" class="my-3"></div>
 		</div>
 	</div>
 	<?php
