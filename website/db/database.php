@@ -21,7 +21,7 @@ class DatabaseHelper
     }
 
     public function getUsersByName($value){
-        $query = "SELECT username, imgProfilo FROM utente WHERE username LIKE CONCAT ('%', ?, '%') ";
+        $query = "SELECT id, username, imgProfilo FROM utente WHERE username LIKE CONCAT ('%', ?, '%') ";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s',$value);
         $stmt->execute();
