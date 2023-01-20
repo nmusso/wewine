@@ -18,6 +18,19 @@ function generaPost(data) {
                 <p class="card-text my-3">`+data["testo"]+`</p>
                 <p class="card-text"><small class="text-muted">Posted `+data["diffTime"]+`ago</small></p>
                 <img class="card-img-bottom" src="`+data["immagine"]+`" alt="Card image cap">
+                <div class="row pt-3 pr-1 mb-1">
+                    <div class="col-10 col-sm-10"></div>      
+                    <div class="col-1 col-sm-1">
+                        <a href="#!" onclick="likeChange(`+data["idPost"]+`)">
+                            <i class="`+data["liked"]+` fa-heart" id="idLike-`+data["idPost"]+`"></i>
+                        </a>
+                    </div>
+                    <div class="col-1 col-sm-1">
+                        <a href="#!" onclick="commentManager(`+data["idPost"]+`)">
+                            <i class="fa-regular fa-comment"></i>
+                        </a>
+                    </div>  
+                </div>
             </div>
         </div>
         <div class="col-sm-3"></div>
@@ -156,6 +169,7 @@ axios.get('api-profile.php').then(response => {
         const posts = response.data["posts"];
         main.innerHTML = generaUtente(response.data["info"], response.data["isMine"]);
         for(let i=0; i<posts.length; i++){
+            posts[i]["liked"] = (posts[i]["liked"]==null) ? "fa-regular" : "fa-solid";
             main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
         }
     } else {

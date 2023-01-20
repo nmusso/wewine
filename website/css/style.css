@@ -18,11 +18,11 @@
 
 /* https://stackoverflow.com/questions/23934749/fill-element-from-center-on-hover */
 .info {   
-    /* background-image: linear-gradient(#212529, #212529); */
-    background-image: linear-gradient(to right, transparent, #212529, transparent);
-    background-position: 50% 50%;
+    background-image: linear-gradient(#212529, #212529);
+    /*background-image: linear-gradient(to top, #212529 80%, transparent);*/
+    background-position: 50% 100%;
     background-repeat: no-repeat;
-    background-size: 0% 100%;
+    background-size: 100% 0%;
     transition: background-size .5s, color .5s;
 }
 
