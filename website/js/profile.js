@@ -68,7 +68,7 @@ function generaRiga(user) {
 function generaUtente(data, isMine) {
     let buttonContent = "";
     if (isMine) {
-        buttonContent = buttonEdit;
+        buttonContent = buttonEdit + buttonLogout;
     } else if (data["isFollowing"][0]["isFollowing"] == 0) {
         buttonContent = buttonFollow;
     } else {
@@ -146,7 +146,7 @@ function generaUtente(data, isMine) {
                 </div>
 
                 <div id="buttonArea" class="row mt-3">
-                    <div class="col-md-9 col-lg-10"></div>
+                    <div class="col-md-10 col-lg-10"></div>
                     ` + buttonContent + `
                 </div>
             </div>
@@ -158,7 +158,8 @@ function generaUtente(data, isMine) {
     return profile;
 }
 
-const buttonEdit = `<button id="btnedit" type="button" onclick="edit()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Edit</button>`;
+const buttonEdit = `<button id="btnedit" type="button" onclick="edit()" class="btn btn-dark col-12 col-sm-12 col-md-1 col-lg-1">Edit</button>`;
+const buttonLogout = `<button id="btnlogout" type="button" onclick="logout()" class="btn btn-dark col-12 col-sm-12 col-md-1 col-lg-1">Logout</button>`;
 const buttonFollow = `<button id="btnfollow" type="button" onclick="follow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Follow</button>`;
 const buttonUnfollow = `<button id="btnunfollow" type="button" onclick="unfollow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Unfollow</button>`;
 const main = document.querySelector("main");
@@ -266,5 +267,11 @@ function getFollowed() {
                 main.insertAdjacentHTML("beforeend", generaRiga(users[i]));
             }
         }
+    });
+}
+
+function logout() {
+    axios.get("api-logout.php").then(response => {
+        window.location.replace("./login.php");
     });
 }
