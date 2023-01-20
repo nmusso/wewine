@@ -7,7 +7,7 @@ $result["islogged"] = false;
 if($dbh->login_check()){
     $result["islogged"] = true;
     // prendere post da mostrare in feed di utente corrente
-    $result["posts"] = $dbh->getFeed($_SESSION["user_id"]);
+    $result["posts"] = $dbh->getFeed($_SESSION["user_id"], $_POST["num"]);
 
     foreach($result["posts"] as &$post){
         $post["immagine"] = UPLOAD_DIR . $post["immagine"];

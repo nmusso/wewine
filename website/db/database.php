@@ -30,7 +30,7 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getFeed($id){
+    public function getFeed($id, $num){
         $query = "SELECT u.id, u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked
         FROM segue AS s
         JOIN post AS p ON s.idFollowed = p.idUtente
@@ -38,9 +38,10 @@ class DatabaseHelper
         LEFT JOIN `like` AS l ON p.idPost = l.idPost AND l.idUtente = ?
         WHERE s.idFollower = ?
         ORDER BY p.dataOra DESC
+        LIMIT ?, 5
         ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ii', $id, $id);
+        $stmt->bind_param('iii', $id, $id, $num);
         $stmt->execute();
         $result = $stmt->get_result();
 
