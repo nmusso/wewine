@@ -1,4 +1,4 @@
-function generaNotificaNew(data, testo) {
+function generaNotificaNew(data) {
     let notification = `
     <div id="notificationNew" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
@@ -18,7 +18,7 @@ function generaNotificaNew(data, testo) {
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
-                            `+testo+` 
+                            `+data["text"]+`  
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@ function generaNotificaNew(data, testo) {
     return notification;
 }
 
-function generaNotificaOld(data, testo) {
+function generaNotificaOld(data) {
     let notification = `
     <div id="notificationOld" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
@@ -51,7 +51,7 @@ function generaNotificaOld(data, testo) {
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
-                            `+testo+` 
+                            `+data["text"]+` 
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,6 @@ function generaNotificaOld(data, testo) {
 }
 
 const main = document.querySelector("main");
-//main.innerHTML = generaNotifica();
 
 axios.get('api-notifications.php').then(response => {
     console.log(response.data["allnotifications"]);
@@ -77,9 +76,9 @@ axios.get('api-notifications.php').then(response => {
 
         notifications.forEach(n => {
             if(n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike"){
-                main.insertAdjacentHTML("beforeend", generaNotificaNew(n, n["type"]));
+                main.insertAdjacentHTML("beforeend", generaNotificaNew(n));
             }else{
-                main.insertAdjacentHTML("beforeend", generaNotificaOld(n, n["type"]))
+                main.insertAdjacentHTML("beforeend", generaNotificaOld(n))
             }
         });
     }

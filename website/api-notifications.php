@@ -36,6 +36,14 @@ if ($dbh->login_check()){
             $n["diffTime"] = $diffTime;
 
             $n["type"] = $type;
+
+            if($type==$notificationsType[0] || $type==$notificationsType[3]){
+                $n["text"] = "Started following you.";
+            }elseif($type==$notificationsType[1] || $type==$notificationsType[4]){
+                $n["text"] = "Commented your post.";
+            }elseif($type==$notificationsType[2] || $type==$notificationsType[5]){
+                $n["text"] = "Liked your post.";
+            }
         }
         $result["allnotifications"] = array_merge($result["allnotifications"], $result["notifications"][$type] );
     }

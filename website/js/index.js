@@ -43,9 +43,6 @@ function generaPost(data) {
 }
 
 const main = document.querySelector("main");
-//main.insertAdjacentHTML("beforeend", generaPost("ciao"));
-//main.insertAdjacentHTML("beforeend", generaPost("ciao"));
-//main.insertAdjacentHTML("beforeend", generaPost("ciao"));
 
 axios.get('api-home.php').then(response => {
     console.log(response.data["posts"]);
