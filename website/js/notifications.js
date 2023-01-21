@@ -4,7 +4,7 @@ function generaNotificaNew(data) {
     let notification = `
     <div id="notificationNew" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
-            <div class="card mx-2 px-2 bg-dark">
+            <div class="card mx-2 px-2 wine">
                 <a href="` + ref + `" class="newNotification">
                     <div class="row">
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">

@@ -1,3 +1,7 @@
+.wine{
+    background-color: #5e2129;
+}
+
 .line {
     display: inline-block;
     margin-left: 10%;
@@ -22,7 +26,7 @@
 
 /* https://stackoverflow.com/questions/23934749/fill-element-from-center-on-hover */
 .info {   
-    background-image: linear-gradient(#212529, #212529);
+    background-image: linear-gradient(#5e2129, #5e2129);
     /*background-image: linear-gradient(to top, #212529 80%, transparent);*/
     background-position: 50% 100%;
     background-repeat: no-repeat;

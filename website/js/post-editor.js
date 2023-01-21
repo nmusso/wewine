@@ -18,7 +18,7 @@ function generaForm() {
                     </div>
                     <div class="d-flex justify-content-center">
                         <button id="submit" type="button"
-                            class="btn btn-dark btn-block btn-lg text-white">Post</button>
+                            class="btn wine btn-block btn-lg text-white">Post</button>
                     </div>
                 </form>
             </div>

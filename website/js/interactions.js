@@ -45,8 +45,8 @@ function generaBarra(id) {
                         </div>
                     </div>
                     <div class="col-1 col-sm-1 p-0 d-flex justify-content-end">
-                        <button id="submit" onclick="insertComment(` + id + `)" type="button" class="btn btn-dark">
-                            <i class="fa-regular fa-paper-plane"></i>
+                        <button id="submit" onclick="insertComment(` + id + `)" type="button" class="btn wine text-white">
+                            <i class="fa-regular fa-paper-plane wine"></i>
                         </button>
                     </div>
                 </div>
