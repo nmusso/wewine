@@ -36,9 +36,8 @@
 }
 
 #myToast {
-    position: absolute;
-    z-index: 3;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, 0px);
+    z-index: 9000;
 }
-
-
-

@@ -66,16 +66,16 @@
 			<div id="mainSection" class="col-12 col-sm-10">
 				<main>
 
-				<div class="toast bg-dark text-white" id="myToast">
-					<div class="toast-header bg-dark text-white">
-						<strong class="me-auto"><i class="bi-gift-fill text-white"></i>Notification</strong>
-						<small>10 mins ago</small>
-						<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
+					<div class="toast bg-dark text-white fixed-top top-0 end-0 justify-content-center" id="myToast">
+						<div class="toast-header bg-dark text-white">
+							<strong class="me-auto"><i class="bi-gift-fill text-white"></i>Notification</strong>
+							<small>10 mins ago</small>
+							<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
+						</div>
+						<div class="toast-body" id="toast-text">
+							Text <a href="#" class="text-white">Click here!</a>
+						</div>
 					</div>
-					<div class="toast-body" id="toast-text">
-						Text <a href="#" class="text-white">Click here!</a>
-					</div>
-				</div>
 
 				</main>
 			</div>
