@@ -40,11 +40,11 @@ if ($dbh->login_check()){
 
             $n["type"] = $type;
 
-            if($type==$notificationsType[0] || $type==$notificationsType[3]){
+            if($type==$notificationsType[0] || (!isset($_POST["filter"]) && $type==$notificationsType[3])){
                 $n["text"] = "Started following you.";
-            }elseif($type==$notificationsType[1] || $type==$notificationsType[4]){
+            }elseif($type==$notificationsType[1] || (!isset($_POST["filter"]) && $type==$notificationsType[4])){
                 $n["text"] = "Commented your post.";
-            }elseif($type==$notificationsType[2] || $type==$notificationsType[5]){
+            }elseif($type==$notificationsType[2] || (!isset($_POST["filter"]) && $type==$notificationsType[5])){
                 $n["text"] = "Liked your post.";
             }
         }
