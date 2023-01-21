@@ -35,5 +35,10 @@
     color: #fff;
 }
 
+#myToast {
+    position: absolute;
+    z-index: 3;
+}
+
 
 

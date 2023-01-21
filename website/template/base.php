@@ -73,7 +73,7 @@
 						<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
 					</div>
 					<div class="toast-body" id="toast-text">
-						It's been a long time since you visited us. We've something special for you. <a href="#" class="text-white">Click here!</a>
+						Text <a href="#" class="text-white">Click here!</a>
 					</div>
 				</div>
 
