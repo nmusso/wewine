@@ -24,17 +24,17 @@ function generaPost(data) {
                     <div class="col-9 col-sm-9"></div>      
                     <div class="col-1 col-sm-1 font-weight-bold">
                         <a href="#!" onclick="getLikeList(` + data["idPost"] + `)">
-                            <p id="numLikeID-` + data["idPost"] + `" class="text-end fw-bold">` + data["numLike"] + `</p> 
+                            <p id="numLikeID-` + data["idPost"] + `" class="text-end fw-bold text-wine">` + data["numLike"] + `</p> 
                         </a>
                     </div>     
                     <div class="col-1 col-sm-1">
                         <a href="#!" onclick="likeChange(`+ data["idPost"] + `)">
-                            <i class="`+ data["liked"] + ` fa-heart" id="idLike-` + data["idPost"] + `"></i>
+                            <i class="`+ data["liked"] + ` fa-heart text-wine" id="idLike-` + data["idPost"] + `"></i>
                         </a>
                     </div>
                     <div class="col-1 col-sm-1">
                         <a href="#!" onclick="commentManager(`+ data["idPost"] + `)">
-                            <i class="fa-regular fa-comment"></i>
+                            <i class="fa-regular fa-comment text-wine"></i>
                         </a>
                     </div>  
                 </div>

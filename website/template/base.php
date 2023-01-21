@@ -79,7 +79,7 @@
 				<div class="toast-header wine text-white">
 					<strong class="me-auto text-white"><a href="#" id="toast-link" class="</a>"><i class="bi-gift-fill text-white"></i>Notification</a></strong>
 					<small id ="toast-diffTime">time ago</small>
-					<button type="button" onclick="#" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
+					<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
 				</div>		
 				<a href="#" id="toast-link-text">
 					<div class="toast-body text-white" id="toast-text">
