@@ -96,3 +96,56 @@ iconDesc.addEventListener("change", manageDesc);
 a_profile.addEventListener("click", ()=>{
     window.location.replace("./profile.php?profile=0");
 })
+
+
+function genToast(){
+    var myToast = new bootstrap.Toast(toast);
+    myToast.show();
+}
+
+var timer;
+const toast = document.getElementById("myToast");
+
+startTimer();
+function startTimer() {
+    timer = setInterval(function() {
+        const formData = new FormData();
+        formData.append('filter', "new");
+        axios.post('api-notifications.php', formData).then(response => {
+            if (!response.data["islogged"]) {
+                window.location.replace("./login.php");
+            } else {
+                console.log(response.data["allnotifications"]);
+
+                const notifications = response.data["allnotifications"];
+        
+                notifications.forEach(n => {
+
+                    var sqlDateStr = n["dataOra"]; // MySQL DATETIME
+                    sqlDateStr = sqlDateStr.replace(/:| /g,"-");
+                    var YMDhms = sqlDateStr.split("-");
+                    var sqlDate = new Date();
+                    sqlDate.setFullYear(parseInt(YMDhms[0]), parseInt(YMDhms[1])-1,
+                                                            parseInt(YMDhms[2]));
+                    sqlDate.setHours(parseInt(YMDhms[3]), parseInt(YMDhms[4]), 
+                                                        parseInt(YMDhms[5]), 0);
+
+                    if((n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike") 
+                        && new Date() - sqlDate < 20000 ){ // TEST ==> TODO mettere il 20000 uguale all' interval
+
+                        const type = (n["type"] == "newLike") ? "like" : "comment";
+                        const ref = (n["type"] == "newFollow") ? "profile.php?profile=" + n["id"] : "post.php?post=" + n["idPost"] + "&type=" + type; 
+
+                        document.querySelector("#toast-text").innerHTML = "@" + n["username"] + " " + n["text"].toLowerCase();
+                        document.querySelector("#toast-diffTime").innerHTML = n["diffTime"] + "ago";
+                        document.querySelector("#toast-link").href = ref;
+                        document.querySelector("#toast-link-text").href = ref;
+                        
+                        genToast();
+                    }       
+                });    
+            }
+        });
+
+    }, 5000);
+}

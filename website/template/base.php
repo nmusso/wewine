@@ -66,20 +66,26 @@
 			<div id="mainSection" class="col-12 col-sm-10">
 				<main>
 
-					<div class="toast bg-dark text-white fixed-top top-0 end-0 justify-content-center" id="myToast">
-						<div class="toast-header bg-dark text-white">
-							<strong class="me-auto"><i class="bi-gift-fill text-white"></i>Notification</strong>
-							<small>10 mins ago</small>
-							<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
-						</div>
-						<div class="toast-body" id="toast-text">
-							Text <a href="#" class="text-white">Click here!</a>
-						</div>
-					</div>
-
+					
 				</main>
 			</div>
 			<div id="bottomPlaceholder" class="my-3"></div>
+
+			<div class="toast bg-dark text-white fixed-top top-0 end-0 justify-content-center" id="myToast">
+				<a href="#" id="toast-link">
+					<div class="toast-header bg-dark text-white">
+						<strong class="me-auto"><i class="bi-gift-fill text-white"></i>Notification</strong>
+						<small id ="toast-diffTime">time ago</small>
+						<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
+					</div>
+					<a href="#" id="toast-link-text">
+						<div class="toast-body text-white" id="toast-text">
+							Text
+						</div>
+					</a>
+				</a>
+			</div>
+
 		</div>
 	</div>
 	<?php
