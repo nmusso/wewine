@@ -21,7 +21,12 @@ function generaPost(data) {
                 <p class="card-text"><small class="text-muted">Posted `+ data["diffTime"] + `ago</small></p>
                 <img class="card-img-bottom" src="`+ data["immagine"] + `" alt="Card image cap">
                 <div class="row pt-3 pr-1 mb-1">
-                    <div class="col-10 col-sm-10"></div>      
+                    <div class="col-9 col-sm-9"></div>      
+                    <div class="col-1 col-sm-1 font-weight-bold">
+                        <a href="#!" onclick="getLikeList(` + data["idPost"] + `)">
+                            <p id="numLike" class="text-end fw-bold">` + data["numLike"] + `</p> 
+                        </a>
+                    </div>     
                     <div class="col-1 col-sm-1">
                         <a href="#!" onclick="likeChange(`+ data["idPost"] + `)">
                             <i class="`+ data["liked"] + ` fa-heart" id="idLike-` + data["idPost"] + `"></i>

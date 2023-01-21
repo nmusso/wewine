@@ -31,12 +31,14 @@ class DatabaseHelper
     }
 
     public function getFeed($id, $num){
-        $query = "SELECT u.id, u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked
+        $query = "SELECT u.id, u.username, u.imgProfilo, s.*, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked, COUNT(l2.dataOra) AS numLike
         FROM segue AS s
         JOIN post AS p ON s.idFollowed = p.idUtente
         JOIN utente AS u ON p.idUtente = u.id
         LEFT JOIN `like` AS l ON p.idPost = l.idPost AND l.idUtente = ?
+        LEFT JOIN `like` AS l2 ON p.idPost = l2.idPost
         WHERE s.idFollower = ?
+        GROUP BY p.idPost
         ORDER BY p.dataOra DESC
         LIMIT ?, 5
         ";
@@ -49,14 +51,17 @@ class DatabaseHelper
     }
 
     public function getPostsByProfileId($id){
-        $query = "SELECT u.id, u.username, u.imgProfilo, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT u.id, u.username, u.imgProfilo, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked, COUNT(l2.dataOra) as numLike
         FROM post AS p
         JOIN utente AS u ON p.idUtente = u.id
+        LEFT JOIN `like` AS l ON p.idPost = l.idPost AND l.idUtente = ?
+        LEFT JOIN `like` AS l2 ON p.idPost = l2.idPost
         WHERE u.id = ?
+        GROUP BY p.idPost
         ORDER BY p.dataOra DESC
         ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $id);
+        $stmt->bind_param('ii', $id, $id);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -64,11 +69,13 @@ class DatabaseHelper
     }
 
     public function getPostById($id){
-        $query = "SELECT u.id, u.username, u.imgProfilo, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked
+        $query = "SELECT u.id, u.username, u.imgProfilo, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked, COUNT(l2.dataOra) as numLike
         FROM post AS p
         JOIN utente AS u ON p.idUtente = u.id
         LEFT JOIN `like` AS l ON p.idPost = l.idPost AND l.idUtente = ?
+        LEFT JOIN `like` AS l2 ON p.idPost = l2.idPost
         WHERE p.idPost = ?
+        GROUP BY p.idPost
         ";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $_SESSION["user_id"], $id);
@@ -78,6 +85,20 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getLikesForPost($id){
+        $query = "SELECT u.id, u.username, u.imgProfilo
+        FROM `like` AS l
+        JOIN post AS p ON p.idPost = l.idPost
+        JOIN utente AS u ON l.idUtente = u.id
+        WHERE l.idPost = ? 
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
     public function getUserInfo($id){
         $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, u.dataNascita, u.email, COUNT(p.idPost) as nPosts

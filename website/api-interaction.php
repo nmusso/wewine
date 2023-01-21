@@ -22,6 +22,12 @@ if ($dbh->login_check()){
                 $comment["imgProfilo"] = UPLOAD_DIR . $comment["imgProfilo"];
             }
         }
+    } elseif ($_POST["type"] == "likelist") {
+        $result["users"] = $dbh->getLikesForPost($_POST["id"]);
+
+        foreach($result["users"] as &$user){
+            $user["imgProfilo"] = UPLOAD_DIR . $user["imgProfilo"];
+        }
     }
 }
 

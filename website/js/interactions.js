@@ -58,6 +58,31 @@ function generaBarra(id) {
     return barra;
 }
 
+function generaRiga(user) {
+    let profile = `
+    <div class="row mt-2 userCard mainElement">
+        <div class="col-sm-1"></div>
+        <div class="col-12 col-sm-8 card">
+        <a href="profile.php?profile=` + user["id"] + `">
+            <div class="row">
+                <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
+                    <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                </div>
+                <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
+                    <div class="card-body">
+                        <p class="card-text">` + user["username"] + `</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    `;
+
+    return profile;
+}
+
 function likeChange(id){
     let likeIcon = document.getElementById("idLike-"+id);
     const formData = new FormData();
@@ -66,10 +91,13 @@ function likeChange(id){
     axios.post('api-interaction.php', formData).then(response => {
         if (response.data["islogged"]) {
             if(response.data["changeOk"]){
+                const numLike = document.getElementById("numLike");
                 if(likeIcon.classList.contains("fa-regular")){
-                    likeIcon.classList.replace("fa-regular","fa-solid")
+                    likeIcon.classList.replace("fa-regular","fa-solid");
+                    numLike.innerText = parseInt(numLike.innerText) + 1; 
                 } else {
-                    likeIcon.classList.replace("fa-solid","fa-regular")
+                    likeIcon.classList.replace("fa-solid","fa-regular");
+                    numLike.innerText = parseInt(numLike.innerText) - 1; 
                 }   
             }   
         } else {
@@ -125,4 +153,32 @@ function insertComment(id) {
             }
         });
     } 
+}
+
+let likeListOpen = false;
+function getLikeList(id) {
+    const main = document.querySelector("main");
+
+    if (likeListOpen) {
+        const users = document.querySelectorAll(".userCard");
+        users.forEach(user => main.removeChild(user));
+        likeListOpen = false;
+    } else {
+        const formData = new FormData();
+        formData.append("type", "likelist");
+        formData.append("id", id);
+        axios.post("api-interaction.php", formData).then(response => {
+            if (!response.data["islogged"]) {
+                window.location.replace("./login.php");
+            }
+
+            const users = response.data["users"];
+            
+            users.forEach(user => {
+                main.insertAdjacentHTML("beforeend", generaRiga(user));
+                likeListOpen = true;
+            })
+        })
+    }
+    
 }
