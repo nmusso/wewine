@@ -1,5 +1,5 @@
 function generaNotificaNew(data) {
-    const ref = (data["type"] == "newFollow" || data["type"] == "oldFollow") ? "profile.php?profile=" + data["id"] : "post.php?post=" + data["idPost"];  
+    const ref = (data["type"] == "newFollow") ? "profile.php?profile=" + data["id"] : "post.php?post=" + data["idPost"];  
     let notification = `
     <div id="notificationNew" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
@@ -35,11 +35,12 @@ function generaNotificaNew(data) {
 }
 
 function generaNotificaOld(data) {
+    const ref = (data["type"] == "oldFollow") ? "profile.php?profile=" + data["id"] : "post.php?post=" + data["idPost"];  
     let notification = `
     <div id="notificationOld" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
             <div class="card mx-2 px-2">
-                <a href="post.php?post=`+data["idPost"]+`">
+                <a href="` + ref + `">
                     <div class="row">
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">
                             <img src=" `+data["imgProfilo"]+`" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
