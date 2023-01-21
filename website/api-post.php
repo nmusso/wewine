@@ -8,6 +8,7 @@ $result["islogged"] = false;
 if($dbh->login_check()){
     $result["islogged"] = true;
     $result["getPost"] = false;
+    $result["type"] = $_SESSION["actionType"];
 
     if (isset($_SESSION["watchedPost"])) {
         $result["postInfo"] = $dbh->getPostById($_SESSION["watchedPost"]);

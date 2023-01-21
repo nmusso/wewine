@@ -10,6 +10,7 @@ $templateParams["js"] = array(  "https://unpkg.com/axios/dist/axios.min.js",
                                 "js/interactions.js");
 
 $_SESSION["watchedPost"] = $_GET["post"] ?? null;
+$_SESSION["actionType"] = $_GET["type"] ?? null;
 
 require 'template/base.php';
 ?>

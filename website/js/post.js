@@ -50,6 +50,10 @@ axios.get("api-post.php").then(response => {
             const post = response.data["postInfo"][0];
             post["liked"] = (post["liked"] == null) ? "fa-regular" : "fa-solid";
             main.insertAdjacentHTML("beforeend", generaPost(post));
+
+            if (response.data["type"] != null && response.data["type"] == "comment") {
+                commentManager(post["idPost"]);
+            }
         }
     } else {
         window.location.replace("./login.php");
