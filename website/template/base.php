@@ -23,7 +23,7 @@
 				<div id="fluidRow" class="row m-auto">
 					<div id="title" class="col-12">
 						<header class="bg-dark text-white py-1">
-							<h1 class="font-weight-light text-center">iSocial</h1>
+							<h1 class="font-weight-light text-center">WeWine<i class="fa-solid fa-wine-glass"></i></h1>
 						</header>
 					</div>
 					<div class="col-12">

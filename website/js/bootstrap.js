@@ -5,7 +5,7 @@ const title = document.getElementById("title");
 const inRow = document.getElementById("fluidRow");
 const container = document.getElementById("container");
 const h1 = document.querySelector("h1");
-const p = '<p class="text-center fs-3 my-0">iSocial</p>';
+const p = '<p class="text-center fs-3 my-0">WeWine<i class="fa-solid fa-wine-glass"></i></p>';
 const ul = document.querySelector("ul");
 const home = document.getElementById("li-home");
 const search = document.getElementById("li-search");
