@@ -91,7 +91,7 @@ function likeChange(id){
     axios.post('api-interaction.php', formData).then(response => {
         if (response.data["islogged"]) {
             if(response.data["changeOk"]){
-                const numLike = document.getElementById("numLike");
+                const numLike = document.getElementById("numLikeID-" + id);
                 if(likeIcon.classList.contains("fa-regular")){
                     likeIcon.classList.replace("fa-regular","fa-solid");
                     numLike.innerText = parseInt(numLike.innerText) + 1; 

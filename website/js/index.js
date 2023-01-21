@@ -25,7 +25,7 @@ function generaPost(data) {
                 <div class="row pt-3 pr-1 mb-1">
                     <div class="col-9 col-sm-9"></div>      
                     <div class="col-1 col-sm-1 font-weight-bold">
-                        <p id="numLike" class="text-end fw-bold">`+ data["numLike"] + `</p> 
+                        <p id="numLikeID-` + data["idPost"] + `" class="text-end fw-bold">`+ data["numLike"] + `</p> 
                     </div> 
                     <div class="col-1 col-sm-1">
                         <a href="#!" onclick="likeChange(`+ data["idPost"] + `)">
