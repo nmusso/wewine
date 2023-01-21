@@ -239,6 +239,7 @@ function getPosts() {
         if (response.data["islogged"]) {
             const posts = response.data["posts"];
             for (let i = 0; i < posts.length; i++) {
+                posts[i]["liked"] = (posts[i]["liked"] == null) ? "fa-regular" : "fa-solid";
                 main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
             }
         } else {
