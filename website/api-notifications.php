@@ -7,13 +7,16 @@ $result["islogged"] = false;
 if ($dbh->login_check()){
     $result["islogged"] = true;
 
+    $notificationsType = array("newFollow", "newComment", "newLike");
+
     $result["notifications"] = $dbh->getNewNotifications($_SESSION["user_id"]);
-    $result["notifications"] = $result["notifications"] + $dbh->getOldNotifications($_SESSION["user_id"]);
-    
+    if(!isset($_POST["filter"])){
+        $result["notifications"] = $result["notifications"] + $dbh->getOldNotifications($_SESSION["user_id"]);
+        $notificationsType = array("newFollow", "newComment", "newLike", "oldFollow", "oldComment", "oldLike");
+    }
+     
     // DISABLED FOR TEST
     //$dbh->updateLastNotificationsRead($_SESSION["user_id"]);
-    
-    $notificationsType = array("newFollow", "newComment", "newLike", "oldFollow", "oldComment", "oldLike");
 
     $result["allnotifications"] = array();
     foreach($notificationsType as $type){

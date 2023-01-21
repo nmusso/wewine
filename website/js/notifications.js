@@ -73,8 +73,6 @@ function generaNotificaOld(data) {
 const main = document.querySelector("main");
 
 axios.get('api-notifications.php').then(response => {
-    console.log(response.data);
-    console.log(response.data["allnotifications"]);
     if (!response.data["islogged"]) {
         window.location.replace("./login.php");
     } else {

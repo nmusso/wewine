@@ -65,10 +65,57 @@ function getPartialFeed() {
                 main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
                 numPost++;
             }
-    
         } else {
             // login
             window.location.replace("./login.php");
         }
     });
+}
+
+function genToast(){
+    var myToast = new bootstrap.Toast(toast);
+    myToast.show();
+}
+
+var timer;
+const toast = document.getElementById("myToast");
+
+startTimer();
+function startTimer() {
+    timer = setInterval(function() {
+        const formData = new FormData();
+        formData.append('filter', "new");
+        axios.post('api-notifications.php', formData).then(response => {
+            if (!response.data["islogged"]) {
+                window.location.replace("./login.php");
+            } else {
+                console.log(response.data["allnotifications"]);
+
+                const notifications = response.data["allnotifications"];
+        
+                notifications.forEach(n => {
+
+                    var sqlDateStr = n["dataOra"]; // as for MySQL DATETIME
+                    sqlDateStr = sqlDateStr.replace(/:| /g,"-");
+                    var YMDhms = sqlDateStr.split("-");
+                    var sqlDate = new Date();
+                    sqlDate.setFullYear(parseInt(YMDhms[0]), parseInt(YMDhms[1])-1,
+                                                            parseInt(YMDhms[2]));
+                    sqlDate.setHours(parseInt(YMDhms[3]), parseInt(YMDhms[4]), 
+                                                        parseInt(YMDhms[5]), 0/*msValue*/);
+
+                    console.log("Da sql: "+sqlDate);
+                    console.log("Da js : "+new Date() );
+
+                    if((n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike") 
+                        && new Date() - sqlDate < 20000 ){
+
+                        document.querySelector("#toast-text").innerHTML = n["username"] + " " + n["text"];
+                        genToast();
+                    }       
+                });    
+            }
+        });
+
+    }, 5000);
 }
