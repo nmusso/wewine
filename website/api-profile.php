@@ -9,10 +9,10 @@ if ($dbh->login_check()){
     $result["isMine"] = $_SESSION["watchedUser"] == 0 ? true : false;
 
     if ($_SESSION["watchedUser"] == 0) {
-        $result["posts"] = $dbh->getPostsById($_SESSION["user_id"]);
+        $result["posts"] = $dbh->getPostsByProfileId($_SESSION["user_id"]);
         $result["info"] = $dbh->getUserInfo($_SESSION["user_id"]);
     } else {
-        $result["posts"] = $dbh->getPostsById($_SESSION["watchedUser"]);
+        $result["posts"] = $dbh->getPostsByProfileId($_SESSION["watchedUser"]);
         $result["info"] = $dbh->getUserInfo($_SESSION["watchedUser"]);
     }
 

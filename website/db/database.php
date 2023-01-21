@@ -48,7 +48,7 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getPostsById($id){
+    public function getPostsByProfileId($id){
         $query = "SELECT u.id, u.username, u.imgProfilo, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN utente AS u ON p.idUtente = u.id
@@ -62,6 +62,22 @@ class DatabaseHelper
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getPostById($id){
+        $query = "SELECT u.id, u.username, u.imgProfilo, p.*, DATEDIFF(NOW(),p.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,p.dataOra,NOW()) as MinutesAgo, l.dataOra as liked
+        FROM post AS p
+        JOIN utente AS u ON p.idUtente = u.id
+        LEFT JOIN `like` AS l ON p.idPost = l.idPost AND l.idUtente = ?
+        WHERE p.idPost = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $_SESSION["user_id"], $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 
     public function getUserInfo($id){
         $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, u.dataNascita, u.email, COUNT(p.idPost) as nPosts
@@ -237,7 +253,7 @@ class DatabaseHelper
 
     public function getNewNotifications($id){
         // new followers
-        $query = "SELECT u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT u2.id, u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
         FROM segue AS s
         JOIN utente AS u1 ON s.idFollowed = u1.id
         JOIN utente AS u2 ON s.idFollower = u2.id
@@ -251,7 +267,7 @@ class DatabaseHelper
         $res["newFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new comments
-        $query = "SELECT u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
@@ -266,7 +282,7 @@ class DatabaseHelper
         $res["newComment"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new likes
-        $query = "SELECT u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id
@@ -285,7 +301,7 @@ class DatabaseHelper
 
     public function getOldNotifications($id){
         // per il Follow Nuove
-        $query = "SELECT u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT u2.id, u2.username, u2.imgProfilo, s.dataOra, DATEDIFF(NOW(),s.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,s.dataOra,NOW()) as MinutesAgo
         FROM segue AS s
         JOIN utente AS u1 ON s.idFollowed = u1.id
         JOIN utente AS u2 ON s.idFollower = u2.id
@@ -299,7 +315,7 @@ class DatabaseHelper
         $res["oldFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new comments
-        $query = "SELECT u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
@@ -314,7 +330,7 @@ class DatabaseHelper
         $res["oldComment"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new likes
-        $query = "SELECT u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id

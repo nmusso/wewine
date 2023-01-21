@@ -16,6 +16,10 @@
     text-decoration: none;
 }
 
+.newNotification, .newNotification:hover {
+    color: white;
+}
+
 /* https://stackoverflow.com/questions/23934749/fill-element-from-center-on-hover */
 .info {   
     background-image: linear-gradient(#212529, #212529);
