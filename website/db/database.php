@@ -293,11 +293,11 @@ class DatabaseHelper
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
         JOIN utente AS u2 ON p.idUtente = u2.id
-        WHERE p.idUtente = ?
+        WHERE p.idUtente = ? AND c.idUtente != ?
         AND u2.ultimaLetturaNotifiche <= c.dataOra 
         ORDER BY c.dataOra DESC ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i',$id);
+        $stmt->bind_param('ii', $id, $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $res["newComment"] = $result->fetch_all(MYSQLI_ASSOC);
@@ -308,11 +308,11 @@ class DatabaseHelper
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id
         JOIN utente AS u2 ON p.idUtente = u2.id
-        WHERE p.idUtente = ?
+        WHERE p.idUtente = ? AND l.idUtente != ?
         AND u2.ultimaLetturaNotifiche <= l.dataOra 
         ORDER BY l.dataOra DESC  ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i',$id);
+        $stmt->bind_param('ii', $id, $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $res["newLike"] = $result->fetch_all(MYSQLI_ASSOC);
@@ -341,11 +341,11 @@ class DatabaseHelper
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
         JOIN utente AS u2 ON p.idUtente = u2.id
-        WHERE p.idUtente = ?
+        WHERE p.idUtente = ? AND c.idUtente != ?
         AND u2.ultimaLetturaNotifiche > c.dataOra 
         ORDER BY c.dataOra DESC ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i',$id);
+        $stmt->bind_param('ii', $id, $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $res["oldComment"] = $result->fetch_all(MYSQLI_ASSOC);
@@ -356,11 +356,11 @@ class DatabaseHelper
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id
         JOIN utente AS u2 ON p.idUtente = u2.id
-        WHERE p.idUtente = ?
+        WHERE p.idUtente = ? AND l.idUtente != ?
         AND u2.ultimaLetturaNotifiche > l.dataOra 
         ORDER BY l.dataOra DESC  ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i',$id);
+        $stmt->bind_param('ii', $id, $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $res["oldLike"] = $result->fetch_all(MYSQLI_ASSOC);

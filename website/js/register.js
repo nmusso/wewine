@@ -45,7 +45,7 @@ function generaLoginForm(loginerror = null) {
                         <div id="error" class="text-danger mb-4">
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button id="submit" type="button" class="btn btn-primary btn-block btn-lg text-white">Register</button>
+                            <button id="submit" type="button" class="btn wine text-white btn-block btn-lg text-white">Register</button>
                         </div>
                         <p class="text-center text-muted mt-5 mb-0">Have already an account? <a id="loginhere" href="#!"
                             class="fw-bold text-body"><u>Login here</u></a></p>

@@ -14,12 +14,8 @@ function generaLoginForm(loginerror = null) {
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" required>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="check">
-                    <label class="form-check-label" for="check">Remember me</label>
-                </div>
                 <div class="d-flex flex-row-reverse mb-3">
-                    <button id="submit" type="submit" class="btn btn-primary">Login</button>
+                    <button id="submit" type="submit" class="btn wine text-white">Login</button>
                 </div>
                 <div class="d-flex flex-row-reverse mb-3">
                     <a id="register" href="#">Register now</a>

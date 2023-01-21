@@ -18,7 +18,7 @@
 	<div id="container" class="container-fluid p-0 overflow-hidden min-vh-100 d-flex flex-column">
 		<div id="header" class="row mb-5">
             <div id="title" class="col-12">
-                <header class="bg-dark text-white py-1">
+                <header class="wine text-white py-1">
                     <h1 class="font-weight-light text-center">iSocial</h1>
                 </header>
             </div>
