@@ -82,6 +82,7 @@ axios.get('api-notifications.php').then(response => {
         const notifications = response.data["allnotifications"];
 
         notifications.forEach(n => {
+            console.log(n);
             if(n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike"){
                 main.insertAdjacentHTML("beforeend", generaNotificaNew(n));
             }else{
