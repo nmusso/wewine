@@ -41,3 +41,16 @@
     transform: translate(-50%, 0px);
     z-index: 9000;
 }
+
+.bellOn {
+    animation: rotation 0.5s infinite alternate;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(-45deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}

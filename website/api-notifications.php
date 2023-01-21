@@ -16,7 +16,7 @@ if ($dbh->login_check()){
     }
      
     // DISABLED FOR TEST
-    //$dbh->updateLastNotificationsRead($_SESSION["user_id"]);
+    $dbh->updateLastNotificationsRead($_SESSION["user_id"]);
 
     $result["allnotifications"] = array();
     foreach($notificationsType as $type){

@@ -47,7 +47,7 @@
 								</a>
 							</li>
 							<li id="li-notify" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="notifications.php"><i class="fa-solid fa-bell line"
+								<a class="nav-link text-white my-3 mx-0" href="notifications.php"><i id="bell" class="fa-solid fa-bell line"
 										aria-hidden="true"></i>
 									<p class="desc line">Notifications</p>
 								</a>
