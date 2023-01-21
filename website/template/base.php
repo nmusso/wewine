@@ -76,13 +76,12 @@
 					<div class="toast-header bg-dark text-white">
 						<strong class="me-auto"><i class="bi-gift-fill text-white"></i>Notification</strong>
 						<small id ="toast-diffTime">time ago</small>
-						<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
 					</div>
-					<a href="#" id="toast-link-text">
-						<div class="toast-body text-white" id="toast-text">
-							Text
-						</div>
-					</a>
+				</a>		
+				<a href="#" id="toast-link-text">
+					<div class="toast-body text-white" id="toast-text">
+						Text
+					</div>
 				</a>
 			</div>
 

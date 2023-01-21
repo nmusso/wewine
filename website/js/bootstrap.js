@@ -131,7 +131,7 @@ function startTimer() {
                                                         parseInt(YMDhms[5]), 0);
 
                     if((n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike") 
-                        && new Date() - sqlDate < 20000 ){ // TEST ==> TODO mettere il 20000 uguale all' interval
+                        && new Date() - sqlDate < 5000 ){ // TEST ==> TODO mettere il 20000 uguale all' interval
 
                         const type = (n["type"] == "newLike") ? "like" : "comment";
                         const ref = (n["type"] == "newFollow") ? "profile.php?profile=" + n["id"] : "post.php?post=" + n["idPost"] + "&type=" + type; 
