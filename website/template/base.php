@@ -76,12 +76,11 @@
 			<div id="bottomPlaceholder" class="my-3"></div>
 
 			<div class="toast wine text-white fixed-top top-0 end-0 justify-content-center" id="myToast">
-				<a href="#" id="toast-link">
-					<div class="toast-header wine text-white">
-						<strong class="me-auto"><i class="bi-gift-fill text-white"></i>Notification</strong>
-						<small id ="toast-diffTime">time ago</small>
-					</div>
-				</a>		
+				<div class="toast-header wine text-white">
+					<strong class="me-auto text-white"><a href="#" id="toast-link" class="</a>"><i class="bi-gift-fill text-white"></i>Notification</a></strong>
+					<small id ="toast-diffTime">time ago</small>
+					<button type="button" onclick="#" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
+				</div>		
 				<a href="#" id="toast-link-text">
 					<div class="toast-body text-white" id="toast-text">
 						Text

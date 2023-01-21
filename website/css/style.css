@@ -46,6 +46,10 @@
     z-index: 9000;
 }
 
+#toast-link{
+    color: white;
+}
+
 .bellOn {
     animation: rotation 0.5s infinite alternate;
 }
