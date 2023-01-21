@@ -174,10 +174,10 @@ function generaUtente(data, isMine) {
     return profile;
 }
 
-const buttonEdit = `<button id="btnedit" type="button" onclick="edit()" class="mt-2 btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Edit</button>`;
-const buttonLogout = `<button id="btnlogout" type="button" onclick="logout()" class="mt-2 btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Logout</button>`;
-const buttonFollow = `<button id="btnfollow" type="button" onclick="follow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Follow</button>`;
-const buttonUnfollow = `<button id="btnunfollow" type="button" onclick="unfollow()" class="btn btn-dark col-12 col-sm-12 col-md-3 col-lg-2">Unfollow</button>`;
+const buttonEdit = `<button id="btnedit" type="button" onclick="edit()" class="mt-2 btn wine text-white col-12 col-sm-12 col-md-3 col-lg-2">Edit</button>`;
+const buttonLogout = `<button id="btnlogout" type="button" onclick="logout()" class="mt-2 btn wine text-white col-12 col-sm-12 col-md-3 col-lg-2">Logout</button>`;
+const buttonFollow = `<button id="btnfollow" type="button" onclick="follow()" class="btn wine text-white col-12 col-sm-12 col-md-3 col-lg-2">Follow</button>`;
+const buttonUnfollow = `<button id="btnunfollow" type="button" onclick="unfollow()" class="btn wine text-white col-12 col-sm-12 col-md-3 col-lg-2">Unfollow</button>`;
 const main = document.querySelector("main");
 
 axios.get('api-profile.php').then(response => {
