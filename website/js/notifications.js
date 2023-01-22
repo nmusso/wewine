@@ -37,7 +37,7 @@ function generaNotificaNew(data) {
 
 function generaNotificaOld(data) {
     const type = (data["type"] == "oldLike") ? "like" : "comment";
-    const ref = (data["type"] == "oldFollow") ? "profile.php?profile=" + data["id"] : "post.php?post=" + data["idPost"];  
+    const ref = (data["type"] == "oldFollow") ? "profile.php?profile=" + data["id"] : "post.php?post=" + data["idPost"] + "&type=" + type; ;  
     let notification = `
     <div id="notificationOld" class="row mt-2 userCard">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
