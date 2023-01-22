@@ -39,6 +39,9 @@ if (checkNoEmpty()) {
          if ($checkImage != false) {
             $res = $dbh->addProfilePath($id, $msg);
             $result["registerOK"] = true;
+         } else {
+            $dbh->deleteUser($id);
+            $result["errorRegister"] = $msg;
          }
       } else if ($res != false) {
          $result["registerOK"] = true;

@@ -20,6 +20,13 @@ class DatabaseHelper
         return $stmt->insert_id;
     }
 
+    public function deleteUser($id) {
+        $query = "DELETE FROM utente WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+    }
+
     public function getUsersByName($value){
         $query = "SELECT id, username, imgProfilo FROM utente WHERE username LIKE CONCAT ('%', ?, '%') ";
         $stmt = $this->db->prepare($query);
