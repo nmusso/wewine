@@ -103,7 +103,7 @@ const toast = document.getElementById("myToast");
 manageNewNotifications();
 startTimer();
 function startTimer() {
-    timer = setInterval(manageNewNotifications, 5000);
+    timer = setInterval(manageNewNotifications, 3000);
 }
 
 function manageNewNotifications() {
@@ -113,23 +113,18 @@ function manageNewNotifications() {
         if (!response.data["islogged"]) {
             window.location.replace("./login.php");
         } else {
-            console.log(response.data["allnotifications"]);
-
             const notifications = response.data["allnotifications"];
     
-            notifications.forEach(n => {
-                
-                var sqlDateStr = n["dataOra"]; // MySQL DATETIME
+            notifications.forEach(n => {             
+                let sqlDateStr = n["dataOra"]; 
                 sqlDateStr = sqlDateStr.replace(/:| /g,"-");
-                var YMDhms = sqlDateStr.split("-");
-                var sqlDate = new Date();
-                sqlDate.setFullYear(parseInt(YMDhms[0]), parseInt(YMDhms[1])-1,
-                                                        parseInt(YMDhms[2]));
-                sqlDate.setHours(parseInt(YMDhms[3]), parseInt(YMDhms[4]), 
-                                                    parseInt(YMDhms[5]), 0);
+                let YMDhms = sqlDateStr.split("-");
+                let sqlDate = new Date();
+                sqlDate.setFullYear(parseInt(YMDhms[0]), parseInt(YMDhms[1])-1, parseInt(YMDhms[2]));
+                sqlDate.setHours(parseInt(YMDhms[3]), parseInt(YMDhms[4]), parseInt(YMDhms[5]), 0);
 
-                if(n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike") { // TEST ==> TODO mettere il 20000 uguale all' interval                       
-                    if (new Date() - sqlDate < 5000 ) {
+                if(n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike") {                   
+                    if (new Date() - sqlDate < 3000 ) {
                         const type = (n["type"] == "newLike") ? "like" : "comment";
                         const ref = (n["type"] == "newFollow") ? "profile.php?profile=" + n["id"] : "post.php?post=" + n["idPost"] + "&type=" + type; 
 

@@ -150,7 +150,7 @@ axios.get('./api/api-profile.php').then(response => {
         }
     } else {
         // login
-        //window.location.replace("./login.php");
+        window.location.replace("./login.php");
     }
 });
 
@@ -203,7 +203,7 @@ function getPosts() {
             }
         } else {
             // login
-            //window.location.replace("./login.php");
+            window.location.replace("./login.php");
         }
     });
 }
