@@ -10,7 +10,7 @@ function generaPost(data) {
                             <div class="row">
                                 <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
                                     <img src="`+ data["imgProfilo"] + `"
-                                        class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                                        class="img-fluid rounded-circle img-thumbnail p-1 propic" alt=""/>
                                 </div>
                                 <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
                                     <div class="card-body p-0">

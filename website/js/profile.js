@@ -1,23 +1,25 @@
 function generaRiga(user) {
     let profile = `
-    <div class="row mt-2 userCard mainElement">
-        <div class="col-sm-1"></div>
-        <div class="col-12 col-sm-8 card">
-            <a href="profile.php?profile=` + user["id"] + `">
-                <div class="row">
-                    <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
-                        <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
-                    </div>
-                    <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
-                        <div class="card-body">
-                            <p class="card-text">` + user["username"] + `</p>
+    <section>
+        <div class="row mt-2 userCard mainElement">
+            <div class="col-sm-1"></div>
+            <div class="col-12 col-sm-8 card">
+                <a href="profile.php?profile=` + user["id"] + `">
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
+                            <img src="` + user["imgProfilo"] + `" alt="" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                        </div>
+                        <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
+                            <div class="card-body">
+                                <p class="card-text">` + user["username"] + `</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            <div class="col-sm-3"></div>
         </div>
-        <div class="col-sm-3"></div>
-    </div>
+    </section>
     `;
 
     return profile;
@@ -49,81 +51,83 @@ function generaUtente(data, isMine) {
     }
 
     let profile = `
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-12 col-sm-8 card">
-            <div class="card-body">
-                <div class="row mt-2 mb-1">
-                    <div class="col-2 col-sm-3 col-md-3 col-lg-2 col-xl-2">
-                        <img src="` + data["userInfo"][0]["imgProfilo"] + `"
-                            class="img-fluid rounded-circle img-thumbnail p-1 propic" />
-                    </div>
-                    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <a href="#" onclick="getPosts()" class="profileSwitch">
-                            <div class="info">
-                                <div class="row">
-                                    <div class="col-12 text-center fw-bold num">
-                                    ` + data["userInfo"][0]["nPosts"] + `
+    <header>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-12 col-sm-8 card">
+                <div class="card-body">
+                    <div class="row mt-2 mb-1">
+                        <div class="col-2 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                            <img src="` + data["userInfo"][0]["imgProfilo"] + `"
+                                class="img-fluid rounded-circle img-thumbnail p-1 propic" alt=""/>
+                        </div>
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                            <a href="#" onclick="getPosts()" class="profileSwitch">
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="col-12 text-center fw-bold num">
+                                        ` + data["userInfo"][0]["nPosts"] + `
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            Post
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        Post
+                            </a>
+                        </div>
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                            <a href="#" onclick="getFollowers()" class="profileSwitch">
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="col-12 text-center fw-bold">
+                                        ` + data["follower"][0]["Follower"] + `
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center p-0">
+                                            Followers
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <a href="#" onclick="getFollowers()" class="profileSwitch">
-                            <div class="info">
-                                <div class="row">
-                                    <div class="col-12 text-center fw-bold">
-                                    ` + data["follower"][0]["Follower"] + `
+                            </a>
+                        </div>
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                            <a href="#" onclick="getFollowed()" class="profileSwitch">
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="col-12 text-center fw-bold">
+                                        ` + data["followed"][0]["Followed"] + `
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center p-0">
+                                            Followed
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12 text-center p-0">
-                                        Followers
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <a href="#" onclick="getFollowed()" class="profileSwitch">
-                            <div class="info">
-                                <div class="row">
-                                    <div class="col-12 text-center fw-bold">
-                                    ` + data["followed"][0]["Followed"] + `
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 text-center p-0">
-                                        Followed
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <p class="mt-2 mb-0 fs-4 fw-bold">` + data["userInfo"][0]["username"] + `</p>
-                        <p class="m-0 fw-lighter">` + data["userInfo"][0]["nome"] + " " + data["userInfo"][0]["cognome"] + `</p>
-                        <div class="mt-3">
-                            <article>
-                            ` + data["userInfo"][0]["bio"] + `
-                            </article>
+                            </a>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mt-2 mb-0 fs-4 fw-bold">` + data["userInfo"][0]["username"] + `</p>
+                            <p class="m-0 fw-lighter">` + data["userInfo"][0]["nome"] + " " + data["userInfo"][0]["cognome"] + `</p>
+                            <div class="mt-3">
+                                <article>
+                                ` + data["userInfo"][0]["bio"] + `
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    ` + buttonRow + `
                 </div>
-                ` + buttonRow + `
             </div>
+            <div class="col-sm-3"></div>
         </div>
-        <div class="col-sm-3"></div>
-    </div>
+    </header>
     `;
 
     return profile;
