@@ -56,7 +56,7 @@ function updateResults() {
     if (value != "") {
         const formData = new FormData();
         formData.append('value', value);
-        axios.post('api-search.php', formData).then(response => {
+        axios.post('./api/api-search.php', formData).then(response => {
             if (!response.data["islogged"]) {
                 window.location.replace("./index.php");
             } else {

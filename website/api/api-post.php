@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'bootstrap.php';
+require_once '../bootstrap.php';
 sec_session_start();
 
 $result["islogged"] = false;

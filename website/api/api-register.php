@@ -10,7 +10,7 @@ function checkNoEmpty()
       $_POST['email'] != "");
 }
 
-require_once("bootstrap.php");
+require_once '../bootstrap.php';
 $result["registerOK"] = false;
 
 if (checkNoEmpty()) {

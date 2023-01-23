@@ -1,5 +1,5 @@
 <?php
-require_once 'bootstrap.php';
+require_once '../bootstrap.php';
 sec_session_start();
 // Elimina tutti i valori della sessione.
 $_SESSION = array();

@@ -61,7 +61,7 @@ const main = document.querySelector("main");
 main.innerHTML = generaForm();
 let data = [];
 
-axios.get("api-profile-editor.php").then(response => {
+axios.get("./api/api-profile-editor.php").then(response => {
     if (response.data["islogged"]) {
         data = response.data["info"];
         fillForm();
@@ -124,7 +124,7 @@ function update(username, oldPassword, newPassword, email, nome, cognome, dataNa
         formData.append('imgProfilo', imgProfilo);
     }
 
-    axios.post('api-profile-editor.php', formData, {
+    axios.post('./api/api-profile-editor.php', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }

@@ -1,5 +1,5 @@
 <?php
-require_once 'bootstrap.php';
+require_once '../bootstrap.php';
 sec_session_start(); // usiamo la nostra funzione per avviare una sessione php sicura
 $result["logindone"] = false;
 

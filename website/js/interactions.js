@@ -90,7 +90,7 @@ function likeChange(id){
     const formData = new FormData();
     formData.append('type', "like");
     formData.append('id', id);
-    axios.post('api-interaction.php', formData).then(response => {
+    axios.post('./api/api-interaction.php', formData).then(response => {
         if (response.data["islogged"]) {
             if(response.data["changeOk"]){
                 const numLike = document.getElementById("numLikeID-" + id);
@@ -121,7 +121,7 @@ function commentManager(id){
         formData.append('type', "comment");
         formData.append('id', id);
     
-        axios.post('api-interaction.php', formData).then(response => {
+        axios.post('./api/api-interaction.php', formData).then(response => {
             if (response.data["islogged"]) {
                 const comments = response.data["comments"];
                 post.insertAdjacentHTML("beforeend", generaBarra(id));
@@ -145,7 +145,7 @@ function insertComment(id) {
         formData.append('text', text);
         formData.append('id', id);
 
-        axios.post('api-interaction.php', formData).then(response => {
+        axios.post('./api/api-interaction.php', formData).then(response => {
             if (response.data["islogged"]) {
                 commentManager(id);
                 commentManager(id);
@@ -169,7 +169,7 @@ function getLikeList(id) {
         const formData = new FormData();
         formData.append("type", "likelist");
         formData.append("id", id);
-        axios.post("api-interaction.php", formData).then(response => {
+        axios.post("./api/api-interaction.php", formData).then(response => {
             if (!response.data["islogged"]) {
                 window.location.replace("./login.php");
             }

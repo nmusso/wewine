@@ -69,7 +69,7 @@ window.onscroll = function () {
 function getPartialFeed() {
     const formData = new FormData();
     formData.append("num", numPost);
-    axios.post('api-home.php', formData).then(response => {
+    axios.post('./api/api-home.php', formData).then(response => {
         if (response.data["islogged"]) {
             // Visualizza post
             const posts = response.data["posts"];

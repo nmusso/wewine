@@ -1,22 +1,13 @@
 <?php
-require_once 'bootstrap.php';
+require_once '../bootstrap.php';
 
 sec_session_start();
 $result["islogged"] = false;
 
-if ($dbh->login_check()){
+if($dbh->login_check()){
     $result["islogged"] = true;
-    $result["isMine"] = $_SESSION["watchedUser"] == 0 ? true : false;
-
-    if ($_SESSION["watchedUser"] == 0) {
-        $result["posts"] = $dbh->getPostsByProfileId($_SESSION["user_id"]);
-        $result["info"] = $dbh->getUserInfo($_SESSION["user_id"]);
-    } else {
-        $result["posts"] = $dbh->getPostsByProfileId($_SESSION["watchedUser"]);
-        $result["info"] = $dbh->getUserInfo($_SESSION["watchedUser"]);
-    }
-
-    $result["info"]["userInfo"][0]["imgProfilo"] = UPLOAD_DIR . $result["info"]["userInfo"][0]["imgProfilo"];
+    // prendere post da mostrare in feed di utente corrente
+    $result["posts"] = $dbh->getFeed($_SESSION["user_id"], $_POST["num"]);
 
     foreach($result["posts"] as &$post){
         $post["immagine"] = UPLOAD_DIR . $post["immagine"];

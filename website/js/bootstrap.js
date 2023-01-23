@@ -109,7 +109,7 @@ function startTimer() {
 function manageNewNotifications() {
     const formData = new FormData();
     formData.append('filter', "new");
-    axios.post('api-notifications.php', formData).then(response => {
+    axios.post('./api/api-notifications.php', formData).then(response => {
         if (!response.data["islogged"]) {
             window.location.replace("./login.php");
         } else {

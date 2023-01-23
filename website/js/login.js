@@ -49,7 +49,8 @@ function login(username, password) {
     const formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
-    axios.post('api-login.php', formData).then(response => {
+    axios.post('./api/api-login.php', formData).then(response => {
+        console.log(response.data);
         if (response.data["logindone"]) {
             window.location.replace("./index.php")
         } else {

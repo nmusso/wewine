@@ -1,6 +1,6 @@
 function generaNotifica(data, age) {
-    const type = (data["type"] == "newLike") ? "like" : "comment";
-    const ref = (data["type"] == "newFollow") ? "profile.php?profile=" + data["id"] : "post.php?post=" + data["idPost"] + "&type=" + type;  
+    const type = (data["type"] == "newLike" || data["type"] == "oldLike") ? "like" : "comment";
+    const ref = (data["type"] == "newFollow" || data["type"] == "oldFollow") ? "profile.php?profile=" + data["id"] : "post.php?post=" + data["idPost"] + "&type=" + type;  
     const style = (age=="new") ? 'wine' : '';
     const style_text = (age=="new") ? 'text-white' : '';
     let notification = `
@@ -41,7 +41,7 @@ function generaNotifica(data, age) {
 
 const main = document.querySelector("main");
 
-axios.get('api-notifications.php').then(response => {
+axios.get('./api/api-notifications.php').then(response => {
     if (!response.data["islogged"]) {
         window.location.replace("./login.php");
     } else {

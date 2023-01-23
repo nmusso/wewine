@@ -139,7 +139,7 @@ const buttonFollow = `<button id="btnfollow" type="button" onclick="follow()" cl
 const buttonUnfollow = `<button id="btnunfollow" type="button" onclick="unfollow()" class="btn wine text-white col-12 col-sm-12 col-md-3 col-lg-2">Unfollow</button>`;
 const main = document.querySelector("main");
 
-axios.get('api-profile.php').then(response => {
+axios.get('./api/api-profile.php').then(response => {
     if (response.data["islogged"]) {
         //Visualizza post
         const posts = response.data["posts"];
@@ -150,7 +150,7 @@ axios.get('api-profile.php').then(response => {
         }
     } else {
         // login
-        window.location.replace("./login.php");
+        //window.location.replace("./login.php");
     }
 });
 
@@ -161,7 +161,7 @@ function edit() {
 function follow() {
     const formData = new FormData();
     formData.append("type", "follow");
-    axios.post('api-follow.php', formData).then(response => {
+    axios.post('./api/api-follow.php', formData).then(response => {
         if (!response.data["islogged"]) {
             window.location.replace("./index.php");
         } else {
@@ -177,7 +177,7 @@ function follow() {
 function unfollow() {
     const formData = new FormData();
     formData.append("type", "unfollow");
-    axios.post('api-follow.php', formData).then(response => {
+    axios.post('./api/api-follow.php', formData).then(response => {
         if (!response.data["islogged"]) {
             window.location.replace("./login.php");
         } else {
@@ -194,7 +194,7 @@ function getPosts() {
     const mainElements = main.querySelectorAll(".mainElement");
     mainElements.forEach(elem => main.removeChild(elem));
 
-    axios.get('api-profile.php').then(response => {
+    axios.get('./api/api-profile.php').then(response => {
         if (response.data["islogged"]) {
             const posts = response.data["posts"];
             for (let i = 0; i < posts.length; i++) {
@@ -203,7 +203,7 @@ function getPosts() {
             }
         } else {
             // login
-            window.location.replace("./login.php");
+            //window.location.replace("./login.php");
         }
     });
 }
@@ -215,7 +215,7 @@ function getFollowers() {
     const formData = new FormData();
     formData.append("type", "followers")
 
-    axios.post("api-followList.php", formData).then(response => {
+    axios.post("./api/api-followList.php", formData).then(response => {
         if (!response.data["islogged"]) {
             window.location.replace("./login.php");
         } else {
@@ -234,7 +234,7 @@ function getFollowed() {
     const formData = new FormData();
     formData.append("type", "followed")
 
-    axios.post("api-followList.php", formData).then(response => {
+    axios.post("./api/api-followList.php", formData).then(response => {
         if (!response.data["islogged"]) {
             window.location.replace("./login.php");
         } else {
@@ -247,7 +247,7 @@ function getFollowed() {
 }
 
 function logout() {
-    axios.get("api-logout.php").then(response => {
+    axios.get("./api/api-logout.php").then(response => {
         window.location.replace("./login.php");
     });
 }

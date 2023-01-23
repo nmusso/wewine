@@ -1,6 +1,6 @@
 const main = document.querySelector("main");
 
-axios.get("api-post.php").then(response => {
+axios.get("./api/api-post.php").then(response => {
     if (response.data["islogged"]) {
         if (response.data["getPost"]){
             const post = response.data["postInfo"][0];

@@ -43,7 +43,7 @@ document.getElementById("submit").addEventListener("click", () => {
         formData.append("photo", photo);
     }
 
-    axios.post("api-post-editor.php", formData, {
+    axios.post("./api/api-post-editor.php", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }

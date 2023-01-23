@@ -93,7 +93,7 @@ function register(username, password, email, nome, cognome, dataNascita, bio, im
         formData.append('imgProfilo', imgProfilo);
     }
 
-    axios.post('api-register.php', formData, {
+    axios.post('./api/api-register.php', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
