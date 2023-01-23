@@ -52,7 +52,7 @@ document.getElementById("submit").addEventListener("click", () => {
             window.location.replace("./login.php");
         } else {
             if (response.data["postOK"]) {
-                window.location.replace("./index.php");
+                window.location.replace("./profile.php?profile=0");
             } else {
                 document.getElementById("error").innerText = response.data["errorPost"];
             }

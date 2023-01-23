@@ -18,9 +18,11 @@ function generaCommento(data, id) {
                             </div>
                         </a>
                         <div class="row mb-2">
-                            <div class="col-12 col-sm-12">`
-                            + data["testo"] +
-                            `</div>
+                            <div class="col-12 col-sm-12">
+                                <p>`
+                                + data["testo"] +
+                                `</p>   
+                            </div>
                         </div>
                     </div>
                 </div>

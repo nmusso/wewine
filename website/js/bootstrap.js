@@ -16,7 +16,6 @@ const a_profile = document.getElementById("a-profile");
 
 let dim = window.matchMedia("(max-width: 576px)")
 
-// TODO mettere e rimuove mt e mb dalla prima e ultima card
 function mediaTrigger() {
     if (window.innerWidth < 576) {
         nav.classList.add("fixed-bottom");
@@ -66,7 +65,6 @@ function mediaTrigger() {
 mediaTrigger();
 dim.addEventListener("change", mediaTrigger);
 
-// Gestione delle scritte a fianco alle icone
 let iconDesc = window.matchMedia("(max-width: 1200px)");
 function manageDesc() {
     if (window.innerWidth < 1200) {
@@ -92,10 +90,6 @@ function manageDesc() {
 
 manageDesc();
 iconDesc.addEventListener("change", manageDesc);
-
-a_profile.addEventListener("click", ()=>{
-    window.location.replace("./profile.php?profile=0");
-})
 
 
 function genToast(){

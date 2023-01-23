@@ -1,67 +1,20 @@
-function generaPost(data) {
-    let post = `
-    <div class="mainElement row mt-3">
-        <div class="col-sm-1"></div>
-        <div class="col-12 col-sm-8 card">
-            <div id="postID-` + data["idPost"] + `" class="card-body">
-                <div class="row">
-                    <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
-                        <img src="`+ data["imgProfilo"] + `"
-                            class="img-fluid rounded-circle img-thumbnail p-1 propic" />
-                    </div>
-                    <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
-                        <div class="card-body p-0">
-                            <p class="card-text">`+ data["username"] + `</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="post.php?post=` + data["idPost"] + `&type=like">
-                    <p class="card-text my-3">`+ data["testo"] + `</p>
-                    <p class="card-text"><small class="text-muted">Posted `+ data["diffTime"] + `ago</small></p>
-                    <img class="card-img-bottom" src="`+ data["immagine"] + `" alt="Card image cap">
-                </a>
-                <div class="row pt-3 pr-1 mb-1">
-                    <div class="col-9 col-sm-9"></div>     
-                    <div class="col-1 col-sm-1 font-weight-bold">
-                        <p id="numLikeID-` + data["idPost"] + `" class="text-end fw-bold text-wine">`+ data["numLike"] + `</p> 
-                    </div>
-                    <div class="col-1 col-sm-1">
-                        <a href="#!" onclick="likeChange(`+ data["idPost"] + `)">
-                            <i class="`+ data["liked"] + ` fa-heart text-wine" id="idLike-` + data["idPost"] + `"></i>
-                        </a>
-                    </div>
-                    <div class="col-1 col-sm-1">
-                        <a href="#!" onclick="commentManager(`+ data["idPost"] + `)">
-                            <i class="fa-regular fa-comment text-wine"></i>
-                        </a>
-                    </div>  
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3"></div>
-    </div>
-    `;
-
-    return post;
-}
-
 function generaRiga(user) {
     let profile = `
     <div class="row mt-2 userCard mainElement">
         <div class="col-sm-1"></div>
         <div class="col-12 col-sm-8 card">
-        <a href="profile.php?profile=` + user["id"] + `">
-            <div class="row">
-                <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
-                    <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
-                </div>
-                <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
-                    <div class="card-body">
-                        <p class="card-text">` + user["username"] + `</p>
+            <a href="profile.php?profile=` + user["id"] + `">
+                <div class="row">
+                    <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
+                        <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                    </div>
+                    <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
+                        <div class="card-body">
+                            <p class="card-text">` + user["username"] + `</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -160,7 +113,9 @@ function generaUtente(data, isMine) {
                         <p class="mt-2 mb-0 fs-4 fw-bold">` + data["userInfo"][0]["username"] + `</p>
                         <p class="m-0 fw-lighter">` + data["userInfo"][0]["nome"] + " " + data["userInfo"][0]["cognome"] + `</p>
                         <div class="mt-3">
-                        ` + data["userInfo"][0]["bio"] + `
+                            <article>
+                            ` + data["userInfo"][0]["bio"] + `
+                            </article>
                         </div>
                     </div>
                 </div>

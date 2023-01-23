@@ -7,7 +7,8 @@ $templateParams["js"] = array(  "https://unpkg.com/axios/dist/axios.min.js",
                                 "https://kit.fontawesome.com/7dda2fa6a2.js",
                                 "js/post.js",
                                 "js/bootstrap.js",
-                                "js/interactions.js");
+                                "js/interactions.js",
+                                "js/functions.js");
 
 $_SESSION["watchedPost"] = $_GET["post"] ?? null;
 $_SESSION["actionType"] = $_GET["type"] ?? null;

@@ -6,7 +6,8 @@ $templateParams["js"] = array(  "https://unpkg.com/axios/dist/axios.min.js",
                                 "https://kit.fontawesome.com/7dda2fa6a2.js",
                                 "js/index.js",
                                 "js/bootstrap.js",
-                                "js/interactions.js");
+                                "js/interactions.js",
+                                "js/functions.js");
 
 require 'template/base.php';
 ?>

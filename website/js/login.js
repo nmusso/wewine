@@ -1,4 +1,4 @@
-function generaLoginForm(loginerror = null) {
+function generaLoginForm() {
     let form = `
     <div class="row my-5">
         <div class="col-2 col-sm-4"></div>
@@ -45,7 +45,6 @@ document.getElementById("submit").addEventListener("click", function (event) {
     login(username, password);
 })
 
-// TODO gestire remember me
 function login(username, password) {
     const formData = new FormData();
     formData.append('username', username);

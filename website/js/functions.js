@@ -24,7 +24,7 @@ function generaPost(data) {
                         <a href="post.php?post=` + data["idPost"] + `&type=like">
                             <p class="card-text my-3">`+ data["testo"] + `</p>
                             <p class="card-text"><small class="text-muted">Posted `+ data["diffTime"] + `ago</small></p>
-                            <img class="card-img-bottom" src="`+ data["immagine"] + `" alt="Card image cap">           
+                            <img class="card-img-bottom" src="`+ data["immagine"] + `" alt="">           
                         </a>
                     </section>
                     <footer>
@@ -54,34 +54,3 @@ function generaPost(data) {
 
     return post;
 }
-
-const main = document.querySelector("main");
-let numPost = 0;
-
-getPartialFeed();
-
-window.onscroll = function () {
-    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-        getPartialFeed();
-    }
-}
-
-function getPartialFeed() {
-    const formData = new FormData();
-    formData.append("num", numPost);
-    axios.post('api-home.php', formData).then(response => {
-        if (response.data["islogged"]) {
-            // Visualizza post
-            const posts = response.data["posts"];
-            for (let i = 0; i < posts.length; i++) {
-                posts[i]["liked"] = (posts[i]["liked"] == null) ? "fa-regular" : "fa-solid";
-                main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
-                numPost++;
-            }
-        } else {
-            // login
-            window.location.replace("./login.php");
-        }
-    });
-}
-

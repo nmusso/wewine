@@ -28,38 +28,40 @@
 						</header>
 					</div>
 					<div class="col-12">
-						<ul class="nav nav-pills wine">
-							<li id="li-search" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="search.php"><i
-										class="fa-solid fa-magnifying-glass line" aria-hidden="true"></i>
-									<p class="desc line">Search</p>
-								</a>
-							</li>
-							<li id="li-add" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="post-editor.php"><i
-										class="fa-solid fa-circle-plus line" aria-hidden="true"></i>
-									<p class="desc line">Add</p>
-								</a>
-							</li>
-							<li id="li-home" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white  my-3 mx-0" href="index.php"><i class="fa-solid fa-house line"
-										aria-hidden="true"></i>
-									<p class="desc line">Home</p>
-								</a>
-							</li>
-							<li id="li-notify" class="nav-item text-center col col-sm-12">
-								<a class="nav-link text-white my-3 mx-0" href="notifications.php"><i id="bell" class="fa-solid fa-bell line"
-										aria-hidden="true"></i>
-									<p class="desc line">Notifications</p>
-								</a>
-							</li>
-							<li id="li-profile" class="nav-item text-center col col-sm-12">
-								<a id="a-profile" class="nav-link text-white my-3 mx-0" href="#"><i
-										class="fa-solid fa-circle-user line" aria-hidden="true"></i>
-									<p class="desc line">Profile</p>
-								</a>
-							</li>
-						</ul>
+						<nav>
+							<ul class="nav nav-pills wine">
+								<li id="li-search" class="nav-item text-center col col-sm-12">
+									<a class="nav-link text-white my-3 mx-0" href="search.php" aria-label="Search">
+										<i class="fa-solid fa-magnifying-glass line" alt="Search" title="Search" aria-hidden="true"></i>
+										<p class="desc line">Search</p>
+									</a>
+								</li>
+								<li id="li-add" class="nav-item text-center col col-sm-12">
+									<a class="nav-link text-white my-3 mx-0" href="post-editor.php" aria-label="Add post">
+										<i class="fa-solid fa-circle-plus line" alt="Add post" title="Add post" aria-hidden="true"></i>
+										<p class="desc line">Add</p>
+									</a>
+								</li>
+								<li id="li-home" class="nav-item text-center col col-sm-12">
+									<a class="nav-link text-white  my-3 mx-0" href="index.php" aria-label="Home">
+										<i class="fa-solid fa-house line" alt="Home" title="Home" aria-hidden="true"></i>
+										<p class="desc line">Home</p>
+									</a>
+								</li>
+								<li id="li-notify" class="nav-item text-center col col-sm-12">
+									<a class="nav-link text-white my-3 mx-0" href="notifications.php" aria-label="Notifications">
+										<i id="bell" class="fa-solid fa-bell line" alt="Notifications" title="Notifications" aria-hidden="true"></i>
+										<p class="desc line">Notifications</p>
+									</a>
+								</li>
+								<li id="li-profile" class="nav-item text-center col col-sm-12">
+									<a id="a-profile" class="nav-link text-white my-3 mx-0" href="profile.php?profile=0" aria-label="My profile">
+										<i class="fa-solid fa-circle-user line" alt="My profile" title="My profile" aria-hidden="true"></i>
+										<p class="desc line">Profile</p>
+									</a>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>
