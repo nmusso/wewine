@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	
 
-	<title>iSocial</title>
+	<title>WeWine</title>
 </head>
 
 <body class="bg-light">

@@ -11,7 +11,7 @@
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css">
 
-	<title>iSocial</title>
+	<title>WeWine</title>
 </head>
 
 <body class="bg-light">
@@ -19,7 +19,7 @@
 		<div id="header" class="row mb-5">
             <div id="title" class="col-12">
                 <header class="wine text-white py-1">
-                    <h1 class="font-weight-light text-center">iSocial</h1>
+                    <h1 class="font-weight-light text-center">WeWine</h1>
                 </header>
             </div>
 		</div>     
