@@ -13,6 +13,7 @@ if($dbh->login_check()){
     if (isset($_SESSION["watchedPost"])) {
         $result["postInfo"] = $dbh->getPostById($_SESSION["watchedPost"]);
         $result["getPost"] = true;
+        $result["isMine"] = $_SESSION["user_id"]==$result["postInfo"][0]["id"];
 
         $diffTime="";
         if($result["postInfo"][0]["DaysAgo"]==0){
