@@ -6,10 +6,18 @@ $result["islogged"] = false;
 
 if ($dbh->login_check()) {
     $result["islogged"] = true;
+    $name = $_POST["name"];
+    $origin = $_POST["origin"];
+    $food = $_POST["food"];
+    $light = $_POST["light"];
+    $dry = $_POST["dry"];
+    $flat = $_POST["flat"];
+    $soft = $_POST["soft"];
+    $valutation = $_POST["valutation"];
     $text = $_POST["text"];
     $photo = $_FILES["photo"] ?? null;
     
-    if ($text != "" || $photo != null) {
+    if ($name != "" && $origin != "") {
         $user_id = $_SESSION["user_id"];
         $checkImage = true;
         $msg = null;
@@ -19,7 +27,7 @@ if ($dbh->login_check()) {
         }
 
         if ($checkImage != false) {
-            $id = $dbh->addPost($user_id, $text, $msg);
+            $id = $dbh->addPost($user_id, $name, $origin, $food, $light, $dry, $flat, $soft, $valutation, $text, $msg);
 
             if ($id != false) {
                 $result["postOK"] = true;
@@ -30,7 +38,7 @@ if ($dbh->login_check()) {
             $result["errorPost"] = $msg;
         }
     } else {
-        $result["errorPost"] = "The fields are empty, please insert text or a photo";
+        $result["errorPost"] = "The name and origin fields are empty, please fill them and retry.";
     }
 }
 

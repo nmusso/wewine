@@ -62,3 +62,26 @@
         transform: rotate(45deg);
     }
 }
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    background-color: #5e2129;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    background-color: #5e2129;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.fa-star {
+    color: #5e2129;
+}
