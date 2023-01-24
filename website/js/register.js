@@ -29,6 +29,20 @@ function generaLoginForm(loginerror = null) {
                                 <input type="date" id="dateBirth" class="form-control form-control-lg" />  
                             </div>
                             <div class="form-outline mb-4">
+                                <label class="form-label" for="selectType">User type *</label>
+                                <select id="selectType" class="form-select" aria-label="User type select">
+                                    <option value="owner" selected>Company owner</option>
+                                    <option value="grower">Grape grower</option>
+                                    <option value="sommelier">Sommelier</option>
+                                    <option value="passionate">Passionate</option>
+                                    <option value="novice">Novice</option>
+                                </select>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="address">Your address</label>
+                                <input type="text" id="address" class="form-control form-control-lg">
+                            </div>
+                            <div class="form-outline mb-4">
                                 <label for="bio">Bio *</label> 
                                 <textarea class="form-control" id="bio" rows="5"></textarea>
                             </div>
@@ -66,6 +80,11 @@ main.innerHTML = generaLoginForm();
 
 document.getElementById("loginhere").addEventListener("click", () => window.location.replace("./login.php"))
 
+const type = document.getElementById("selectType");
+addressManager();
+
+type.addEventListener("change", addressManager);
+
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
     const form = document.getElementById("register_form");
@@ -78,12 +97,14 @@ document.getElementById("submit").addEventListener("click", function (event) {
     const nome = document.querySelector("#name").value;
     const cognome = document.querySelector("#surname").value;
     const dataNascita = document.querySelector("#dateBirth").value;
+    const tipo = document.querySelector("#selectType").value;
+    const indirizzo = document.querySelector("#address").value;
     const bio = document.querySelector("#bio").value;
     const imgProfilo = document.querySelector("#imgProfile").files[0];
-    register(username, password, email, nome, cognome, dataNascita, bio, imgProfilo);
+    register(username, password, email, nome, cognome, dataNascita, tipo, indirizzo, bio, imgProfilo);
 })
 
-function register(username, password, email, nome, cognome, dataNascita, bio, imgProfilo) {
+function register(username, password, email, nome, cognome, dataNascita, tipo, indirizzo, bio, imgProfilo) {
     const formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
@@ -91,6 +112,8 @@ function register(username, password, email, nome, cognome, dataNascita, bio, im
     formData.append('nome', nome);
     formData.append('cognome', cognome);
     formData.append('dataNascita', dataNascita);
+    formData.append('tipo', tipo);
+    formData.append('indirizzo', indirizzo);
     formData.append('bio', bio);
     if (imgProfilo != undefined) {
         formData.append('imgProfilo', imgProfilo);
@@ -102,7 +125,7 @@ function register(username, password, email, nome, cognome, dataNascita, bio, im
         }
     }).then(response => {
         if (response.data["registerOK"]) {
-            window.location.replace("./index.php")
+            window.location.replace("./login.php");
         } else {
             document.getElementById("error").innerText = response.data["errorRegister"];
         }
@@ -120,6 +143,10 @@ function formhash(form, password) {
     p.value = hex_sha512(password);
     // Assicurati che la password non venga inviata in chiaro.
     password.value = "";
+}
+
+function addressManager() {   
+    document.getElementById("address").disabled = !(type.value == "owner" || type.value == "grower");
 }
 
 

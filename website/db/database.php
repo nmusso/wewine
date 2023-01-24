@@ -10,11 +10,11 @@ class DatabaseHelper
             die("Connection failed: " . $this->db->connect_error);
         }
     }
-    public function insertUser($username, $email, $password, $salt, $nome, $cognome, $dataNascita, $bio, $imgProfilo)
+    public function insertUser($username, $email, $password, $salt, $nome, $cognome, $dataNascita, $tipo, $indirizzo, $bio, $imgProfilo)
     {
-        $query = "INSERT INTO utente(username, email, password, salt, nome, cognome, dataNascita, bio, imgProfilo, ultimaLetturaNotifiche) VALUES(?,?,?,?,?,?,?,?,?, NOW())";
+        $query = "INSERT INTO utente(username, email, password, salt, nome, cognome, dataNascita, tipo, indirizzo, bio, imgProfilo, ultimaLetturaNotifiche) VALUES(?,?,?,?,?,?,?,?,?,?,?, NOW())";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssssssss', $username, $email, $password, $salt, $nome, $cognome, $dataNascita, $bio, $imgProfilo);
+        $stmt->bind_param('sssssssssss', $username, $email, $password, $salt, $nome, $cognome, $dataNascita, $tipo, $indirizzo, $bio, $imgProfilo);
         $stmt->execute();
 
         return $stmt->insert_id;

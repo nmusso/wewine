@@ -23,7 +23,7 @@ if($dbh->login_check()){
             // Update profile picture
             if (isset($_FILES["imgProfilo"])) {
                 array_map("unlink", glob(UPLOAD_DIR . $_SESSION["user_id"] . "_propic.*"));
-                list($checkImage, $msg) = uploadImage($dbh, UPLOAD_DIR, $_FILES["imgProfilo"], $_SESSION["user_id"], false);
+                list($checkImage, $msg) = uploadImage($dbh, ".".UPLOAD_DIR, $_FILES["imgProfilo"], $_SESSION["user_id"], false);
                 if ($checkImage != false) {
                     $res = $dbh->addProfilePath($_SESSION["user_id"], $msg);
                     $result["updateOK"] = true;

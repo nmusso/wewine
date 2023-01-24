@@ -15,7 +15,7 @@ if ($dbh->login_check()) {
         $msg = null;
 
         if ($photo != null) {
-            list($checkImage, $msg) = uploadImage($dbh, UPLOAD_DIR, $photo, $user_id, true);
+            list($checkImage, $msg) = uploadImage($dbh, ".".UPLOAD_DIR, $photo, $user_id, true);
         }
 
         if ($checkImage != false) {

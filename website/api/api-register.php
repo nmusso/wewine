@@ -7,7 +7,8 @@ function checkNoEmpty()
       $_POST['cognome'] != "" &&
       $_POST['dataNascita'] != "" &&
       $_POST['bio'] != "" &&
-      $_POST['email'] != "");
+      $_POST['email'] != "" && 
+      $_POST['tipo'] != "");
 }
 
 require_once '../bootstrap.php';
@@ -20,6 +21,8 @@ if (checkNoEmpty()) {
    $nome = $_POST['nome'];
    $cognome = $_POST['cognome'];
    $dataNascita = $_POST['dataNascita'];
+   $tipo = $_POST['tipo'];
+   $indirizzo = $_POST['indirizzo'];
    $bio = $_POST['bio'];
    $email = $_POST['email'];
    
@@ -32,10 +35,10 @@ if (checkNoEmpty()) {
    $checkFields = $dbh->checkUniqueUser($username, $email);
 
    if ($checkFields != false) {
-      $res = $dbh->insertUser($username, $email, $password, $random_salt, $nome, $cognome, $dataNascita, $bio, "empty.png");
+      $res = $dbh->insertUser($username, $email, $password, $random_salt, $nome, $cognome, $dataNascita, $tipo, $indirizzo, $bio, "empty.png");
       if ($res != false && isset($_FILES["imgProfilo"])) {
          $id = $dbh->getIdByUsername($username);
-         list($checkImage, $msg) = uploadImage($dbh, UPLOAD_DIR, $_FILES["imgProfilo"], $id, false);
+         list($checkImage, $msg) = uploadImage($dbh, ".".UPLOAD_DIR, $_FILES["imgProfilo"], $id, false);
          if ($checkImage != false) {
             $res = $dbh->addProfilePath($id, $msg);
             $result["registerOK"] = true;
