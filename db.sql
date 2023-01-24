@@ -37,9 +37,9 @@ CREATE TABLE `commento` (
   `testo` varchar(280) NOT NULL,
   `dataOra` datetime NOT NULL,
   PRIMARY KEY (`idCommento`),
-  KEY `post_1` (`idPost`),
   KEY `utente_2` (`idUtente`),
-  CONSTRAINT `post_1` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `post_1` (`idPost`),
+  CONSTRAINT `post_1` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `utente_2` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -50,7 +50,7 @@ CREATE TABLE `commento` (
 
 LOCK TABLES `commento` WRITE;
 /*!40000 ALTER TABLE `commento` DISABLE KEYS */;
-INSERT INTO `commento` VALUES (1,8,9,'sono ancora io','2023-01-20 21:45:30'),(2,8,9,'e rieccomi','2023-01-20 21:46:13'),(3,4,9,'bella palestra','2023-01-20 21:48:11'),(4,8,9,'Helo','2023-01-20 21:50:37'),(5,4,9,'sono qua','2023-01-20 21:50:46'),(6,3,9,'ciao','2023-01-20 22:33:31'),(7,7,9,'ciao','2023-01-20 22:51:41'),(15,3,33,'ciao','2023-01-22 14:40:33'),(16,7,9,'hei','2023-01-23 11:40:01');
+INSERT INTO `commento` VALUES (3,4,9,'bella palestra','2023-01-20 21:48:11'),(5,4,9,'sono qua','2023-01-20 21:50:46'),(6,3,9,'ciao','2023-01-20 22:33:31'),(7,7,9,'ciao','2023-01-20 22:51:41'),(15,3,33,'ciao','2023-01-22 14:40:33'),(16,7,9,'hei','2023-01-23 11:40:01');
 /*!40000 ALTER TABLE `commento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `like` (
   `dataOra` datetime NOT NULL,
   PRIMARY KEY (`idPost`,`idUtente`),
   KEY `utente_1` (`idUtente`),
-  CONSTRAINT `post` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `post` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `utente_1` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -118,7 +118,7 @@ CREATE TABLE `post` (
   `idUtente` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `origine` varchar(45) NOT NULL,
-  `accompagnamento` varchar(200) DEFAULT NULL,
+  `note` varchar(200) DEFAULT NULL,
   `leggero` int(11) NOT NULL,
   `secco` int(11) NOT NULL,
   `piatto` int(11) NOT NULL,
@@ -129,7 +129,7 @@ CREATE TABLE `post` (
   PRIMARY KEY (`idPost`),
   KEY `utente` (`idUtente`),
   CONSTRAINT `utente` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +138,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (3,'2023-01-06 20:14:43',9,'','',NULL,0,0,0,0,0,'regw','9_1.jpeg'),(4,'2023-01-06 20:34:43',16,'','',NULL,0,0,0,0,0,'ciao sono musso','16_1.jpeg'),(5,'2023-01-06 20:35:12',18,'','',NULL,0,0,0,0,0,'Ciao sono ciro','empty.png'),(6,'2023-01-06 20:35:24',18,'','',NULL,0,0,0,0,0,'Ciao sono ancora ciro','empty.png'),(7,'2023-01-05 20:46:47',33,'','',NULL,0,0,0,0,0,'no foto sono io','33_1.png'),(8,'2023-01-06 21:23:26',33,'','',NULL,0,0,0,0,0,'sono io loris','33_2.png'),(9,'2023-01-23 23:02:38',9,'','',NULL,0,0,0,0,0,'ciao sono io',NULL),(11,'2023-01-24 14:39:36',41,'','',NULL,0,0,0,0,0,'la mia azienda!','41_1.jpg'),(12,'2023-01-24 15:59:35',9,'Prosecco','Valmarecchia',NULL,50,50,50,50,3,'',NULL),(13,'2023-01-24 16:07:08',9,'Nero Magis','Bertinoro ','Carne rossa e latte',33,68,18,53,4,'Molto buono e sapore delicato','9_2.jpg');
+INSERT INTO `post` VALUES (3,'2023-01-06 20:14:43',9,'','',NULL,0,0,0,0,0,'regw','9_1.jpeg'),(4,'2023-01-06 20:34:43',16,'','',NULL,0,0,0,0,0,'ciao sono musso','16_1.jpeg'),(5,'2023-01-06 20:35:12',18,'','',NULL,0,0,0,0,0,'Ciao sono ciro','empty.png'),(6,'2023-01-06 20:35:24',18,'','',NULL,0,0,0,0,0,'Ciao sono ancora ciro','empty.png'),(7,'2023-01-05 20:46:47',33,'','',NULL,0,0,0,0,0,'no foto sono io','33_1.png'),(9,'2023-01-23 23:02:38',9,'','',NULL,0,0,0,0,0,'ciao sono io',NULL),(11,'2023-01-24 14:39:36',41,'','',NULL,0,0,0,0,0,'la mia azienda!','41_1.jpg'),(12,'2023-01-24 15:59:35',9,'Prosecco','Valmarecchia',NULL,50,50,50,50,3,'',NULL),(13,'2023-01-24 16:07:08',9,'Nero Magis','Bertinoro ','Carne rossa e latte',33,68,18,53,4,'Molto buono e sapore delicato','9_2.jpg'),(14,'2023-01-24 17:25:40',9,'ciao','prova','grappa',50,50,50,50,3,'',NULL);
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,4 +214,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-24 16:09:10
+-- Dump completed on 2023-01-24 17:54:33
