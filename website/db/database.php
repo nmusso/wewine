@@ -108,7 +108,7 @@ class DatabaseHelper
     }
 
     public function getUserInfo($id){
-        $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, u.dataNascita, u.email, COUNT(p.idPost) as nPosts
+        $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, u.tipo, u.indirizzo, u.dataNascita, u.email, COUNT(p.idPost) as nPosts
         FROM post AS p
         JOIN utente AS u ON p.idUtente = u.id
         WHERE u.id = ?
@@ -375,17 +375,19 @@ class DatabaseHelper
         return $res;
     }
 
-    public function updateInfo($username, $email, $nome, $cognome, $dataNascita, $bio) {
+    public function updateInfo($username, $email, $nome, $cognome, $dataNascita, $tipo, $indirizzo, $bio) {
         $query = "UPDATE utente
         SET username = ?,
         email = ?,
         nome = ?,
         cognome = ?,
         dataNascita = ?,
+        tipo = ?,
+        indirizzo = ?,
         bio = ?
         WHERE id = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ssssssi', $username, $email, $nome, $cognome, $dataNascita, $bio, $_SESSION["user_id"]);
+        $stmt->bind_param('ssssssssi', $username, $email, $nome, $cognome, $dataNascita, $tipo, $indirizzo, $bio, $_SESSION["user_id"]);
         $stmt->execute();
         $result = $stmt->affected_rows;
         

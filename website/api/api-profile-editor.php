@@ -14,9 +14,11 @@ if($dbh->login_check()){
         $nome = $_POST['nome'];
         $cognome = $_POST['cognome'];
         $dataNascita = $_POST['dataNascita'];
+        $tipo = $_POST['tipo'];
+        $indirizzo = $_POST['indirizzo'];
         $bio = $_POST['bio'];
         $email = $_POST['email'];
-        $res = $dbh->updateInfo($username, $email, $nome, $cognome, $dataNascita, $bio);
+        $res = $dbh->updateInfo($username, $email, $nome, $cognome, $dataNascita, $tipo, $indirizzo, $bio);
 
         if ($res < 2) {        
             $result["updateOK"] = true;
