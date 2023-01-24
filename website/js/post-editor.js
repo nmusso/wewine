@@ -107,6 +107,7 @@ types.forEach(type => {
 document.getElementById("submit").addEventListener("click", () => {
     const name = document.querySelector("#wineName").value;
     const origin = document.querySelector("#origin").value;
+    const barcode = document.querySelector("#barcode").innerText;
     const notes = document.querySelector("#notes").value;
     const balance = document.querySelector("#balance").innerText;
     const valutation = document.querySelectorAll(".starOn").length;
@@ -120,6 +121,7 @@ document.getElementById("submit").addEventListener("click", () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("origin", origin);
+    formData.append("barcode", barcode);
     formData.append("notes", notes);
     formData.append("light", light);
     formData.append("dry", dry);
@@ -191,9 +193,6 @@ function changeRating(val) {
         }
     }
 }
-
-
-
 
 function onScanSuccess(decodedText, decodedResult) {
     console.log(`Code scanned = ${decodedText}`, decodedResult);

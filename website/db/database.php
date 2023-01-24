@@ -568,13 +568,13 @@ class DatabaseHelper
         }
     }
 
-    function addPost($id, $name, $origin, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo)
+    function addPost($id, $name, $origin, $barcode, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo)
     {
-        $query = "INSERT INTO post(dataOra, idUtente, nome, origine, note, leggero, secco, piatto, morbido, 
+        $query = "INSERT INTO post(dataOra, idUtente, nome, origine, barcode, note, leggero, secco, piatto, morbido, 
                     bilanciamento, valutazione, testo, immagine) 
-                    VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('isssiiiisiss', $id, $name, $origin, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo);
+        $stmt->bind_param('issssiiiisiss', $id, $name, $origin, $barcode, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo);
         $stmt->execute();
 
         return $stmt->insert_id;
