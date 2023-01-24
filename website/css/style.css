@@ -6,6 +6,10 @@
     color: #5e2129;
 }
 
+.wineData{
+    font-size: 90%;
+}
+
 .line {
     display: inline-block;
     margin-left: 10%;
@@ -63,7 +67,7 @@
     }
 }
 
-.slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb, .slider[disabled=true]::-webkit-slider-thumb{
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
@@ -73,7 +77,7 @@
     cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
+.slider::-moz-range-thumb, .slider[disabled=true]::-moz-range-thumb{
     width: 18px;
     height: 18px;
     border-radius: 10px;

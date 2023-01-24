@@ -52,7 +52,7 @@ function generaForm() {
                         <legend class="my-4">Opinion</legend>
                         <div class="form-outline mb-4">
                             <label>Rating:</label>         
-                            <span class="fa-solid fa-star" onclick="changeRating(1)"></span>
+                            <span class="fa-solid fa-star starOn" onclick="changeRating(1)"></span>
                             <span class="fa-regular fa-star" onclick="changeRating(2)"></span>
                             <span class="fa-regular fa-star" onclick="changeRating(3)"></span>
                             <span class="fa-regular fa-star" onclick="changeRating(4)"></span>

@@ -1,4 +1,13 @@
 function generaPost(data) {
+    let stars=``;
+    for (let i = 0; i < 5; i++) {
+        if (i < parseInt(data["valutazione"])) {
+            stars +=`<span class="fa-solid fa-star"></span>`;
+        } else {
+            stars +=`<span class="fa-regular fa-star"></span>`;
+        }
+    }
+    
     let post = `
     <article>
         <div class="row mt-3">
@@ -22,7 +31,45 @@ function generaPost(data) {
                     </header>
                     <section>
                         <a href="post.php?post=` + data["idPost"] + `&type=like">
-                            <p class="card-text my-3">`+ data["testo"] + `</p>
+                            <p class="card-text my-3 fw-light wineData">Wine name: `+ data["nome"] + `</p>
+                            <p class="card-text my-3 fw-light wineData">Origin: `+ data["origine"] + `</p>
+                            <div class="form-outline mb-4 wineData">
+                                <label>Rating:</label>         
+                                `+ stars + `
+                            </div>
+                            <p class="card-text my-3 fw-bold">`+ data["testo"] + `</p>
+                            <p class="card-text my-3 fw-light wineData">Taste notes: `+ data["note"] + `</p>
+
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-12 col-sm-10">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-6"><label for="light">Light</label></div> 
+                                        <div class="col-6 col-sm-6"><label for="light" class="d-flex justify-content-end">Structured</label></div> 
+                                    </div>
+                                    <input id="light" type="range" disabled="true" class="form-range slider" min="0" max="100" step="1" value="`+ data["leggero"] + `">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-6"><label for="soft">Soft</label></div> 
+                                        <div class="col-6 col-sm-6"><label for="soft" class="d-flex justify-content-end">Tannic</label></div> 
+                                    </div>
+                                    <input id="soft" type="range" disabled="true" class="form-range slider" min="0" max="100" step="1" value="`+ data["morbido"] + `">   
+                                    <div class="row">
+                                        <div class="col-6 col-sm-6"><label for="dry">Dry</label></div> 
+                                        <div class="col-6 col-sm-6"><label for="dry" class="d-flex justify-content-end">Sweet</label></div> 
+                                    </div>
+                                    <input id="dry" type="range" disabled="true" class="form-range slider" min="0" max="100" step="1" value="`+ data["secco"] + `">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-6"><label for="flat">Flat</label></div> 
+                                        <div class="col-6 col-sm-6"><label for="flat" class="d-flex justify-content-end">Sour</label></div> 
+                                    </div>
+                                    <input id="flat" type="range" disabled="true" class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `">     
+                                    <div class="row mt-3 text-center">
+                                        <span id="balance">Balanced</span>   
+                                    </div>   
+                                </div>
+                                <div class="col-sm-1"></div> 
+                            </div>
+
                             <p class="card-text"><small class="text-muted">Posted `+ data["diffTime"] + `ago</small></p>
                             <img class="card-img-bottom" src="`+ data["immagine"] + `" alt="">           
                         </a>
@@ -54,3 +101,4 @@ function generaPost(data) {
 
     return post;
 }
+
