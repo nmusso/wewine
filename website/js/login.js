@@ -6,22 +6,24 @@ function generaLoginForm() {
             <div class="col-8 col-sm-4">
                 <div id="error" class="text-danger mb-3">
                 </div>
-                <p class="text-left mb-5 fs-2">Login</p>
                 <form id="login_form">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" required>
-                    </div>
-                    <div class="d-flex flex-row-reverse mb-3">
-                        <button id="submit" type="submit" class="btn wine text-white">Login</button>
-                    </div>
-                    <div class="d-flex flex-row-reverse mb-3">
-                        <a id="register" href="#">Register now</a>
-                    </div>       
+                    <fieldset>
+                        <legend class="mb-3">Login</legend>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <button id="submit" type="submit" class="btn wine text-white">Login</button>
+                        </div>
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <a id="register" href="#">Register now</a>
+                        </div>     
+                    </fieldset>
                 </form>
             </div>
             <div class="col-2 col-sm-4"></div>
