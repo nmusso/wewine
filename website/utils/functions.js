@@ -64,7 +64,7 @@ function generaPost(data) {
                                     </div>
                                     <input id="flat" type="range" disabled="true" class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `">     
                                     <div class="row mt-3 text-center">
-                                        <span id="balance">Balanced</span>   
+                                        <span id="balance">`+data["bilanciamento"]+`</span>   
                                     </div>   
                                 </div>
                                 <div class="col-sm-1"></div> 

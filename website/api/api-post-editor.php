@@ -13,6 +13,7 @@ if ($dbh->login_check()) {
     $dry = $_POST["dry"];
     $flat = $_POST["flat"];
     $soft = $_POST["soft"];
+    $balance = $_POST["balance"];
     $valutation = $_POST["valutation"];
     $text = $_POST["text"];
     $photo = $_FILES["photo"] ?? null;
@@ -27,7 +28,7 @@ if ($dbh->login_check()) {
         }
 
         if ($checkImage != false) {
-            $id = $dbh->addPost($user_id, $name, $origin, $notes, $light, $dry, $flat, $soft, $valutation, $text, $msg);
+            $id = $dbh->addPost($user_id, $name, $origin, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $msg);
 
             if ($id != false) {
                 $result["postOK"] = true;

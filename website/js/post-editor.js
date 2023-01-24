@@ -103,6 +103,7 @@ document.getElementById("submit").addEventListener("click", () => {
     const name = document.querySelector("#wineName").value;
     const origin = document.querySelector("#origin").value;
     const notes = document.querySelector("#notes").value;
+    const balance = document.querySelector("#balance").innerText;
     const valutation = document.querySelectorAll(".starOn").length;
     const text = document.querySelector("#text").value;
     const photo = document.querySelector("#photo").files[0];
@@ -119,6 +120,7 @@ document.getElementById("submit").addEventListener("click", () => {
     formData.append("dry", dry);
     formData.append("flat", flat);
     formData.append("soft", soft);
+    formData.append("balance", balance);
     formData.append("valutation", valutation);
     formData.append("text", text);
 
