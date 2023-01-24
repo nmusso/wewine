@@ -4,7 +4,7 @@ function generaBarra() {
         <div class="row mt-2">
             <div class="col-12 col-sm-8">
                 <div class="d-flex form-inputs mx-2">
-                    <input id="searchBar" class="form-control" type="search" placeholder="Search any profile...">
+                    <input id="searchBar" class="form-control" type="text" placeholder="Search any profile...">
                     <i class="bx bx-search"></i>
                 </div>
             </div>
