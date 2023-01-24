@@ -10,7 +10,7 @@ function generaPost(data) {
 
     let searchBarcode = ``;
     if(data["barcode"]!=""){
-        searchBarcode = `<a href="https://www.google.com/search?q=`+data["barcode"]+`" target="_blank" class="btn wine text-white">Search barcode</a>`;
+        searchBarcode = `<a href="https://www.google.com/search?q=`+data["barcode"]+`" target="_blank" class="btn wine text-white mt-2">Search barcode</a>`;
     }
     
     let post = `
@@ -74,11 +74,10 @@ function generaPost(data) {
                                 </div>
                                 <div class="col-sm-1"></div> 
                             </div>
-                            `+ searchBarcode + `
                             <p class="card-text"><small class="text-muted">Posted `+ data["diffTime"] + `ago</small></p>
                             <img class="card-img-bottom" src="`+ data["immagine"] + `" alt="">           
                         </a>
-                        
+                        `+ searchBarcode + `
                     </section>    
                     <footer>
                         <div class="row pt-3 pr-1 mb-1">
