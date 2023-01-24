@@ -66,6 +66,9 @@ function generaForm() {
                             <label class="form-label" for="photo">Photo</label>
                             <input type="file" class="form-control" id="photo" />
                         </div>
+
+                        <div id="qr-reader" style="width: 600px"></div>
+
                     </fieldset>
                     <div id="error" class="text-danger mb-4">
                     </div>
@@ -186,3 +189,13 @@ function changeRating(val) {
         }
     }
 }
+
+
+
+
+function onScanSuccess(decodedText, decodedResult) {
+    console.log(`Code scanned = ${decodedText}`, decodedResult);
+}
+var html5QrcodeScanner = new Html5QrcodeScanner(
+	"qr-reader", { fps: 10, qrbox: 250 });
+html5QrcodeScanner.render(onScanSuccess);
