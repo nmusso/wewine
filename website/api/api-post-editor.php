@@ -8,7 +8,7 @@ if ($dbh->login_check()) {
     $result["islogged"] = true;
     $name = $_POST["name"];
     $origin = $_POST["origin"];
-    $food = $_POST["food"];
+    $notes = $_POST["notes"];
     $light = $_POST["light"];
     $dry = $_POST["dry"];
     $flat = $_POST["flat"];
@@ -27,7 +27,7 @@ if ($dbh->login_check()) {
         }
 
         if ($checkImage != false) {
-            $id = $dbh->addPost($user_id, $name, $origin, $food, $light, $dry, $flat, $soft, $valutation, $text, $msg);
+            $id = $dbh->addPost($user_id, $name, $origin, $notes, $light, $dry, $flat, $soft, $valutation, $text, $msg);
 
             if ($id != false) {
                 $result["postOK"] = true;

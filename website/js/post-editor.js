@@ -44,8 +44,8 @@ function generaForm() {
                             </div>    
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="food">Taste notes</label>
-                            <input id="food" type="text" class="form-control form-control-lg" required>
+                            <label class="form-label" for="notes">Taste notes</label>
+                            <input id="notes" type="text" class="form-control form-control-lg" required>
                         </div>
                     </fieldset>
                     <fieldset>
@@ -102,7 +102,7 @@ types.forEach(type => {
 document.getElementById("submit").addEventListener("click", () => {
     const name = document.querySelector("#wineName").value;
     const origin = document.querySelector("#origin").value;
-    const food = document.querySelector("#food").value;
+    const notes = document.querySelector("#notes").value;
     const valutation = document.querySelectorAll(".starOn").length;
     const text = document.querySelector("#text").value;
     const photo = document.querySelector("#photo").files[0];
@@ -114,7 +114,7 @@ document.getElementById("submit").addEventListener("click", () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("origin", origin);
-    formData.append("food", food);
+    formData.append("notes", notes);
     formData.append("light", light);
     formData.append("dry", dry);
     formData.append("flat", flat);
