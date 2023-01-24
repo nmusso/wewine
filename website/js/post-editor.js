@@ -66,12 +66,11 @@ function generaForm() {
                             <label class="form-label" for="photo">Photo</label>
                             <input type="file" class="form-control" id="photo" />
                         </div>
-
                         <div class="form-outline mb-4">
-                            <label id="code">Bar code</label>
+                            <label class="form-label">Barcode</label>
+                            <p id="barcode"></p>
                             <div id="qr-reader"></div>
                         </div>
-
                     </fieldset>
                     <div id="error" class="text-danger mb-4">
                     </div>
@@ -198,9 +197,12 @@ function changeRating(val) {
 
 function onScanSuccess(decodedText, decodedResult) {
     console.log(`Code scanned = ${decodedText}`, decodedResult);
-    document.querySelector("#code").innerText = decodedText;
+    document.querySelector("#barcode").innerText = decodedText;
 
 }
-var html5QrcodeScanner = new Html5QrcodeScanner(
-	"qr-reader", { fps: 10 }); //, qrbox: 250
+var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10 , aspectRatio: 1.777778}); 
 html5QrcodeScanner.render(onScanSuccess);
+document.querySelector("button").classList.add("btn");
+document.querySelector("button").classList.add("wine");
+document.querySelector("button").classList.add("text-white");
+
