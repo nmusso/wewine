@@ -13,6 +13,8 @@
 	
 	<script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 
+	<script async src="https://cse.google.com/cse.js?cx=916be41c4e7d24c29"></script>
+
 	<title>iSocial</title>
 </head>
 
