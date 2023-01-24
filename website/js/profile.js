@@ -1,7 +1,7 @@
 function generaRiga(user) {
     let profile = `
-    <section>
-        <div class="row mt-2 userCard mainElement">
+    <section class="mainElement">
+        <div class="row mt-2 userCard">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-8 card">
                 <a href="profile.php?profile=` + user["id"] + `">

@@ -14,7 +14,7 @@ function generaPost(data) {
     }
     
     let post = `
-    <article>
+    <article class="mainElement">
         <div class="row mt-3">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-8 card">
