@@ -21,22 +21,22 @@ function generaForm() {
                         <div class="form-outline mb-4 mt-2">
                             <div class="row">
                                 <div class="col-6 col-sm-6"><label for="light">Light</label></div> 
-                                <div class="col-6 col-sm-6"><label for="light" class="d-flex justify-content-end">Structured</label></div> 
+                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Structured</label></div> 
                             </div>
                             <input id="light" type="range" class="form-range slider" min="0" max="100" step="1">
                             <div class="row">
                                 <div class="col-6 col-sm-6"><label for="soft">Soft</label></div> 
-                                <div class="col-6 col-sm-6"><label for="soft" class="d-flex justify-content-end">Tannic</label></div> 
+                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Tannic</label></div> 
                             </div>
                             <input id="soft" type="range" class="form-range slider" min="0" max="100" step="1">   
                             <div class="row">
                                 <div class="col-6 col-sm-6"><label for="dry">Dry</label></div> 
-                                <div class="col-6 col-sm-6"><label for="dry" class="d-flex justify-content-end">Sweet</label></div> 
+                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sweet</label></div> 
                             </div>
                             <input id="dry" type="range" class="form-range slider" min="0" max="100" step="1">
                             <div class="row">
                                 <div class="col-6 col-sm-6"><label for="flat">Flat</label></div> 
-                                <div class="col-6 col-sm-6"><label for="flat" class="d-flex justify-content-end">Sour</label></div> 
+                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sour</label></div> 
                             </div>
                             <input id="flat" type="range" class="form-range slider" min="0" max="100" step="1">     
                             <div class="row mt-3 text-center">
@@ -68,7 +68,8 @@ function generaForm() {
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="barcode">Barcode</label>
-                            <input id="barcode" type="text" class="form-control " placeholder="Insert manually the codebar or scan it..">
+                            <input id="barcode" type="text" class="form-control" placeholder="Insert manually the codebar or scan it..">
+                            <label class="form-babel" for="qr-reader__filescan_input" hidden>Input scan</label>
                             <div id="qr-reader" class="mt-2"></div>
                         </div>
                     </fieldset>
@@ -101,6 +102,7 @@ const sliSoft = document.querySelector("#soft");
 
 var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10 , aspectRatio: 1.777778}); 
 html5QrcodeScanner.render(onScanSuccess);
+
 document.querySelector("button").classList.add("btn");
 document.querySelector("button").classList.add("wine");
 document.querySelector("button").classList.add("text-white");
@@ -200,9 +202,8 @@ function changeRating(val) {
     }
 }
 
-function onScanSuccess(decodedText, decodedResult) {
+function onScanSuccess(decodedText) {
     document.querySelector("#barcode").value = decodedText;
 }
-
 
 
