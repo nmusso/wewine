@@ -5,8 +5,8 @@ function generaCommento(data, id) {
             <div class="card px-2">
                 <div class="row">
                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">
-                        <a href="profile.php?profile=` + data["id"] + `">
-                            <img src="` + data["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt=""/>
+                        <a href="profile.php?profile=` + data["id"] + `" title="Profile link">
+                            <img src="` + data["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt="` + data["username"] + `'s profile picture"/>
                         </a>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-11">
@@ -40,10 +40,10 @@ function generaBarra(id) {
         <div class="col-12 col-sm-12 p-0">
             <div class="card border-0 p-0">
                 <div class="row m-0">
+                    <label class="form-label" for="commentText-` + id + `" hidden>Comment section</label>
                     <div class="col-11 col-sm-11 p-0">
                         <div class="d-flex form-inputs">
-                            <input id="commentText-` + id + `" class="form-control" type="text" placeholder="Comment here...">
-                            <i class="bx bx-search"></i>
+                            <input id="commentText-` + id + `" class="form-control" type="text" title="Comment bar" placeholder="Comment here...">
                         </div>
                     </div>
                     <div class="col-1 col-sm-1 p-0 d-flex justify-content-end">

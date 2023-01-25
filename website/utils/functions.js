@@ -20,11 +20,11 @@ function generaPost(data) {
             <div class="col-12 col-sm-8 card">
                 <div id="postID-` + data["idPost"] + `" class="card-body">
                     <header>
-                        <a href="profile.php?profile=`+ data["id"] + `">
+                        <a href="profile.php?profile=`+ data["id"] + `" title="Profile link">
                             <div class="row">
                                 <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-1">
                                     <img src="`+ data["imgProfilo"] + `"
-                                        class="img-fluid rounded-circle img-thumbnail p-1 propic" alt=""/>
+                                        class="img-fluid rounded-circle img-thumbnail p-1 propic" alt="`+ data["username"] + `'s profile picture"/>
                                 </div>
                                 <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
                                     <div class="card-body p-0">
@@ -35,7 +35,7 @@ function generaPost(data) {
                         </a>
                     </header>
                     <section>
-                        <a href="post.php?post=` + data["idPost"] + `&type=like">
+                        <a href="post.php?post=` + data["idPost"] + `&type=like" title="Open post">
                             <p class="card-text my-3 fw-light wineData">Wine name: `+ data["nome"] + `</p>
                             <p class="card-text my-3 fw-light wineData">Origin: `+ data["origine"] + `</p>
                             <div class="form-outline mb-4 wineData">
@@ -51,22 +51,22 @@ function generaPost(data) {
                             <div class="col-12 col-sm-10">
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="light-` + data["idPost"] + `">Light</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="light-` + data["idPost"] + `" class="d-flex justify-content-end">Structured</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Structured</label></div> 
                                 </div>
                                 <input id="light-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["leggero"] + `">
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="soft-` + data["idPost"] + `">Soft</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="soft-` + data["idPost"] + `" class="d-flex justify-content-end">Tannic</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Tannic</label></div> 
                                 </div>
                                 <input id="soft-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["morbido"] + `">   
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="dry-` + data["idPost"] + `">Dry</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="dry-` + data["idPost"] + `" class="d-flex justify-content-end">Sweet</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sweet</label></div> 
                                 </div>
                                 <input id="dry-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["secco"] + `">
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="flat-` + data["idPost"] + `">Flat</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="flat-` + data["idPost"] + `" class="d-flex justify-content-end">Sour</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sour</label></div> 
                                 </div>
                                 <input id="flat-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `">     
                                 <div class="row mt-3 text-center">
@@ -86,12 +86,12 @@ function generaPost(data) {
                                 <p id="numLikeID-` + data["idPost"] + `" class="text-end fw-bold text-wine">`+ data["numLike"] + `</p> 
                             </div> 
                             <div class="col-1 col-sm-1">
-                                <a href="#!" onclick="likeChange(`+ data["idPost"] + `)">
+                                <a href="#!" onclick="likeChange(`+ data["idPost"] + `)" title="Add or remove like">
                                     <i class="`+ data["liked"] + ` fa-heart text-wine" id="idLike-` + data["idPost"] + `"></i>
                                 </a>
                             </div>
                             <div class="col-1 col-sm-1">
-                                <a href="#!" onclick="commentManager(`+ data["idPost"] + `)">
+                                <a href="#!" onclick="commentManager(`+ data["idPost"] + `)" title="Open comments">
                                     <i class="fa-regular fa-comment text-wine"></i>
                                 </a>
                             </div>  
