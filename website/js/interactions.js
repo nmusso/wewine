@@ -6,7 +6,7 @@ function generaCommento(data, id) {
                 <div class="row">
                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">
                         <a href="profile.php?profile=` + data["id"] + `">
-                            <img src="` + data["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                            <img src="` + data["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt=""/>
                         </a>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-11">
@@ -68,7 +68,7 @@ function generaRiga(user) {
         <a href="profile.php?profile=` + user["id"] + `">
             <div class="row">
                 <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
-                    <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" />
+                    <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt=""/>
                 </div>
                 <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
                     <div class="card-body">

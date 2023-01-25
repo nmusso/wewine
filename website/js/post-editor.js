@@ -23,7 +23,7 @@ function generaForm() {
                                 <div class="col-6 col-sm-6"><label for="light">Light</label></div> 
                                 <div class="col-6 col-sm-6"><label for="light" class="d-flex justify-content-end">Structured</label></div> 
                             </div>
-                            <input id="light" type="range" class="form-range slider" min="0" max="100" step="1"">
+                            <input id="light" type="range" class="form-range slider" min="0" max="100" step="1">
                             <div class="row">
                                 <div class="col-6 col-sm-6"><label for="soft">Soft</label></div> 
                                 <div class="col-6 col-sm-6"><label for="soft" class="d-flex justify-content-end">Tannic</label></div> 
