@@ -4,7 +4,7 @@ let numPost = 0;
 getPartialFeed();
 
 window.onscroll = function () {
-    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         getPartialFeed();
     }
 }
