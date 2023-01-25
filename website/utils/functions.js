@@ -87,12 +87,12 @@ function generaPost(data) {
                             </div> 
                             <div class="col-1 col-sm-1">
                                 <a href="#!" onclick="likeChange(`+ data["idPost"] + `)" title="Add or remove like">
-                                    <i class="`+ data["liked"] + ` fa-heart text-wine" id="idLike-` + data["idPost"] + `"></i>
+                                    <span class="`+ data["liked"] + ` fa-heart text-wine" id="idLike-` + data["idPost"] + `"></span>
                                 </a>
                             </div>
                             <div class="col-1 col-sm-1">
                                 <a href="#!" onclick="commentManager(`+ data["idPost"] + `)" title="Open comments">
-                                    <i class="fa-regular fa-comment text-wine"></i>
+                                    <span class="fa-regular fa-comment text-wine"></span>
                                 </a>
                             </div>  
                         </div>

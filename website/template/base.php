@@ -35,31 +35,31 @@
 							<ul class="nav nav-pills wine">
 								<li id="li-search" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white my-3 mx-0" href="search.php" aria-label="Search">
-										<i class="fa-solid fa-magnifying-glass line" title="Search" aria-hidden="true"></i>
+										<span class="fa-solid fa-magnifying-glass line" title="Search" aria-hidden="true"></span>
 										<p class="desc line">Search</p>
 									</a>
 								</li>
 								<li id="li-add" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white my-3 mx-0" href="post-editor.php" aria-label="Add post">
-										<i class="fa-solid fa-circle-plus line" title="Add post" aria-hidden="true"></i>
+										<span class="fa-solid fa-circle-plus line" title="Add post" aria-hidden="true"></span>
 										<p class="desc line">Add</p>
 									</a>
 								</li>
 								<li id="li-home" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white  my-3 mx-0" href="index.php" aria-label="Home">
-										<i class="fa-solid fa-house line" title="Home" aria-hidden="true"></i>
+										<span class="fa-solid fa-house line" title="Home" aria-hidden="true"></span>
 										<p class="desc line">Home</p>
 									</a>
 								</li>
 								<li id="li-notify" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white my-3 mx-0" href="notifications.php" aria-label="Notifications">
-										<i id="bell" class="fa-solid fa-bell line" title="Notifications" aria-hidden="true"></i>
+										<span id="bell" class="fa-solid fa-bell line" title="Notifications" aria-hidden="true"></span>
 										<p class="desc line">Notifications</p>
 									</a>
 								</li>
 								<li id="li-profile" class="nav-item text-center col col-sm-12">
 									<a id="a-profile" class="nav-link text-white my-3 mx-0" href="profile.php?profile=0" aria-label="My profile">
-										<i class="fa-solid fa-circle-user line" title="My profile" aria-hidden="true"></i>
+										<span class="fa-solid fa-circle-user line" title="My profile" aria-hidden="true"></span>
 										<p class="desc line">Profile</p>
 									</a>
 								</li>
@@ -79,7 +79,7 @@
 
 			<div class="toast wine text-white fixed-top top-0 end-0 justify-content-center" id="myToast">
 				<div class="toast-header wine text-white">
-					<strong class="me-auto text-white"><a href="#" id="toast-link" class="</a>"><i class="bi-gift-fill text-white"></i>Notification</a></strong>
+					<strong class="me-auto text-white"><a href="#" id="toast-link" class="</a>"><span class="bi-gift-fill text-white"></span>Notification</a></strong>
 					<small id ="toast-diffTime">time ago</small>
 					<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
 				</div>		

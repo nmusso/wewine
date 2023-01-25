@@ -6,7 +6,7 @@ function generaBarra() {
                 <div class="d-flex form-inputs mx-2">
                     <label class="form-label" for="searchBar" hidden>Search bar</label>
                     <input id="searchBar" class="form-control" type="text" placeholder="Search any profile...">
-                    <i class="bx bx-search"></i>
+                    <span class="bx bx-search"></span>
                 </div>
             </div>
         </div>
