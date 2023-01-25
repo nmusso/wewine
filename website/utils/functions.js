@@ -50,27 +50,27 @@ function generaPost(data) {
                             <div class="col-sm-1"></div>
                             <div class="col-12 col-sm-10">
                                 <div class="row">
-                                    <div class="col-6 col-sm-6"><label for="light">Light</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="light" class="d-flex justify-content-end">Structured</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="light-` + data["idPost"] + `">Light</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="light-` + data["idPost"] + `" class="d-flex justify-content-end">Structured</label></div> 
                                 </div>
-                                <input id="light" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["leggero"] + `">
+                                <input id="light-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["leggero"] + `">
                                 <div class="row">
-                                    <div class="col-6 col-sm-6"><label for="soft">Soft</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="soft" class="d-flex justify-content-end">Tannic</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="soft-` + data["idPost"] + `">Soft</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="soft-` + data["idPost"] + `" class="d-flex justify-content-end">Tannic</label></div> 
                                 </div>
-                                <input id="soft" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["morbido"] + `">   
+                                <input id="soft-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["morbido"] + `">   
                                 <div class="row">
-                                    <div class="col-6 col-sm-6"><label for="dry">Dry</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="dry" class="d-flex justify-content-end">Sweet</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="dry-` + data["idPost"] + `">Dry</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="dry-` + data["idPost"] + `" class="d-flex justify-content-end">Sweet</label></div> 
                                 </div>
-                                <input id="dry" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["secco"] + `">
+                                <input id="dry-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["secco"] + `">
                                 <div class="row">
-                                    <div class="col-6 col-sm-6"><label for="flat">Flat</label></div> 
-                                    <div class="col-6 col-sm-6"><label for="flat" class="d-flex justify-content-end">Sour</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="flat-` + data["idPost"] + `">Flat</label></div> 
+                                    <div class="col-6 col-sm-6"><label for="flat-` + data["idPost"] + `" class="d-flex justify-content-end">Sour</label></div> 
                                 </div>
-                                <input id="flat" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `">     
+                                <input id="flat-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `">     
                                 <div class="row mt-3 text-center">
-                                    <span id="balance">`+data["bilanciamento"]+`</span>   
+                                    <span id="balance-` + data["idPost"] + `">`+data["bilanciamento"]+`</span>   
                                 </div>   
                             </div>
                             <div class="col-sm-1"></div> 

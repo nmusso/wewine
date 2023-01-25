@@ -51,11 +51,11 @@ function generaForm() {
                                 <input type="text" id="username" class="form-control form-control-lg" />       
                             </div>
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="password">Old password</label>
+                                <label class="form-label" for="oldpassword">Old password</label>
                                 <input type="password" id="oldpassword" class="form-control form-control-lg" />
                             </div>   
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="password">New password</label>
+                                <label class="form-label" for="newpassword">New password</label>
                                 <input type="password" id="newpassword" class="form-control form-control-lg" />
                             </div>                   
                             <div id="error" class="text-danger mb-4">
