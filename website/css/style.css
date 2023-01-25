@@ -67,7 +67,7 @@
     }
 }
 
-.slider::-webkit-slider-thumb, .slider[disabled=true]::-webkit-slider-thumb{
+.slider::-webkit-slider-thumb, .slider[disabled]::-webkit-slider-thumb{
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
@@ -77,7 +77,7 @@
     cursor: pointer;
 }
 
-.slider::-moz-range-thumb, .slider[disabled=true]::-moz-range-thumb{
+.slider::-moz-range-thumb, .slider[disabled]::-moz-range-thumb{
     width: 18px;
     height: 18px;
     border-radius: 10px;

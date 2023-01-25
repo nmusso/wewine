@@ -15,7 +15,7 @@
 
 	<script async src="https://cse.google.com/cse.js?cx=916be41c4e7d24c29"></script>
 
-	<title>iSocial</title>
+	<title>WeWine</title>
 </head>
 
 <body class="bg-light">
@@ -35,31 +35,31 @@
 							<ul class="nav nav-pills wine">
 								<li id="li-search" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white my-3 mx-0" href="search.php" aria-label="Search">
-										<i class="fa-solid fa-magnifying-glass line" alt="Search" title="Search" aria-hidden="true"></i>
+										<i class="fa-solid fa-magnifying-glass line" title="Search" aria-hidden="true"></i>
 										<p class="desc line">Search</p>
 									</a>
 								</li>
 								<li id="li-add" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white my-3 mx-0" href="post-editor.php" aria-label="Add post">
-										<i class="fa-solid fa-circle-plus line" alt="Add post" title="Add post" aria-hidden="true"></i>
+										<i class="fa-solid fa-circle-plus line" title="Add post" aria-hidden="true"></i>
 										<p class="desc line">Add</p>
 									</a>
 								</li>
 								<li id="li-home" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white  my-3 mx-0" href="index.php" aria-label="Home">
-										<i class="fa-solid fa-house line" alt="Home" title="Home" aria-hidden="true"></i>
+										<i class="fa-solid fa-house line" title="Home" aria-hidden="true"></i>
 										<p class="desc line">Home</p>
 									</a>
 								</li>
 								<li id="li-notify" class="nav-item text-center col col-sm-12">
 									<a class="nav-link text-white my-3 mx-0" href="notifications.php" aria-label="Notifications">
-										<i id="bell" class="fa-solid fa-bell line" alt="Notifications" title="Notifications" aria-hidden="true"></i>
+										<i id="bell" class="fa-solid fa-bell line" title="Notifications" aria-hidden="true"></i>
 										<p class="desc line">Notifications</p>
 									</a>
 								</li>
 								<li id="li-profile" class="nav-item text-center col col-sm-12">
 									<a id="a-profile" class="nav-link text-white my-3 mx-0" href="profile.php?profile=0" aria-label="My profile">
-										<i class="fa-solid fa-circle-user line" alt="My profile" title="My profile" aria-hidden="true"></i>
+										<i class="fa-solid fa-circle-user line" title="My profile" aria-hidden="true"></i>
 										<p class="desc line">Profile</p>
 									</a>
 								</li>
