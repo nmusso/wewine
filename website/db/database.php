@@ -20,6 +20,16 @@ class DatabaseHelper
         return $stmt->insert_id;
     }
 
+    public function deleteUser($id) {
+        $query = "DELETE FROM uente WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        
+        return $result>0;
+    }
+
     public function deletePost($id) {
         $query = "DELETE FROM post WHERE idPost = ?";
         $stmt = $this->db->prepare($query);
