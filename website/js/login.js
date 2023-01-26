@@ -45,6 +45,8 @@ document.getElementById("submit").addEventListener("click", function (event) {
     
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#p_hex").value;
+    form.removeChild(document.getElementById("p_hex")); 
+    
     login(username, password);
 })
 
@@ -53,8 +55,9 @@ function login(username, password) {
     formData.append('username', username);
     formData.append('password', password);
     axios.post('./api/api-login.php', formData).then(response => {
+        console.log(response.data);
         if (response.data["logindone"]) {
-            window.location.replace("./index.php")
+            window.location.replace("./index.php");
         } else {
             document.getElementById("error").innerText = response.data["errorLogin"];
         }
