@@ -1,6 +1,7 @@
 function generaLoginForm() {
     let form = `
     <section>
+        <h2 hidden>Login</h2>
         <div class="row my-5">
             <div class="col-2 col-sm-4"></div>
             <div class="col-8 col-sm-4">

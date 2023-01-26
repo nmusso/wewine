@@ -17,6 +17,7 @@ function generaPost(data) {
     
     let post = `
     <article class="mainElement">
+        <h2 hidden>Post</h2>
         <div class="row mt-3">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-8 card">
@@ -37,6 +38,7 @@ function generaPost(data) {
                         </a>
                     </header>
                     <section>
+                        <h3 hidden>Content</h3>
                         <a href="post.php?post=` + data["idPost"] + `&type=like" title="Open post">
                             <p class="card-text my-3 fw-light wineData">Wine name: `+ data["nome"] + `</p>
                             <p class="card-text my-3 fw-light wineData">Origin: `+ data["origine"] + `</p>

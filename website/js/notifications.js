@@ -5,6 +5,7 @@ function generaNotifica(data, age) {
     const style_text = (age=="new") ? 'text-white' : '';
     let notification = `
     <section>
+        <h2 hidden>Notification</h2>
         <div class="row mt-2 userCard">
             <div class="col-12 col-sm-12 col-md-10 col-lg-8">
                 <div class="card mx-2 px-2 ` + style + `">

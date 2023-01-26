@@ -1,6 +1,7 @@
 function generaRiga(user) {
     let profile = `
     <section class="mainElement">
+        <h2 hidden>Profile</h2>
         <div class="row mt-2 userCard">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-8 card">
@@ -117,6 +118,7 @@ function generaUtente(data, isMine) {
                             <p class="m-0 fw-lighter">` + data["userInfo"][0]["nome"] + " " + data["userInfo"][0]["cognome"] + `</p>
                             <div class="mt-3">
                                 <article>
+								<h2 hidden>Bio</h2>
                                 ` + data["userInfo"][0]["bio"] + `
                                 </article>
                             </div>

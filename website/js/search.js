@@ -19,6 +19,7 @@ function generaBarra() {
 function generaProfilo(user) {
     let profile = `
     <section class="userCard">
+        <h2 hidden>Profile</h2>
         <div class="row mt-2">
             <div class="col-12 col-sm-12 col-md-6">
                 <a href="profile.php?profile=` + user["id"] + `">

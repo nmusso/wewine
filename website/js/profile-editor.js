@@ -1,6 +1,7 @@
 function generaForm() {
     let form = `
     <section>
+        <h2 hidden>Form</h2>
         <div class="row d-flex justify-content-center align-items-center h-100 mx-2">
             <div class="col-sm-1 col-md-2 col-lg-3 col-xl-4"></div>
             <div class="col col-sm-10 col-md-8 col-lg-6 col-xl-4">
