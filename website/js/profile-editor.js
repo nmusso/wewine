@@ -189,4 +189,7 @@ function formhash(form, oldPass, newPass) {
 
 function addressManager() {   
     document.getElementById("address").disabled = !(type.value == "owner" || type.value == "grower");
+    if (document.getElementById("address").disabled) {
+        document.getElementById("address").value = "";
+    }
 }
