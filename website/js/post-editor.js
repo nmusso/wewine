@@ -103,12 +103,11 @@ const sliDry = document.querySelector("#dry");
 const sliFlat = document.querySelector("#flat");
 const sliSoft = document.querySelector("#soft");
 
-var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10 , aspectRatio: 1.777778}); 
+let html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10 , aspectRatio: 1.777778}); 
 html5QrcodeScanner.render(onScanSuccess);
 
-document.querySelector("button").classList.add("btn");
-document.querySelector("button").classList.add("wine");
-document.querySelector("button").classList.add("text-white");
+let classes = ["btn", "wine", "text-white"];
+document.querySelector("button").classList.add(...classes);
 document.querySelector("#qr-reader__status_span").style = "";
 
 types.forEach(type => {
@@ -165,6 +164,7 @@ document.getElementById("submit").addEventListener("click", () => {
 });
 
 function changeValue() {
+    const balanceSpan = document.querySelector("#balance");
     const light = Math.abs(50-parseInt(sliLight.value));
     const dry = Math.abs(50-parseInt(sliDry.value));
     const flat = Math.abs(50-parseInt(sliFlat.value));
@@ -172,17 +172,21 @@ function changeValue() {
     const dist = light+dry+flat+soft;
 
     if(dist<30){
-        document.querySelector("#balance").innerText = "Balanced";
-        document.querySelector("#balance").style.color = "green";
+        balanceSpan.innerText = "Balanced";
+        balanceSpan.classList.remove(...balanceSpan.classList);
+        balanceSpan.classList.add("balanced");
     } else if(dist<80){
-        document.querySelector("#balance").innerText = "Quite Balanced";
-        document.querySelector("#balance").style.color = "darkgreen";    
+        balanceSpan.innerText = "Quite Balanced";
+        balanceSpan.classList.remove(...balanceSpan.classList);
+        balanceSpan.classList.add("quite-balanced");
     } else if(dist<150){
-        document.querySelector("#balance").innerText = "Slightly unbalanced";
-        document.querySelector("#balance").style.color = "#892222"; 
+        balanceSpan.innerText = "Slightly unbalanced";
+        balanceSpan.classList.remove(...balanceSpan.classList);
+        balanceSpan.classList.add("slightly-unbalanced");
     }else{
-        document.querySelector("#balance").innerText = "Unbalanced";
-        document.querySelector("#balance").style.color = "#D40000";
+        balanceSpan.innerText = "Unbalanced";
+        balanceSpan.classList.remove(...balanceSpan.classList);
+        balanceSpan.classList.add("unbalanced");
     }
     
 }

@@ -14,6 +14,8 @@ function generaPost(data) {
     } else {
         searchBarcode = `<a href="https://www.google.com/search?q=`+data["nome"]+`" target="_blank" class="btn wine text-white mt-2">Search wine</a>`;
     }
+
+    let balanceClass = data["bilanciamento"].replace(" ", "-").toLowerCase();
     
     let post = `
     <article class="mainElement">
@@ -74,7 +76,7 @@ function generaPost(data) {
                                 </div>
                                 <input id="flat-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `">     
                                 <div class="row mt-3 text-center">
-                                    <span id="balance-` + data["idPost"] + `">`+data["bilanciamento"]+`</span>   
+                                    <span class="` + balanceClass + `" id="balance-` + data["idPost"] + `">`+data["bilanciamento"]+`</span>   
                                 </div>   
                             </div>
                             <div class="col-sm-1"></div> 

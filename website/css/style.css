@@ -90,10 +90,21 @@
     color: #5e2129;
 }
 
-/*main {
-    background-image: url("../upload/wall.jpg");
-    background-attachment: fixed;
-}*/
+.balanced {
+    color: green;
+}
+
+.quite-balanced {
+    color: darkgreen;
+}
+
+.slightly-unbalanced {
+    color: #892222;
+}
+
+.unbalanced {
+    color: #D40000;
+}
 
 #qr-reader__status_span {
     float: right; 
