@@ -137,15 +137,12 @@ function register(username, password, email, nome, cognome, dataNascita, tipo, i
 }
 
 function formhash(form, password) {
-    // Crea un elemento di input che verrà usato come campo di output per la password criptata.
     var p = document.createElement("input");
-    // Aggiungi un nuovo elemento al tuo form.
     form.appendChild(p);
     p.id = "p_hex";
     p.name = "p";
     p.type = "hidden"
     p.value = hex_sha512(password);
-    // Assicurati che la password non venga inviata in chiaro.
     password.value = "";
 }
 

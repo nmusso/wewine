@@ -14,7 +14,6 @@ function getPartialFeed() {
     formData.append("num", numPost);
     axios.post('./api/api-home.php', formData).then(response => {
         if (response.data["islogged"]) {
-            // Visualizza post
             const posts = response.data["posts"];
             for (let i = 0; i < posts.length; i++) {
                 posts[i]["liked"] = (posts[i]["liked"] == null) ? "fa-regular" : "fa-solid";
@@ -22,7 +21,6 @@ function getPartialFeed() {
                 numPost++;
             }
         } else {
-            // login
             window.location.replace("./login.php");
         }
     });

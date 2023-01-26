@@ -29,7 +29,7 @@ function generaCommento(data, id) {
             </div>
         </div>
     </div>
-    `
+    `;
 
     return commento;
 }
@@ -103,7 +103,6 @@ function likeChange(id){
                 }   
             }   
         } else {
-            // login
             window.location.replace("./login.php");
         }
     }); 
@@ -130,7 +129,6 @@ function commentManager(id){
                     post.insertAdjacentHTML("beforeend", generaCommento(comment, id));
                 });
             } else {
-                // login
                 window.location.replace("./login.php");
             }
         }); 
@@ -150,7 +148,6 @@ function insertComment(id) {
                 commentManager(id);
                 commentManager(id);
             } else {
-                // login
                 window.location.replace("./login.php");
             }
         });

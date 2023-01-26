@@ -171,26 +171,20 @@ function update(username, oldPassword, newPassword, email, nome, cognome, dataNa
 }
 
 function formhash(form, oldPass, newPass) {
-    // Crea un elemento di input che verrà usato come campo di output per la vecchia password criptata.
     var p = document.createElement("input");
-    // Aggiungi un nuovo elemento al tuo form.
     form.appendChild(p);
     p.id = "oldp_hex";
     p.name = "newp";
     p.type = "hidden"
     p.value = hex_sha512(oldPass);
-    // Assicurati che la vecchia password non venga inviata in chiaro.
     oldPass.value = "";
 
-    // Crea un elemento di input che verrà usato come campo di output per la nuova password criptata.
     var p = document.createElement("input");
-    // Aggiungi un nuovo elemento al tuo form.
     form.appendChild(p);
     p.id = "newp_hex";
     p.name = "newp";
     p.type = "hidden"
     p.value = hex_sha512(newPass);
-    // Assicurati che la nuova password non venga inviata in chiaro.
     newPass.value = "";
 }
 

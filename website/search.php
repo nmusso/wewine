@@ -9,4 +9,3 @@ $templateParams["js"] = array(  "https://unpkg.com/axios/dist/axios.min.js",
 
 require 'template/base.php';
 ?>
-

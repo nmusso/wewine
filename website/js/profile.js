@@ -143,7 +143,6 @@ const main = document.querySelector("main");
 
 axios.get('./api/api-profile.php').then(response => {
     if (response.data["islogged"]) {
-        //Visualizza post
         const posts = response.data["posts"];
         main.innerHTML = generaUtente(response.data["info"], response.data["isMine"]);
         for (let i = 0; i < posts.length; i++) {
@@ -151,7 +150,6 @@ axios.get('./api/api-profile.php').then(response => {
             main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
         }
     } else {
-        // login
         window.location.replace("./login.php");
     }
 });
@@ -204,7 +202,6 @@ function getPosts() {
                 main.insertAdjacentHTML("beforeend", generaPost(posts[i]));
             }
         } else {
-            // login
             window.location.replace("./login.php");
         }
     });
