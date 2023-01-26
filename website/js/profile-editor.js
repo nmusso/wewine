@@ -7,7 +7,7 @@ function generaForm() {
             <div class="col col-sm-10 col-md-8 col-lg-6 col-xl-4">
                 <div class="card">
                     <div class="card-body p-5">
-                        <p class="text-center mb-5 fs-2">Create an account</p>
+                        <p class="text-center mb-5 fs-2">Edit your account</p>
                         <form id="update_form"> 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="imgProfile">Profile picture</label>
