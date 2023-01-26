@@ -308,7 +308,7 @@ class DatabaseHelper
         $res["newFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new comments
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
@@ -323,7 +323,7 @@ class DatabaseHelper
         $res["newComment"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new likes
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id
@@ -356,7 +356,7 @@ class DatabaseHelper
         $res["oldFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new comments
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
@@ -371,7 +371,7 @@ class DatabaseHelper
         $res["oldComment"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new likes
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id
@@ -450,17 +450,6 @@ class DatabaseHelper
         $result = $stmt->affected_rows;
         
         return $result;
-    }
-
-    public function checkLogin($username, $password)
-    {
-        $query = "SELECT idUtente FROM Utente WHERE username = ? AND password = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $username, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function checkUniqueUser($username, $email)
@@ -560,22 +549,12 @@ class DatabaseHelper
                     if ($login_check == $login_string) {
                         // Login eseguito!!!!
                         return true;
-                    } else {
-                        //  Login non eseguito
-                        return false;
                     }
-                } else {
-                    // Login non eseguito
-                    return false;
                 }
-            } else {
-                // Login non eseguito
-                return false;
             }
-        } else {
-            // Login non eseguito
-            return false;
         }
+
+        return false;
     }
 
     function addPost($id, $name, $origin, $barcode, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo)
