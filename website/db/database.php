@@ -385,7 +385,7 @@ class DatabaseHelper
         $res["oldComment"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new likes
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id
