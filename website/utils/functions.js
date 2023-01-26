@@ -59,22 +59,22 @@ function generaPost(data) {
                                     <div class="col-6 col-sm-6"><label for="light-` + data["idPost"] + `">Light</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Structured</label></div> 
                                 </div>
-                                <input id="light-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["leggero"] + `">
+                                <input id="light-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["leggero"] + `"/>
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="soft-` + data["idPost"] + `">Soft</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Tannic</label></div> 
                                 </div>
-                                <input id="soft-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["morbido"] + `">   
+                                <input id="soft-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["morbido"] + `"/>   
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="dry-` + data["idPost"] + `">Dry</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sweet</label></div> 
                                 </div>
-                                <input id="dry-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["secco"] + `">
+                                <input id="dry-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["secco"] + `"/>
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="flat-` + data["idPost"] + `">Flat</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sour</label></div> 
                                 </div>
-                                <input id="flat-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `">     
+                                <input id="flat-` + data["idPost"] + `" type="range" disabled class="form-range slider" min="0" max="100" step="1" value="`+ data["piatto"] + `"/>     
                                 <div class="row mt-3 text-center">
                                     <span class="` + balanceClass + `" id="balance-` + data["idPost"] + `">`+data["bilanciamento"]+`</span>   
                                 </div>   
@@ -82,7 +82,7 @@ function generaPost(data) {
                             <div class="col-sm-1"></div> 
                         </div>
                         <p class="card-text"><small class="text-muted">Posted `+ data["diffTime"] + `ago</small></p>
-                        <img class="card-img-bottom" src="`+ data["immagine"] + `" alt=""> 
+                        <img class="card-img-bottom" src="`+ data["immagine"] + `" alt=""/> 
                         `+ searchBarcode + `
                     </section>    
                     <footer>

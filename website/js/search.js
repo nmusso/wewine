@@ -6,7 +6,7 @@ function generaBarra() {
                 <div class="col-12 col-sm-8">
                     <div class="d-flex form-inputs mx-2">            
                         <label class="form-label" for="searchBar" hidden>Search bar</label>
-                        <input id="searchBar" class="form-control" type="search" placeholder="Search any profile..." autofocus>
+                        <input id="searchBar" class="form-control" type="search" placeholder="Search any profile..." autofocus />
                         <span class="bx bx-search"></span> 
                     </div> 
                 </div>
@@ -28,7 +28,7 @@ function generaProfilo(user) {
                     <div class="card mx-2">
                         <div class="row">
                             <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-2">
-                                <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt="" />
+                                <img src="` + user["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt=""/>
                             </div>
                             <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-10">
                                 <div class="card-body">
