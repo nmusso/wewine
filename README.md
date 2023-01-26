@@ -7,6 +7,22 @@ We want to create a community of wine lovers, from the novice to the entrepreneu
 To view the mockups download the file **mockup.html**, open it in your browser and use up and down arrows to move between the mockups.  
 In alternative you can use this link (fullscreen recommended): https://slides.com/alessandrosciarrillo/palette
 
+![Mockup Base Template Mobile](mockup/file.png)
+![Mockup Base Template Tablet](mockup/file.png)
+![Mockup Base Template Desktop](mockup/file.png)
+![Mockup Login Mobile](mockup/file.png)
+![Mockup Login Tablet](mockup/file.png)
+![Mockup Login Desktop](mockup/file.png)
+![Mockup Profile Mobile](mockup/file.png)
+![Mockup Profile Tablet](mockup/file.png)
+![Mockup Profile Desktop](mockup/file.png)
+![Mockup Feed Mobile](mockup/file.png)
+![Mockup Feed Tablet](mockup/file.png)
+![Mockup Feed Desktop](mockup/file.png)
+![Mockup Notifications Mobile](mockup/file.png)
+![Mockup Notifications Tablet](mockup/file.png)
+![Mockup Notifications Desktop](mockup/file.png)
+
 ## How the design was done
 - Initially we created some minimal mockups with the essential input interfaces 
 - We recreated this mockups with some basic HTML and backend 
