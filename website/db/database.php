@@ -20,6 +20,20 @@ class DatabaseHelper
         return $stmt->insert_id;
     }
 
+    public function checkUniqueUser($username, $email)
+    {
+        if ($stmt = $this->db->prepare("SELECT username, email FROM utente WHERE username = ? OR email = ?")) {
+            $stmt->bind_param('ss', $username, $email); // esegue il bind del parametro '$email'.
+            $stmt->execute(); // esegue la query appena creata.
+            $stmt->store_result();
+            $stmt->fetch();
+
+            return ($stmt->num_rows == 0);
+        }
+
+        return false;
+    }
+
     public function deleteUser($id) {
         $query = "DELETE FROM utente WHERE id = ?";
         $stmt = $this->db->prepare($query);
@@ -30,14 +44,53 @@ class DatabaseHelper
         return $result>0;
     }
 
-    public function deletePost($id) {
-        $query = "DELETE FROM post WHERE idPost = ?";
+    public function getUserInfo($id){
+        $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, u.tipo, u.indirizzo, u.dataNascita, u.email, COUNT(p.idPost) as nPosts
+        FROM post AS p
+        JOIN utente AS u ON p.idUtente = u.id
+        WHERE u.id = ?
+        ORDER BY p.dataOra DESC
+        ";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $id);
         $stmt->execute();
-        $result = $stmt->affected_rows;
-        
-        return $result>0;
+        $result = $stmt->get_result();
+        $res["userInfo"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT COUNT(s.idFollower) as Followed
+        FROM utente AS u 
+        JOIN segue AS s ON s.idFollower = u.id
+        WHERE u.id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["followed"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT COUNT(s.idFollowed) as Follower
+        FROM utente AS u 
+        JOIN segue AS s ON s.idFollowed = u.id
+        WHERE u.id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["follower"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT COUNT(s.idFollowed) as isFollowing
+        FROM segue AS s
+        WHERE s.idFollowed = ?
+        AND s.idFollower = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $id, $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $res["isFollowing"] = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $res;
     }
 
     public function getUsersByName($value){
@@ -48,6 +101,16 @@ class DatabaseHelper
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function deletePost($id) {
+        $query = "DELETE FROM post WHERE idPost = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        
+        return $result>0;
     }
 
     public function getFeed($id, $num){
@@ -118,55 +181,6 @@ class DatabaseHelper
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function getUserInfo($id){
-        $query = "SELECT u.id, u.username, u.nome, u.cognome, u.imgProfilo, u.bio, u.tipo, u.indirizzo, u.dataNascita, u.email, COUNT(p.idPost) as nPosts
-        FROM post AS p
-        JOIN utente AS u ON p.idUtente = u.id
-        WHERE u.id = ?
-        ORDER BY p.dataOra DESC
-        ";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $res["userInfo"] = $result->fetch_all(MYSQLI_ASSOC);
-
-        $query = "SELECT COUNT(s.idFollower) as Followed
-        FROM utente AS u 
-        JOIN segue AS s ON s.idFollower = u.id
-        WHERE u.id = ?
-        ";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $res["followed"] = $result->fetch_all(MYSQLI_ASSOC);
-
-        $query = "SELECT COUNT(s.idFollowed) as Follower
-        FROM utente AS u 
-        JOIN segue AS s ON s.idFollowed = u.id
-        WHERE u.id = ?
-        ";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $res["follower"] = $result->fetch_all(MYSQLI_ASSOC);
-
-        $query = "SELECT COUNT(s.idFollowed) as isFollowing
-        FROM segue AS s
-        WHERE s.idFollowed = ?
-        AND s.idFollower = ?
-        ";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ii', $id, $_SESSION["user_id"]);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $res["isFollowing"] = $result->fetch_all(MYSQLI_ASSOC);
-
-        return $res;
     }
 
     public function getFollowInfo($id){
@@ -308,7 +322,7 @@ class DatabaseHelper
         $res["newFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new comments
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
@@ -323,7 +337,7 @@ class DatabaseHelper
         $res["newComment"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new likes
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, l.dataOra, DATEDIFF(NOW(),l.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,l.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN `like` AS l ON p.idPost = l.idPost
         JOIN utente AS u1 ON l.idUtente = u1.id
@@ -356,7 +370,7 @@ class DatabaseHelper
         $res["oldFollow"] = $result->fetch_all(MYSQLI_ASSOC);
 
         // new comments
-        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
+        $query = "SELECT p.idPost, u1.username, u1.imgProfilo, u1.id, c.dataOra, DATEDIFF(NOW(),c.dataOra) as DaysAgo, TIMESTAMPDIFF(MINUTE,c.dataOra,NOW()) as MinutesAgo
         FROM post AS p
         JOIN commento AS c ON p.idPost = c.idPost
         JOIN utente AS u1 ON c.idUtente = u1.id
@@ -452,29 +466,53 @@ class DatabaseHelper
         return $result;
     }
 
-    public function checkLogin($username, $password)
+    function addPost($id, $name, $origin, $barcode, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo)
     {
-        $query = "SELECT idUtente FROM Utente WHERE username = ? AND password = ?";
+        $query = "INSERT INTO post(dataOra, idUtente, nome, origine, barcode, note, leggero, secco, piatto, morbido, 
+                    bilanciamento, valutazione, testo, immagine) 
+                    VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $username, $password);
+        $stmt->bind_param('issssiiiisiss', $id, $name, $origin, $barcode, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo);
         $stmt->execute();
-        $result = $stmt->get_result();
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $stmt->insert_id;
     }
 
-    public function checkUniqueUser($username, $email)
+    function nextPostId($id)
     {
-        if ($stmt = $this->db->prepare("SELECT username, email FROM utente WHERE username = ? OR email = ?")) {
-            $stmt->bind_param('ss', $username, $email); // esegue il bind del parametro '$email'.
-            $stmt->execute(); // esegue la query appena creata.
-            $stmt->store_result();
-            $stmt->fetch();
+        $query = "SELECT immagine FROM post WHERE immagine IS NOT NULL AND idUtente = ? ORDER BY dataOra DESC LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-            return ($stmt->num_rows == 0);
-        }
+        if (count($result) > 0) {
+            $result = $result[0];
+            $imgName = $result["immagine"];
+            $id = str_replace($id . "_", "", $imgName);
+            return intval($id) + 1;
+        } else {
+            return 1;
+        }    
+    }
 
-        return false;
+    function getIdByUsername($username) {
+        $query = "SELECT id FROM utente WHERE username = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+
+        return $result["id"];
+    }
+
+    function addProfilePath($id, $path) {
+        $query = "UPDATE utente SET imgProfilo = ? WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si', $path, $id);
+        $stmt->execute();
+
+        return $stmt->insert_id;
     }
 
     function checkbrute($user_id)
@@ -560,71 +598,12 @@ class DatabaseHelper
                     if ($login_check == $login_string) {
                         // Login eseguito!!!!
                         return true;
-                    } else {
-                        //  Login non eseguito
-                        return false;
                     }
-                } else {
-                    // Login non eseguito
-                    return false;
                 }
-            } else {
-                // Login non eseguito
-                return false;
             }
-        } else {
-            // Login non eseguito
-            return false;
         }
-    }
 
-    function addPost($id, $name, $origin, $barcode, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo)
-    {
-        $query = "INSERT INTO post(dataOra, idUtente, nome, origine, barcode, note, leggero, secco, piatto, morbido, 
-                    bilanciamento, valutazione, testo, immagine) 
-                    VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('issssiiiisiss', $id, $name, $origin, $barcode, $notes, $light, $dry, $flat, $soft, $balance, $valutation, $text, $photo);
-        $stmt->execute();
-
-        return $stmt->insert_id;
-    }
-
-    function nextPostId($id)
-    {
-        $query = "SELECT immagine FROM post WHERE immagine IS NOT NULL AND idUtente = ? ORDER BY dataOra DESC LIMIT 1";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-        if (count($result) > 0) {
-            $result = $result[0];
-            $imgName = $result["immagine"];
-            $id = str_replace($id . "_", "", $imgName);
-            return intval($id) + 1;
-        } else {
-            return 1;
-        }    
-    }
-
-    function getIdByUsername($username) {
-        $query = "SELECT id FROM utente WHERE username = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
-
-        return $result["id"];
-    }
-
-    function addProfilePath($id, $path) {
-        $query = "UPDATE utente SET imgProfilo = ? WHERE id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('si', $path, $id);
-        $stmt->execute();
-
-        return $stmt->insert_id;
+        return false;
     }
 }
 ?>
