@@ -10,6 +10,6 @@ In alternative you can use this link (fullscreen recommended): https://slides.co
 ## Instructions
 - Copy the folder on a web server
 - Run the file **db_init.sql** on a DBMS
-- Connect and create an account
+- Connect to `localhost\wt-project\website` and create an account
 - Login
 - Start using the social!
