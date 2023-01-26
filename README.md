@@ -8,6 +8,14 @@ To view the mockups download the file **mockup.html** (or in alternative use thi
 
 ## Instructions
 - Put the folder on a web server
-- Create an account
+- Create the DB and the user with the following commands:
+```
+CREATE DATABASE social
+```
+```
+CREATE USER 'sec_user'@'localhost' IDENTIFIED BY 'f&4@YXuC9$5C^nLQ';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `secure_login`.* TO 'sec_user'@'localhost';
+```
+- Connect and create an account
 - Login
 - Start using the social!
