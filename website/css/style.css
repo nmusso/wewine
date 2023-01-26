@@ -74,7 +74,7 @@
     }
 }
 
-.slider::-webkit-slider-thumb, .slider[disabled]::-webkit-slider-thumb{
+.slider::-webkit-slider-thumb, .slider[disabled]::-webkit-slider-thumb {
     width: 18px;
     height: 18px;
     border-radius: 10px;

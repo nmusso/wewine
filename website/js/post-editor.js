@@ -11,11 +11,11 @@ function generaForm() {
                             <legend class="my-4">Information</legend>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="wineName">Wine name *</label>
-                                <input id="wineName" type="text" class="form-control form-control-lg" required>
+                                <input id="wineName" type="text" class="form-control form-control-lg" required />
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="origin">Origin *</label>
-                                <input id="origin" type="text" class="form-control form-control-lg" required>
+                                <input id="origin" type="text" class="form-control form-control-lg" required />
                             </div>
                         </fieldset>
                         <fieldset>
@@ -25,29 +25,29 @@ function generaForm() {
                                     <div class="col-6 col-sm-6"><label for="light">Light</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Structured</label></div> 
                                 </div>
-                                <input id="light" type="range" class="form-range slider" min="0" max="100" step="1">
+                                <input id="light" type="range" class="form-range slider" min="0" max="100" step="1" />
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="soft">Soft</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Tannic</label></div> 
                                 </div>
-                                <input id="soft" type="range" class="form-range slider" min="0" max="100" step="1">   
+                                <input id="soft" type="range" class="form-range slider" min="0" max="100" step="1" />   
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="dry">Dry</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sweet</label></div> 
                                 </div>
-                                <input id="dry" type="range" class="form-range slider" min="0" max="100" step="1">
+                                <input id="dry" type="range" class="form-range slider" min="0" max="100" step="1" />
                                 <div class="row">
                                     <div class="col-6 col-sm-6"><label for="flat">Flat</label></div> 
                                     <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sour</label></div> 
                                 </div>
-                                <input id="flat" type="range" class="form-range slider" min="0" max="100" step="1">     
+                                <input id="flat" type="range" class="form-range slider" min="0" max="100" step="1" />     
                                 <div class="row mt-3 text-center">
                                     <span id="balance"></span>   
                                 </div>    
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="notes">Taste notes</label>
-                                <input id="notes" type="text" class="form-control form-control-lg" required>
+                                <input id="notes" type="text" class="form-control form-control-lg" required />
                             </div>
                         </fieldset>
                         <fieldset>
@@ -70,7 +70,7 @@ function generaForm() {
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="barcode">Barcode</label>
-                                <input id="barcode" type="text" class="form-control" placeholder="Insert manually the codebar or scan it..">
+                                <input id="barcode" type="text" class="form-control" placeholder="Insert manually the codebar or scan it.." />
                                 <label class="form-babel" for="qr-reader__filescan_input" hidden>Input scan</label>
                                 <div id="qr-reader" class="mt-2"></div>
                             </div>
