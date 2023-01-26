@@ -49,7 +49,6 @@ axios.get('./api/api-notifications.php').then(response => {
         const notifications = response.data["allnotifications"];
 
         notifications.forEach(n => {
-            console.log(n);
             let age = (n["type"]=="newFollow" || n["type"]=="newComment" || n["type"]=="newLike") ? "new" : "old";
             main.insertAdjacentHTML("beforeend", generaNotifica(n,age));
         });

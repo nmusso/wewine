@@ -157,7 +157,6 @@ function update(username, oldPassword, newPassword, email, nome, cognome, dataNa
             'Content-Type': 'multipart/form-data'
         }
     }).then(response => {
-        console.log(response.data);
         if (response.data["islogged"]) {
             if (response.data["updateOK"]) {
                 window.location.replace("./profile.php?profile=0")

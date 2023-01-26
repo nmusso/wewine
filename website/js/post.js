@@ -17,7 +17,6 @@ axios.get("./api/api-post.php").then(response => {
         if (response.data["getPost"]){
             const post = response.data["postInfo"][0];
             idPost = post["idPost"];
-            console.log(response.data);
             if(response.data["isMine"]){
                 main.insertAdjacentHTML("beforeend", btnDel);
             }
