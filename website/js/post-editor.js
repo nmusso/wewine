@@ -1,91 +1,94 @@
 function generaForm() {
     let form = `
-    <div class="row d-flex justify-content-center align-items-center h-100 mx-2">
-        <div class="col col-sm-10 col-md-8 col-lg-8">
-            <div class="my-2 p-3">
-                <h2 class="text-center mb-3">Make a Post</h2>
-                <form id="post_form">
-                    <fieldset>
-                        <legend class="my-4">Information</legend>
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="wineName">Wine name *</label>
-                            <input id="wineName" type="text" class="form-control form-control-lg" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="origin">Origin *</label>
-                            <input id="origin" type="text" class="form-control form-control-lg" required>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="my-4">Taste</legend>
-                        <div class="form-outline mb-4 mt-2">
-                            <div class="row">
-                                <div class="col-6 col-sm-6"><label for="light">Light</label></div> 
-                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Structured</label></div> 
+    <section>
+        <h2 hidden>Form</h2>
+        <div class="row d-flex justify-content-center align-items-center h-100 mx-2">
+            <div class="col col-sm-10 col-md-8 col-lg-8">
+                <div class="my-2 p-3">
+                    <h2 class="text-center mb-3">Make a Post</h2>
+                    <form id="post_form">
+                        <fieldset>
+                            <legend class="my-4">Information</legend>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="wineName">Wine name *</label>
+                                <input id="wineName" type="text" class="form-control form-control-lg" required>
                             </div>
-                            <input id="light" type="range" class="form-range slider" min="0" max="100" step="1">
-                            <div class="row">
-                                <div class="col-6 col-sm-6"><label for="soft">Soft</label></div> 
-                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Tannic</label></div> 
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="origin">Origin *</label>
+                                <input id="origin" type="text" class="form-control form-control-lg" required>
                             </div>
-                            <input id="soft" type="range" class="form-range slider" min="0" max="100" step="1">   
-                            <div class="row">
-                                <div class="col-6 col-sm-6"><label for="dry">Dry</label></div> 
-                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sweet</label></div> 
+                        </fieldset>
+                        <fieldset>
+                            <legend class="my-4">Taste</legend>
+                            <div class="form-outline mb-4 mt-2">
+                                <div class="row">
+                                    <div class="col-6 col-sm-6"><label for="light">Light</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Structured</label></div> 
+                                </div>
+                                <input id="light" type="range" class="form-range slider" min="0" max="100" step="1">
+                                <div class="row">
+                                    <div class="col-6 col-sm-6"><label for="soft">Soft</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Tannic</label></div> 
+                                </div>
+                                <input id="soft" type="range" class="form-range slider" min="0" max="100" step="1">   
+                                <div class="row">
+                                    <div class="col-6 col-sm-6"><label for="dry">Dry</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sweet</label></div> 
+                                </div>
+                                <input id="dry" type="range" class="form-range slider" min="0" max="100" step="1">
+                                <div class="row">
+                                    <div class="col-6 col-sm-6"><label for="flat">Flat</label></div> 
+                                    <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sour</label></div> 
+                                </div>
+                                <input id="flat" type="range" class="form-range slider" min="0" max="100" step="1">     
+                                <div class="row mt-3 text-center">
+                                    <span id="balance"></span>   
+                                </div>    
                             </div>
-                            <input id="dry" type="range" class="form-range slider" min="0" max="100" step="1">
-                            <div class="row">
-                                <div class="col-6 col-sm-6"><label for="flat">Flat</label></div> 
-                                <div class="col-6 col-sm-6"><label class="d-flex justify-content-end">Sour</label></div> 
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="notes">Taste notes</label>
+                                <input id="notes" type="text" class="form-control form-control-lg" required>
                             </div>
-                            <input id="flat" type="range" class="form-range slider" min="0" max="100" step="1">     
-                            <div class="row mt-3 text-center">
-                                <span id="balance"></span>   
-                            </div>    
+                        </fieldset>
+                        <fieldset>
+                            <legend class="my-4">Opinion</legend>
+                            <div class="form-outline mb-4">
+                                <label>Rating:</label>         
+                                <span class="fa-solid fa-star starOn" onclick="changeRating(1)"></span>
+                                <span class="fa-regular fa-star" onclick="changeRating(2)"></span>
+                                <span class="fa-regular fa-star" onclick="changeRating(3)"></span>
+                                <span class="fa-regular fa-star" onclick="changeRating(4)"></span>
+                                <span class="fa-regular fa-star" onclick="changeRating(5)"></span>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="text">Text</label>
+                                <textarea class="form-control" id="text" rows="5" placeholder="Write a review.."></textarea>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="photo">Photo</label>
+                                <input type="file" class="form-control" id="photo" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="barcode">Barcode</label>
+                                <input id="barcode" type="text" class="form-control" placeholder="Insert manually the codebar or scan it..">
+                                <label class="form-babel" for="qr-reader__filescan_input" hidden>Input scan</label>
+                                <div id="qr-reader" class="mt-2"></div>
+                            </div>
+                        </fieldset>
+                        <div id="error" class="text-danger mb-4">
                         </div>
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="notes">Taste notes</label>
-                            <input id="notes" type="text" class="form-control form-control-lg" required>
+                        <div class="mb-4">
+                            <label>* Field required</label>
+                        </div>             
+                        <div class="d-flex justify-content-center">
+                            <button id="submit" type="button" class="btn wine btn-block btn-lg text-white">Post</button>
                         </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="my-4">Opinion</legend>
-                        <div class="form-outline mb-4">
-                            <label>Rating:</label>         
-                            <span class="fa-solid fa-star starOn" onclick="changeRating(1)"></span>
-                            <span class="fa-regular fa-star" onclick="changeRating(2)"></span>
-                            <span class="fa-regular fa-star" onclick="changeRating(3)"></span>
-                            <span class="fa-regular fa-star" onclick="changeRating(4)"></span>
-                            <span class="fa-regular fa-star" onclick="changeRating(5)"></span>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="text">Text</label>
-                            <textarea class="form-control" id="text" rows="5" placeholder="Write a review.."></textarea>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="photo">Photo</label>
-                            <input type="file" class="form-control" id="photo" />
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="barcode">Barcode</label>
-                            <input id="barcode" type="text" class="form-control" placeholder="Insert manually the codebar or scan it..">
-                            <label class="form-babel" for="qr-reader__filescan_input" hidden>Input scan</label>
-                            <div id="qr-reader" class="mt-2"></div>
-                        </div>
-                    </fieldset>
-                    <div id="error" class="text-danger mb-4">
-                    </div>
-                    <div class="mb-4">
-                        <label>* Field required</label>
-                    </div>             
-                    <div class="d-flex justify-content-center">
-                        <button id="submit" type="button" class="btn wine btn-block btn-lg text-white">Post</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
+            <div class="col-sm-1 col-md-2 col-lg-2"></div>
         </div>
-        <div class="col-sm-1 col-md-2 col-lg-2"></div>
-    </div>
+    </section>
     `;
 
     return form;
