@@ -21,7 +21,7 @@ class DatabaseHelper
     }
 
     public function deleteUser($id) {
-        $query = "DELETE FROM uente WHERE id = ?";
+        $query = "DELETE FROM utente WHERE id = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $id);
         $stmt->execute();
