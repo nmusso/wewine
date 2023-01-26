@@ -1,27 +1,25 @@
 function generaCommento(data, id) {
     let commento = `
-    <div class="row mt-1 mx-0 commentOf-` + id + `">
+    <div class="row mt-1 mx-0 commentOf-${id}">
         <div class="col-12 col-sm-12 p-0">
             <div class="card px-2">
                 <div class="row">
                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 p-2">
-                        <a href="profile.php?profile=` + data["id"] + `" title="Profile link">
-                            <img src="` + data["imgProfilo"] + `" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt="` + data["username"] + `'s profile picture"/>
+                        <a href="profile.php?profile=${data["id"]}" title="Profile link">
+                            <img src="${data["imgProfilo"]}" class="img-fluid rounded-circle img-thumbnail p-1 propic" alt="${data["username"]}'s profile picture"/>
                         </a>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-11">
-                        <a href="profile.php?profile=` + data["id"] + `">
+                        <a href="profile.php?profile=${data["id"]}">
                             <div class="row">
                                 <div class="card-body col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                                    <p class="card-text">` + data["username"] + `</p>
+                                    <p class="card-text">${data["username"]}</p>
                                 </div>
                             </div>
                         </a>
                         <div class="row mb-2">
                             <div class="col-12 col-sm-12">
-                                <p>`
-                                + data["testo"] +
-                                `</p>   
+                                <p>${data["testo"]}</p>   
                             </div>
                         </div>
                     </div>
@@ -36,18 +34,18 @@ function generaCommento(data, id) {
 
 function generaBarra(id) {
     const barra = `
-    <div id="commentBar-` + id + `" class="row mt-3 m-0">
+    <div id="commentBar-${id}" class="row mt-3 m-0">
         <div class="col-12 col-sm-12 p-0">
             <div class="card border-0 p-0">
                 <div class="row m-0">
-                    <label class="form-label" for="commentText-` + id + `" hidden>Comment section</label>
+                    <label class="form-label" for="commentText-${id}" hidden>Comment section</label>
                     <div class="col-11 col-sm-11 p-0">
                         <div class="d-flex form-inputs">
-                            <input id="commentText-` + id + `" class="form-control" type="text" title="Comment bar" placeholder="Comment here..."/>
+                            <input id="commentText-${id}" class="form-control" type="text" title="Comment bar" placeholder="Comment here..."/>
                         </div>
                     </div>
                     <div class="col-1 col-sm-1 p-0 d-flex justify-content-end">
-                        <button id="submit" onclick="insertComment(` + id + `)" type="button" class="btn wine text-white">
+                        <button id="submit" onclick="insertComment(${id})" type="button" class="btn wine text-white">
                             <span class="fa-regular fa-paper-plane wine"></span>
                         </button>
                     </div>
