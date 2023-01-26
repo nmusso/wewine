@@ -33,7 +33,7 @@ function generaPost(data) {
                                 </div>
                                 <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-11">
                                     <div class="card-body p-0">
-                                        <p class="card-text">`+ data["username"] + `</p>
+                                        <p class="card-text fw-bold">`+ data["username"] + `</p>
                                     </div>
                                 </div>
                             </div>
