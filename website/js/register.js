@@ -103,6 +103,7 @@ document.getElementById("submit").addEventListener("click", function (event) {
     const indirizzo = document.querySelector("#address").value;
     const bio = document.querySelector("#bio").value;
     const imgProfilo = document.querySelector("#imgProfile").files[0];
+    form.removeChild(document.getElementById("p_hex"));
     register(username, password, email, nome, cognome, dataNascita, tipo, indirizzo, bio, imgProfilo);
 })
 
