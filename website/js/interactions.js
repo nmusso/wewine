@@ -43,7 +43,7 @@ function generaBarra(id) {
                     <label class="form-label" for="commentText-` + id + `" hidden>Comment section</label>
                     <div class="col-11 col-sm-11 p-0">
                         <div class="d-flex form-inputs">
-                            <input id="commentText-` + id + `" class="form-control" type="text" title="Comment bar" placeholder="Comment here...">
+                            <input id="commentText-` + id + `" class="form-control" type="text" title="Comment bar" placeholder="Comment here..."/>
                         </div>
                     </div>
                     <div class="col-1 col-sm-1 p-0 d-flex justify-content-end">

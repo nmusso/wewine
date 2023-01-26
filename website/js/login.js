@@ -12,11 +12,11 @@ function generaLoginForm() {
                         <legend class="mb-3">Login</legend>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" required>
+                            <input type="text" class="form-control" id="username" required />
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" required />
                         </div>
                         <div class="d-flex flex-row-reverse mb-3">
                             <button id="submit" type="submit" class="btn wine text-white">Login</button>

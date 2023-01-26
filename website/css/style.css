@@ -74,8 +74,12 @@
     }
 }
 
+<<<<<<< HEAD
 .slider::-webkit-slider-thumb, .slider[disabled]::-webkit-slider-thumb{
     -webkit-appearance: none;
+=======
+.slider::-webkit-slider-thumb, .slider[disabled]::-webkit-slider-thumb {
+>>>>>>> 4946036d981d348072c2da93d37fabb93a0a6da0
     width: 18px;
     height: 18px;
     border-radius: 10px;
