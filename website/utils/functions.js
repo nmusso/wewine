@@ -11,6 +11,8 @@ function generaPost(data) {
     let searchBarcode = ``;
     if(data["barcode"]!=""){
         searchBarcode = `<a href="https://www.google.com/search?q=`+data["barcode"]+`" target="_blank" class="btn wine text-white mt-2">Search barcode</a>`;
+    } else {
+        searchBarcode = `<a href="https://www.google.com/search?q=`+data["nome"]+`" target="_blank" class="btn wine text-white mt-2">Search wine</a>`;
     }
     
     let post = `
