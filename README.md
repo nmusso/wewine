@@ -4,7 +4,8 @@
 We want to create a community of wine lovers, from the novice to the entrepreneur, where you can share your opinions about wine, with all the peculiarities of a social network.
 
 ## Mockup
-To view the mockups download the file **mockup.html**, open it in your browser and use up and down arrows to move between the mockups.  
+You can view the mockups down here.
+For a better experience you can view the mockups by downloading the file **mockup.html** in the **mockup** folder, open it in your browser and use up and down arrows to move between the mockups.  
 In alternative you can use this link (fullscreen recommended): https://slides.com/alessandrosciarrillo/palette
 
 ![WeWine](mockup/1.jpg)
