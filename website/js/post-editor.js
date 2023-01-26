@@ -109,6 +109,7 @@ html5QrcodeScanner.render(onScanSuccess);
 document.querySelector("button").classList.add("btn");
 document.querySelector("button").classList.add("wine");
 document.querySelector("button").classList.add("text-white");
+document.querySelector("#qr-reader__status_span").style = "";
 
 types.forEach(type => {
     changeValue(type);
