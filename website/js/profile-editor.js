@@ -62,7 +62,7 @@ function generaForm() {
                             <div id="error" class="text-danger mb-4">
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button id="submit" type="button" class="btn btn-primary btn-block btn-lg text-white">Update</button>
+                                <button id="submit" type="button" class="btn wine text-white btn-block btn-lg text-white">Update</button>
                             </div>
                         </form>
                     </div>
