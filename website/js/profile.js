@@ -51,6 +51,14 @@ function generaUtente(data, isMine) {
         </div>`
     }
 
+    let address = ``
+    if (data["userInfo"][0]["indirizzo"] != "") {
+        address = `<p class="m-0 fw-lighter">Address: ` + data["userInfo"][0]["indirizzo"] + `</p>`
+    }
+
+    let type = data["userInfo"][0]["tipo"];
+    type = type.charAt(0).toUpperCase() + type.slice(1);
+
     let profile = `
     <header>
         <div class="row">
@@ -116,6 +124,8 @@ function generaUtente(data, isMine) {
                         <div class="col-12">
                             <p class="mt-2 mb-0 fs-4 fw-bold">` + data["userInfo"][0]["username"] + `</p>
                             <p class="m-0 fw-lighter">` + data["userInfo"][0]["nome"] + " " + data["userInfo"][0]["cognome"] + `</p>
+                            <p class="m-0 fw-lighter">Type: ` + type + `</p>
+                            ` + address + `
                             <div class="mt-3">
                                 <article>
 								<h2 hidden>Bio</h2>
