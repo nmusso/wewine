@@ -19,7 +19,7 @@
 -- Current Database: `social`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `social` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `social` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 
 USE `social`;
 
@@ -41,7 +41,7 @@ CREATE TABLE `commento` (
   KEY `post_1` (`idPost`),
   CONSTRAINT `post_1` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `utente_2` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `commento` (
 
 LOCK TABLES `commento` WRITE;
 /*!40000 ALTER TABLE `commento` DISABLE KEYS */;
-INSERT INTO `commento` VALUES (3,4,9,'bella palestra','2023-01-20 21:48:11'),(5,4,9,'sono qua','2023-01-20 21:50:46'),(6,3,9,'ciao','2023-01-20 22:33:31'),(7,7,9,'ciao','2023-01-20 22:51:41'),(15,3,33,'ciao','2023-01-22 14:40:33'),(16,7,9,'hei','2023-01-23 11:40:01');
+INSERT INTO `commento` VALUES (17,25,49,'mi Ã¨ piaciuto molto','2023-01-24 23:37:25'),(18,20,47,'Confermo molto buono','2023-01-25 19:35:40');
 /*!40000 ALTER TABLE `commento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `like` (
 
 LOCK TABLES `like` WRITE;
 /*!40000 ALTER TABLE `like` DISABLE KEYS */;
-INSERT INTO `like` VALUES (3,33,'2023-01-21 18:25:52'),(4,9,'2023-01-21 18:03:00');
+INSERT INTO `like` VALUES (19,49,'2023-01-24 23:40:53'),(23,49,'2023-01-24 23:40:48'),(24,49,'2023-01-24 23:40:45'),(25,49,'2023-01-24 23:37:14'),(26,51,'2023-01-24 23:42:35');
 /*!40000 ALTER TABLE `like` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE `login_attempts` (
   `user_id` int(11) NOT NULL,
   `time` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `login_attempts` (
 
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-INSERT INTO `login_attempts` VALUES (3,'1671919467'),(3,'1671919471'),(4,'1671919512'),(5,'1671919684'),(4,'1671920258'),(7,'1671920265'),(9,'1672244503'),(9,'1672244506'),(9,'1672244507'),(9,'1672244507'),(9,'1672244507'),(9,'1672244515'),(10,'1672244918'),(2,'1672244951'),(2,'1672245175'),(9,'1672612589'),(9,'1672612591'),(9,'1672612597'),(9,'1672612598'),(9,'1672612620'),(9,'1673646907'),(9,'1673646908'),(9,'1673646912'),(9,'1673891489'),(9,'1673891491'),(9,'1673891495'),(9,'1673891512');
+INSERT INTO `login_attempts` VALUES (42,'1674598264'),(42,'1674598268'),(43,'1674599569'),(43,'1674599582'),(43,'1674599583'),(43,'1674599594'),(43,'1674599698'),(43,'1674599704');
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,18 +118,20 @@ CREATE TABLE `post` (
   `idUtente` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `origine` varchar(45) NOT NULL,
+  `barcode` varchar(45) DEFAULT NULL,
   `note` varchar(200) DEFAULT NULL,
   `leggero` int(11) NOT NULL,
   `secco` int(11) NOT NULL,
   `piatto` int(11) NOT NULL,
   `morbido` int(11) NOT NULL,
+  `bilanciamento` varchar(45) NOT NULL,
   `valutazione` int(11) NOT NULL,
   `testo` varchar(280) DEFAULT NULL,
   `immagine` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPost`),
   KEY `utente` (`idUtente`),
   CONSTRAINT `utente` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +140,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (3,'2023-01-06 20:14:43',9,'','',NULL,0,0,0,0,0,'regw','9_1.jpeg'),(4,'2023-01-06 20:34:43',16,'','',NULL,0,0,0,0,0,'ciao sono musso','16_1.jpeg'),(5,'2023-01-06 20:35:12',18,'','',NULL,0,0,0,0,0,'Ciao sono ciro','empty.png'),(6,'2023-01-06 20:35:24',18,'','',NULL,0,0,0,0,0,'Ciao sono ancora ciro','empty.png'),(7,'2023-01-05 20:46:47',33,'','',NULL,0,0,0,0,0,'no foto sono io','33_1.png'),(9,'2023-01-23 23:02:38',9,'','',NULL,0,0,0,0,0,'ciao sono io',NULL),(11,'2023-01-24 14:39:36',41,'','',NULL,0,0,0,0,0,'la mia azienda!','41_1.jpg'),(12,'2023-01-24 15:59:35',9,'Prosecco','Valmarecchia',NULL,50,50,50,50,3,'',NULL),(13,'2023-01-24 16:07:08',9,'Nero Magis','Bertinoro ','Carne rossa e latte',33,68,18,53,4,'Molto buono e sapore delicato','9_2.jpg'),(14,'2023-01-24 17:25:40',9,'ciao','prova','grappa',50,50,50,50,3,'',NULL);
+INSERT INTO `post` VALUES (18,'2023-01-24 22:53:09',42,'Prosecco Parigino','Parigi','','uva, sughero',29,45,87,65,'Quite Balanced',3,'Non male, provato durante un viaggio a Parigi di 3 anni fa. Niente di speciale','42_1.jpg'),(19,'2023-01-24 22:55:14',51,'Ca\' del Bosco Satèn 2015','Ca\'  del Bosco Franciacorta Vintage Collectio','8032727260841','legno, agrumi',43,58,57,15,'Quite Balanced',4,'Bottiglia speciale aperta durante il mio Diciottesimo compleanno. Ottima annata, note limpide.','43_1.jpeg'),(20,'2023-01-24 22:55:46',42,'Ca\' del bosco','Romagna','8032727260841','uva, legno',25,41,73,57,'Quite Balanced',4,'Bevuto ad un diciottesimo, molto buono e poco stancante. Estremamente consigliato','42_2.jpg'),(21,'2023-01-24 23:09:16',51,'Dom Pérignon 2009','Cantine Dom Pérignon Brut Vintage 2009','0000416698','noce, fragola',57,22,64,15,'Slightly unbalanced',4,'Un classico Dom Pérignon 2009','43_2.jpg'),(22,'2023-01-24 23:12:41',51,'Bellavista Brut','Brut Franciacorta','MOVIFRAGRACUV','fruttato',64,57,54,13,'Quite Balanced',3,'Sovrapprezzato rispetto alla resa del gusto.','43_3.jpg'),(23,'2023-01-24 23:20:14',51,'Nespoli Snagiovese Superiore Prugneto 2019','Emilia Romagna','8000154000019','uva, legno, cuoio',75,36,69,70,'Quite Balanced',5,'Estremamento consigliato.\r Qualità /Prezzo eccellente, un sangiovese davvero eccezionale.','43_4.jpg'),(24,'2023-01-24 23:23:58',51,'Helmut Dönnhoff 2020','Germania','140432225508','prugna, legno',79,45,68,67,'Quite Balanced',5,'Leggenda vivente dell\'enologia tedesca e mondiale, Helmut Dönnhoff.','43_5.jpg'),(25,'2023-01-24 23:30:58',51,'Braschi 2019','Mercato Saraceno, Emilia Romagna','8051773984167','uva, paglia',42,29,47,39,'Quite Balanced',4,'Sangiovese di Mercato Saraceno, ottima annata, cantina di fiducia.\r\nGustato in \"aperitivo\" accomapagnato da salsiccia casereccia.','43_6.jpg'),(26,'2023-01-24 23:39:56',49,'Amarone','Italia','8015822000048','legno, agrumi',78,48,69,60,'Quite Balanced',5,'Lo volevo assaggiare da tanto','49_1.jpg');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +168,7 @@ CREATE TABLE `segue` (
 
 LOCK TABLES `segue` WRITE;
 /*!40000 ALTER TABLE `segue` DISABLE KEYS */;
-INSERT INTO `segue` VALUES (9,33,'2023-01-21 18:27:32'),(16,9,'2023-01-06 20:00:00'),(33,9,'2023-01-14 17:57:03');
+INSERT INTO `segue` VALUES (42,51,'2023-01-24 23:01:02'),(49,51,'2023-01-24 23:41:58'),(51,42,'2023-01-24 23:01:17'),(51,49,'2023-01-24 23:40:27'),(51,51,'2023-01-24 23:43:23');
 /*!40000 ALTER TABLE `segue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +194,7 @@ CREATE TABLE `utente` (
   `imgProfilo` varchar(45) NOT NULL,
   `ultimaLetturaNotifiche` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +203,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (2,'test_user','test@example.com','00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc','f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef','Test','User','2000-12-24','sommelier','','Ciao sono test','2_propic.png',NULL),(9,'aleciro','aleciro@gmail.com','412d7c4bbf2189c6dd61a5239d112966504e0485157e92095bffe3a926a12865eb6ab579a500b3a8cf18c2bb940f712321208ad5c27b3740c1cd35b4ea23a1d9','cc162737baaccce2c47efa258e30b58e8010c2d8de6f1431085593a07e70d78e15ce3ce07f878a044b379021345db4c8a607016cda475afbced90a88a3e45c6b','Ale','Ciro','2000-12-12','sommelier','','Ciao sono alino tatino','9_propic.jpg','2023-01-23 23:02:28'),(16,'musso','musso','667f3e0cdc089491d88c7cd9c889b39dd199cf921933f5ac186ef5df39659fb041acea3e5a95a0eb18d6f50bcb4ba52f0cee3cec4772ef76aad13fcf1044cdba','7f77125a9f87f77a75f566146d4cc671529de674abfa2b8659cde21b3d49a673395b8f4a545210414d3cb6bfb9152e4f35a4b808fee3dd87387fcf19acf7b011','musso','musso','2010-10-10','novice','','musso','16_propic.png','2022-12-30 23:58:33'),(18,'ciro','ciro','fbc62c7d8816a07249b958e18943a58de4be39be90d35c76fdd99deebc64055ba903807ad3a25689831eb33fb675015a6bab7eb1f3c3ae47515771b1eb568cdd','1f339e6ce12ba17eb470c362109cb9cc2f97ca2469bd634556e504b6a66f4acea214825e103638acff62c4cfd28e2a4d28e000b6231300a899b4bd26762579f9','ciro','ciro','2010-10-10','passionate','','ciro','18_propic.png','2022-12-31 00:02:06'),(33,'nofoto','nofoto','61491d42bc109a88e36af2f83caf8967745e247633287be060886e1f3779698ef5d558848e2fdc6c31bc02c00d6f28eda752b8f30a6615aa38e6a561ec74278b','10e283cfef74d11ee1b82a66fbc995700da93276e966506217ef352e6eadcc65037784a306b602603495ea06ecc0019f2070f904db4acb5772a03056c1cdca8c','nofoto','nofoto','2010-10-10','grower','via mia ','nofoto','empty.png','2023-01-21 17:55:41'),(34,'sifoto','sifoto','fea9fcb4a5a645dc4b1521a7846319f15398573f5d85f3eeba30a1c9d9fc95f5965bed0588d36df924399734c7b62580924938b573e76539a7b587659e4bca55','e66ce81a9560f8c92607ccb624bd902dac4d5b0a244c5a5c816231102e2af961eabf23847756ab3a527fe7eb6cabb740f9dc7ca5349e8a0474c9ab59619eee6f','sifoto','sifoto','2010-10-10','owner','via del duomo 80 milano','sifoto','34_propic.png','2022-12-31 00:34:18'),(35,'musso1','musso1','07f4792ee0605fd9b66b4ee030b1994099f8184ba568317f1118aa9dfabccf1b72654fe1ba10f88845ac7cfe2f6ccb508cf1c72a9b1c93668d60f22d81617309','b5484ef5a9466e58278f4269f127ef0cb5c588355e33ba581e192603c76e50afb63b2795de69bce456721ea8068b0381f950795f114d4449664e9d68035dba38','musso1','musso1','2010-10-10','novice','','musso','empty.png','2023-01-02 21:47:05'),(36,'marti','fartifoca@gmail.foc','224924c703c09e6d695a3c3923534a9d8edaad6f9595e4347c231ce4f890060a895a7a0a685e58fb3cf9e01ff1304dcd57fcb361d745b35f13be1ecef24cdd53','8e585d111699414ca97db492748a14b3f260c09531e57f3808759167124050a3d6726c0786451929d9d939e59aa35ac6a739e76bf49400ba2a48207789d70893','marti','foca','2023-01-03','sommelier','','Ciao sono una farti foca','empty.png','2023-01-04 20:45:24'),(37,'provatest','provatest@gmail.com','fea7576fc73465d2f26fd8175fdeb42ad54d74714d36703c0c87e24711ea6a6148c09df264ce080c2706f0690e21f2e4bcbeb67abeb00208dbd328e1c706fec6','cd4d1b1c4c866410370865904f5dfac17c7675296886df9b23dc8b06683782f60f6eb65da12bca08fd78eb41ad55afbc42e2d0f2cd329e27372050efc0bf8510','provatest','provatest','2020-10-10','passionate','','fds','empty.png','2023-01-23 23:17:29'),(41,'tipotest','tipo@gmail.com','5838d342455eba9a223985cebaa1b16298e0a91f77a5d42240729747054fc3ce89cbd01974a6e9580601f60e4f57a7610bba7fad0c7e1e238ada7dc1392bb505','15b17194631aaede9894a34622c368542a087f447453faa3e414798f7875f1e4160f10d1610c7bbe42dd42f3046081dce5966d06e26f7dfa1e0dc37aa8960bf7','tipo','test','2010-10-10','owner','via bella','ciao','41_propic.jpg','2023-01-24 14:37:44');
+INSERT INTO `utente` VALUES (42,'nicomusso','niccolo.mussoni@gmail.com','554a6e7065b553b53b2d0c844b3bcbcd11e3153d82f6121df4adc5d9bfcc2771451280d26e80e8ec92761341c45e1c21a4629113997f79cfdbe73e49cbdbaa06','6620ef4d5132310f4363ee494f8f0f6612a890518a03b395bcd3fb7676db66969032b6e5d300ac9cab43dbf63cfaeb84815f7565644a80efc9bc95b6e068c861','Niccolò','Mussoni','2001-05-18','novice','','Ciao sono Niccolò e non so niente di vini','42_propic.jpg','2023-01-25 22:13:49'),(44,'matteo.marchetti','matteo.marchetti@gmail.com','50883f54de759bc2f3e3576c2896d002147e437f59f044d50c398b7269e8ce3aae3da52faebf966e0637d2ba166ecee417759df985fd554dbbd9c75da2fa7e25','144f490508de7d09038a9245af392b152153842a066773e2f496da7ce8c7da347dce9521835e6a28e3ae86f461af7b137cb7ce8b7bf6f9a8d63b77ef59d22a36','Matteo','Marchetti','1980-10-10','sommelier','','Sono un sommelier e faccio questo lavoro da 20 anni','empty.png','2023-01-24 23:09:34'),(45,'laurasantelli','laurasantelli90@gmail.com','3c2485b1e3469304ce6237bb631f1394b79cab4ea09353a5931d88d5b6c1c073b1b29dde67d0d93b68897d3cd4b8fd1b82d8147bad3cc9fde9712307032513fe','5ff90d0f2c6eb27f1d9c90350ee5b135595861501d18028fd4c883201505db3edc0efa9c44e78bb9313a4e197424d9cd9b998498076d32cb144e4c9993b1c550','Laura','Santelli','1990-07-12','owner','Via Giovanni Pascoli 14, Milano (MI)','Gestisco l\'azienda di famiglia da qualche anno','empty.png','2023-01-24 23:10:51'),(46,'tommyparra','tommyparra@alice.it','860f44b04a829dcd85841722b4ac60ff1b6d7dfcaa440013fded2f8a893e326e726f5b15118453ba53b0d885f68dad2fd510564c4435f8889207888a4f2ded7c','1045e606a879a79dfb308809a0b2b7094e2cf96cf8ce8594ed952fdb47590093c97b949ed2068f90e917e1362ec4d1409d376856c146a24567f8266b623674fb','Tommaso','Parrazzi','1970-10-10','passionate','','Appassionato di vini sin dalla giovane etÃ ','empty.png','2023-01-24 23:11:50'),(47,'pam.beesly','pam.beesly@gmail.com','b00b20bc945ed53889fd71a25c7057d85216a1c0e0268aa13b3c95274527336ba000a28769e54a38b694785793f3e7413592d16d66c1dedc6174de256666250b','83baf1ce904f386e67d8eea7b19b5fee9ceec9430f318b9baba3314495ed7a817f9915ef29f010d3d6fce55af9f73619d8add7bb3b7e048a9052350c56304e9c','Pamela','Beesly','1974-03-07','novice','','Hi I\'m Pam','47_propic.jpg','2023-01-24 23:14:46'),(48,'jakemarcus75','jakemarcus@gmail.com','477a10729b54fc02f537e52826d61dc632e24efa7b6e9f3e5ec5fc0d2eda0993dd47e96eeca5353ca54c51a4ef02eb1d8dd06af499fcc734369932c3314e3b0b','2a4872bc7c09f90f749c54cb1cfce303daac8278e80edc8c15ef0c5d3d0e9f969891a319c224c8446e8ed3e8121c735884b07ccac51154e40740702832365221','Jake','Marcus','1975-10-09','grower','U.S. Route 395 Business (Carson City, Nevada)','Hello I am a grape grower in Nevada','48_propic.jpg','2023-01-24 23:17:36'),(49,'claudio','cla@gmail.com','d79a77e62c13d8c41d40263cceb62ed34d85359a57e1a3603c4cddbf792deac55289c3db59c5785dab9b93deeebccfba2716a2e9430cbd542f85722e4f16e399','aea2f3cf988f286539f52f62832b7a9a1cd931be1a8e967353cbe869957051a88864c779256b69862f30a65db9ef9e69549052cb6a54457e5dc60cdc7c0abd4c','Claudio','Sciarrillo','1974-12-12','sommelier','','Mi piace il vino','49_propic.jpg','2023-01-24 23:42:48'),(51,'alesciarrillo','alessandrosciarrillo@gmail.com','82711fb83e33d83d9cedebfb26fcf77f999c57886e38435adc64589fbd3a2e2e2d512d46e1464c217c504668b106d1f0ee84a8659c17b09e010647d77fc9bb56','f827576c4d0fe8d8ba5833a7150e02485d1ef4675f8cf2554661abcb7f1ddd588719c79690ffeb7a3ac689390e928cad36a04c7ca8e98ba93b02001f02b96466','Alessandro','Sciarrillo','2001-12-19','passionate','Via G. Leopardi 23','Sono un giovane studente di ingegneria informatica che si diletta anche nella degustazione di vini.\r\nLi bevo alle grigliate.','51_propic.jpg','2023-01-24 23:55:55');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -214,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-24 17:54:33
+-- Dump completed on 2023-01-26  8:56:33
