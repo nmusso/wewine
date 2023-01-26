@@ -2,13 +2,15 @@ function generaBarra() {
     let bar = `
     <header>
         <div class="row mt-2">
-            <div class="col-12 col-sm-8">
-                <div class="d-flex form-inputs mx-2">
-                    <label class="form-label" for="searchBar" hidden>Search bar</label>
-                    <input id="searchBar" class="form-control" type="search" placeholder="Search any profile...">
-                    <span class="bx bx-search"></span>
+            <form>
+                <div class="col-12 col-sm-8">
+                    <div class="d-flex form-inputs mx-2">            
+                        <label class="form-label" for="searchBar" hidden>Search bar</label>
+                        <input id="searchBar" class="form-control" type="search" placeholder="Search any profile..." autofocus>
+                        <span class="bx bx-search"></span> 
+                    </div> 
                 </div>
-            </div>
+            </form>
         </div>
     </header>
     `;

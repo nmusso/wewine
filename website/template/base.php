@@ -76,7 +76,7 @@
 					<button type="button" class="btn-close  btn-close-white"  data-bs-dismiss="toast"></button>
 				</div>		
 				<a href="#" id="toast-link-text">
-					<div class="toast-body text-white" id="toast-text"></div>
+					<div class="toast-body text-white" id="toast-text">Toast Message text</div>
 				</a>
 			</div>
 		</div>
