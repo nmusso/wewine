@@ -28,10 +28,8 @@
     text-decoration: none;
 }
 
-/* https://stackoverflow.com/questions/23934749/fill-element-from-center-on-hover */
 .info {   
     background-image: linear-gradient(#5e2129, #5e2129);
-    /*background-image: linear-gradient(to top, #212529 80%, transparent);*/
     background-position: 50% 100%;
     background-repeat: no-repeat;
     background-size: 100% 0%;
@@ -41,49 +39,6 @@
 .info:hover { 
     background-size: 100% 100%;
     color: #fff;
-}
-
-#myToast {
-    left: 50%;
-    position: fixed;
-    transform: translate(-50%, 0px);
-    z-index: 9000;
-}
-
-#toast-link{
-    color: white;
-}
-
-.bellOn {
-    animation: rotation 0.5s infinite alternate;
-}
-
-@keyframes rotation {
-    from {
-        transform: rotate(-45deg);
-    }
-    to {
-        transform: rotate(45deg);
-    }
-}
-
-.slider::-webkit-slider-thumb, .slider[disabled]::-webkit-slider-thumb{
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 10px;
-    background-color: #5e2129;
-    overflow: visible;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb, .slider[disabled]::-moz-range-thumb{
-    width: 18px;
-    height: 18px;
-    border-radius: 10px;
-    background-color: #5e2129;
-    overflow: visible;
-    cursor: pointer;
 }
 
 .fa-star {
@@ -106,6 +61,37 @@
     color: #D40000;
 }
 
+.bellOn {
+    animation: rotation 0.5s infinite alternate;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(-45deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+.slider::-webkit-slider-thumb, .slider[disabled]::-webkit-slider-thumb{
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    background-color: #5e2129;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb, .slider[disabled]::-moz-range-thumb{
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    background-color: #5e2129;
+    overflow: visible;
+    cursor: pointer;
+}
+
 #qr-reader__status_span {
     float: right; 
     padding: 0.7% 1%; 
@@ -114,3 +100,15 @@
     background-color: #5e2129 !important;
     color: white !important;
 }
+
+#myToast {
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, 0px);
+    z-index: 9000;
+}
+
+#toast-link{
+    color: white;
+}
+
