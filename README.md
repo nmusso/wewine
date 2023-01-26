@@ -8,6 +8,7 @@ To view the mockups download the file **mockup.html** (or in alternative use thi
 
 ## Instructions
 - Put the folder on a web server
-- Create an account
+- Run the file **db_init.sql** on a DBMS
+- Connect and create an account
 - Login
 - Start using the social!
