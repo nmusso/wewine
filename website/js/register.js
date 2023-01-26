@@ -42,7 +42,7 @@ function generaForm() {
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="address">Your address</label>
-                                    <input type="text" id="address" class="form-control form-control-lg">
+                                    <input type="text" id="address" class="form-control form-control-lg" />
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label for="bio">Bio *</label> 
