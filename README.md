@@ -14,7 +14,7 @@ CREATE DATABASE social
 ```
 ```
 CREATE USER 'sec_user'@'localhost' IDENTIFIED BY 'f&4@YXuC9$5C^nLQ';
-GRANT SELECT, INSERT, UPDATE, DELETE ON `secure_login`.* TO 'sec_user'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `social`.* TO 'sec_user'@'localhost';
 ```
 - Connect and create an account
 - Login
