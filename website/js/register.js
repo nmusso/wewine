@@ -64,7 +64,7 @@ function generaForm() {
                                 <div class="d-flex justify-content-center">
                                     <button id="submit" type="button" class="btn wine text-white btn-block btn-lg text-white">Register</button>
                                 </div>
-                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a id="loginhere" href="#!"
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a id="loginhere" href="./login.php"
                                     class="fw-bold text-body"><u>Login here</u></a></p>
                             </fieldset>
                         </form>
@@ -81,8 +81,6 @@ function generaForm() {
 
 const main = document.querySelector("main");
 main.innerHTML = generaForm();
-
-document.getElementById("loginhere").addEventListener("click", () => window.location.replace("./login.php"))
 
 const type = document.getElementById("selectType");
 addressManager();

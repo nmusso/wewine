@@ -22,7 +22,7 @@ function generaLoginForm() {
                             <button id="submit" type="submit" class="btn wine text-white">Login</button>
                         </div>
                         <div class="d-flex flex-row-reverse mb-3 text-end">
-                            <a id="register" href="#!"><p class="text-right fw-light">If you don't already have an account <br/><u class="fw-bold ">Register now</u></p></a>
+                            <a id="register" href="./register.php"><p class="text-right fw-light">If you don't already have an account <br/><u class="fw-bold ">Register now</u></p></a>
                         </div>     
                     </fieldset>
                 </form>
@@ -36,10 +36,6 @@ function generaLoginForm() {
 
 const main = document.querySelector("main");
 main.innerHTML = generaLoginForm();
-
-document.getElementById("register").addEventListener("click", () => {
-    window.location.replace("./register.php")
-})
 
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
