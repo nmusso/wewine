@@ -21,8 +21,8 @@ function generaLoginForm() {
                         <div class="d-flex flex-row-reverse mb-3">
                             <button id="submit" type="submit" class="btn wine text-white">Login</button>
                         </div>
-                        <div class="d-flex flex-row-reverse mb-3">
-                            <a id="register" href="#">Register now</a>
+                        <div class="d-flex flex-row-reverse mb-3 text-end">
+                            <a id="register" href="#!"><p class="text-end fw-light">If you don't already have an account <u class="fw-bold ">Register now</u></p></a>
                         </div>     
                     </fieldset>
                 </form>
