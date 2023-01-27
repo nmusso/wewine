@@ -57,7 +57,7 @@ In alternative you can use this link (fullscreen recommended): https://slides.co
 - For every post and notification it is shown the time passed from the event.
 - When a user receives a **notification**: 
   - if the user is online at the time of receipt, a push notification is displayed
-  - in any case the notifications logo starts to swing and by clicking on the notifications button it is possible to view both the new notifications and those already displayed, distinguished by color
+  - in any case the notifications logo starts to swing and by clicking on the notifications button it is possible to view both the new and old notifications, distinguished by color
 
 ## Peculiarities
 - The password are not transmitted in clear and salted with an unique salt 
