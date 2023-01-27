@@ -119,6 +119,8 @@ document.getElementById("submit").addEventListener("click", (event) => {
             formhash(form, oldPw, newPw); 
             oldPassword = document.querySelector("#oldp_hex").value;
             newPassword = document.querySelector("#newp_hex").value;
+            form.removeChild(document.getElementById("oldp_hex"));
+            form.removeChild(document.getElementById("newp_hex"));
         }
 
         const username = document.querySelector("#username").value;
@@ -130,8 +132,6 @@ document.getElementById("submit").addEventListener("click", (event) => {
         const indirizzo = document.querySelector("#address").value;
         const bio = document.querySelector("#bio").value;
         const imgProfilo = document.querySelector("#imgProfile").files[0];
-        form.removeChild(document.getElementById("oldp_hex"));
-        form.removeChild(document.getElementById("newp_hex"));
         update(username, oldPassword, newPassword, email, nome, cognome, dataNascita, tipo, indirizzo, bio, imgProfilo);
     }
 })
