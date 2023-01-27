@@ -57,6 +57,7 @@ In alternative you can use this link (fullscreen recommended): https://slides.co
 - For every post and notification it is shown the time passed from the event.
 - When a user receives a **notification**: 
   - if the user is online at the time of receipt, a push notification is displayed
+![Push Notification](mockup/18.jpg)
   - in any case the notifications logo starts to swing and by clicking on the notifications button it is possible to view both the new and old notifications, distinguished by color
 
 ## Peculiarities
@@ -69,6 +70,7 @@ In alternative you can use this link (fullscreen recommended): https://slides.co
 - Push notifications are shown in overlay for every event happened in the last 3 seconds
 - When new notifications are present the notification logo of the navigation bar starts to swing
 - To insert a barcode of a wine we have set up a barcode scanner, which use the device camera or an uploaded image
+![Barcode scanner](mockup/19.jpg)
 
 ## Instructions
 - Copy the folder on a web server
