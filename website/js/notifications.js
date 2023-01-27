@@ -19,7 +19,7 @@ function generaNotifica(data, age) {
                                 <div class="row">
                                     <div class="card-body col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 ${style_text}">          
                                         <a href="profile.php?profile=${data["id"]}">
-                                            <p class="card-text">${data["username"]}</p>
+                                            <p class="card-text ${style_text}">${data["username"]}</p>
                                         </a>
                                     </div>
                                     <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ${style_text}">
