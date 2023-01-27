@@ -32,7 +32,7 @@ In alternative you can use this link (fullscreen recommended): https://slides.co
 - We did an "experience prototyping" session with some external eterogeneous users (various age and computer knowledge) to evaluate the prototypes
 - After collecting the results of the previous point we evoluted the initial mockups resolving all the reported problems
 - We did a focus group with some target users (in our case, three sommeliers) to define accurately the domain and the terms to use
-- In the end we started the develop
+- We applied all the advices received during the focus group
 
 ## Scope
 - A user can follow and be followed by other users, add or remove likes and comments on other users' posts
