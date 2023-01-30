@@ -22,7 +22,8 @@ axios.get("./api/api-post.php").then(response => {
             }
 
             post["liked"] = (post["liked"] == null) ? "fa-regular" : "fa-solid";
-            main.insertAdjacentHTML("beforeend", generaPost(post));
+            main.insertAdjacentHTML("beforeend", generaPost(post));  
+            document.querySelector(".like").addEventListener("click", () => getLikeList(idPost));
 
             if (response.data["type"] != null && response.data["type"] == "comment") {
                 commentManager(post["idPost"]);
