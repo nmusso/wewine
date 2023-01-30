@@ -32,13 +32,13 @@ In alternative you can use this link (fullscreen recommended): https://slides.co
 - We did an "experience prototyping" session with some external eterogeneous users (various age and computer knowledge) to evaluate the prototypes
 - After collecting the results of the previous point we evoluted the initial mockups resolving all the reported problems
 - We did a focus group with some target users (in our case, three sommeliers) to define accurately the domain and the terms to use
-- In the end we started the develop
+- We applied all the advices received during the focus group
 
 ## Scope
 - A user can follow and be followed by other users, add or remove likes and comments on other users' posts
 - A user can edit his own **profile** after registrating, using the apposite button in the Profile section, which let him modify all the profile data including the password and the profile picture
 - A user can specify its category (owner/grower/sommelier/passionate/novice) and, in the first two cases, a company address
-- In a profile is possible to click on Followers and Followed fields to view the list of all the relative users
+- In a profile you can click on Followers and Followed fields to view the list of all the relative users
 - A user can **post** a review regarding the tasting of a wine, being able to enter:   
   - name of the wine   
   - origin  
@@ -51,22 +51,23 @@ In alternative you can use this link (fullscreen recommended): https://slides.co
     - dry/sweet
     - flat/sour    
   - It is also possible to scan or manually enter the wine barcode in order to make it easier for other users to search that specific wine on the web, using a dedicated button
-- A post can be opened by clicking on the text, which let you see the list of users who liked the post by clicking on the number at the bottom right of every post
+- A post can be opened by clicking on the text. 
+- On an opened post you can see the list of users who liked the post by clicking on the number at the bottom right of every post
 - It's possible to view and post comments by clicking the comment logo at the bottom right of every post
-- In the bottom section of every post is present a button "Search wine" which redirect to a google search of that specific wine: if the barcode was entered, the search is based on it, in other case the wine name will be used
-- For every post and notification it is shown the time passed from the event.
+- In the bottom section of every post is present a button "Search wine" which redirect to a Google search of that specific wine: if the barcode was entered, the search is based on it, in other case the wine name will be used
+- For every post and notification it's shown the time passed from the event.
 - When a user receives a **notification**: 
-  - if the user is online at the time of receipt, a push notification is displayed
-![Push Notification](mockup/19.jpg)
-  - in any case the notifications logo starts to swing and by clicking on the notifications button it is possible to view both the new and old notifications, distinguished by color
+  - the notifications logo starts to swing and by clicking on the notifications button it is possible to view both the new and old notifications, distinguished by color
+    - if the user is online at the time of receipt, a push notification is displayed
+![Push Notification](mockup/19.jpg) 
 
 ## Peculiarities
 - The password are not transmitted in clear and salted with an unique salt 
 - The queries are executed by a special user with particular privileges on the DB
-- We prevented SQL injections by using binding
+- We prevented SQL injections by using parameter binding
 - The feed is loaded dynamically for a better efficiency
 - The user search is dynamic and not require to click a button to launch it
-- Every action includes a check on the login status: if you are not logged anymore you will be redirect to the login page
+- Every action includes a check of the login status: if you are not logged anymore you will be redirect to the login page
 - Push notifications are shown in overlay for every event happened in the last 3 seconds
 - When new notifications are present the notification logo of the navigation bar starts to swing
 - To insert a barcode of a wine we have set up a barcode scanner, which use the device camera or an uploaded image
