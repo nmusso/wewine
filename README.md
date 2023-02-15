@@ -1,4 +1,5 @@
 # WeWine
+University project
 
 ## Theme
 We want to create a community of wine lovers, from the novice to the entrepreneur, where you can share your opinions about wine, with all the peculiarities of a social network.
